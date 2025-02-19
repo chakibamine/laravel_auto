@@ -163,7 +163,6 @@ unset($__errorArgs, $__bag); ?>
                                             <?php if($exam->resultat == '0' && auth()->user()->role == 'admin'): ?>
                                                 <button type="button" class="btn btn-outline-danger btn-sm"
                                                     wire:click="deleteExam(<?php echo e($exam->id); ?>)"
-                                                    onclick="return confirm('Etes-vous sur???')">
                                                     delete
                                                 </button>
                                             <?php endif; ?>

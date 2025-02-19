@@ -63,9 +63,14 @@
                                 <a href="#" class="text-info me-2">
                                     <i class="fas fa-edit fa-sm"></i>
                                 </a>
-                                <a href="#" class="text-secondary">
+                                <a href="#" class="text-secondary me-2">
                                     <i class="fas fa-print fa-sm"></i>
                                 </a>
+                                @if(auth()->user()->role == 'admin')
+                                    <a href="#" class="text-danger" wire:click.prevent="deleteDossier({{ $dossier->id }})">
+                                        <i class="fas fa-trash fa-sm"></i>
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                         @empty
@@ -86,6 +91,14 @@
     @include('livewire.modals.payment-modal')
     @include('livewire.modals.exam-modal')
 
+    <!-- Include Confirm Modal -->
+    <livewire:confirm-modal 
+        title="Confirmation de suppression"
+        message="Êtes-vous sûr de vouloir supprimer ce dossier ? Cette action est irréversible."
+        confirm-button-text="Supprimer"
+        cancel-button-text="Annuler"
+        confirm-button-class="btn-danger"
+    />
 
 </div>
 

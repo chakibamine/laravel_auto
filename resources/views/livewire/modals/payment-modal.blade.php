@@ -186,7 +186,6 @@
                                         @if($selectedDossier->status == '0' && auth()->user()->role == 'admin')
                                             <button type="button" 
                                                 class="btn btn-outline-danger btn-sm"
-                                                onclick="return confirm('Etes-vous sur???')"
                                                 wire:click="deleteReg({{ $reg->id }})">
                                                 delete
                                             </button>

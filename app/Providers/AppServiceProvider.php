@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use App\Http\Livewire\ExamController;
+use App\Http\Livewire\Components\PaymentModal;
+use App\Http\Livewire\Components\ConfirmModal;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
@@ -23,8 +24,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        Livewire::component('exam-controller', ExamController::class);
+        Livewire::component('payment-modal', PaymentModal::class);
+        Livewire::component('confirm-modal', ConfirmModal::class);
     }
 }

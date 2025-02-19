@@ -170,15 +170,15 @@
               <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('logout', [])->html();
-} elseif ($_instance->childHasBeenRendered('hY8KiVC')) {
-    $componentId = $_instance->getRenderedChildComponentId('hY8KiVC');
-    $componentTag = $_instance->getRenderedChildComponentTagName('hY8KiVC');
+} elseif ($_instance->childHasBeenRendered('DxoKlW8')) {
+    $componentId = $_instance->getRenderedChildComponentId('DxoKlW8');
+    $componentTag = $_instance->getRenderedChildComponentTagName('DxoKlW8');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('hY8KiVC');
+    $_instance->preserveRenderedChild('DxoKlW8');
 } else {
     $response = \Livewire\Livewire::mount('logout', []);
     $html = $response->html();
-    $_instance->logRenderedChild('hY8KiVC', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('DxoKlW8', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?></a>

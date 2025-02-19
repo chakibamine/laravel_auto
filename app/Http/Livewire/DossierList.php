@@ -39,7 +39,9 @@ class DossierList extends Component
 
     protected $listeners = [
         'refreshComponent' => '$refresh',
-        'closePaymentModal' => 'closePaymentModal'
+        'closePaymentModal' => 'closePaymentModal',
+        'confirmed' => 'handleConfirmed',
+        'cancelled' => 'handleCancelled'
     ];
 
     public function mount()
@@ -74,25 +76,11 @@ class DossierList extends Component
     public function openPaymentModal($dossierId)
     {
         try {
-            \Log::info('Opening payment modal for dossier ID: ' . $dossierId);
-            
+            \Log::info('Opening payment modal for dossier: ' . $dossierId);
             $this->selectedDossier = Dossier::with('student')->findOrFail($dossierId);
-            \Log::info('Loaded dossier:', ['dossier' => $this->selectedDossier->toArray()]);
-            
-            $this->calculateTotals();
-            \Log::info('Calculated totals:', [
-                'totalPaid' => $this->totalPaid,
-                'remaining' => $this->remaining
-            ]);
-            
-            // Force show modal regardless of remaining amount for debugging
-            $this->showPaymentModal = true;
             $this->reg['dossier_id'] = $dossierId;
-            \Log::info('Modal should show now');
-            
-            // Emit an event for debugging
-            $this->emit('modalOpened');
-            
+            $this->calculateTotals();
+            $this->showPaymentModal = true;
         } catch (\Exception $e) {
             \Log::error('Error in openPaymentModal: ' . $e->getMessage());
             session()->flash('error', 'Error loading payment modal: ' . $e->getMessage());
@@ -167,6 +155,36 @@ class DossierList extends Component
 
     public function deleteReg($regId)
     {
+        $this->emit('confirm', [
+            'action' => 'deleteReg',
+            'id' => $regId
+        ]);
+    }
+
+    public function deleteDossier($dossierId)
+    {
+        $this->emit('confirm', [
+            'action' => 'deleteDossier',
+            'id' => $dossierId
+        ]);
+    }
+
+    public function handleConfirmed($data)
+    {
+        if ($data['action'] === 'deleteReg') {
+            $this->performDeleteReg($data['id']);
+        } elseif ($data['action'] === 'deleteDossier') {
+            $this->performDeleteDossier($data['id']);
+        }
+    }
+
+    public function handleCancelled()
+    {
+        // Handle cancel if needed
+    }
+
+    private function performDeleteReg($regId)
+    {
         try {
             if (auth()->user()->role === 'admin') {
                 $reg = Reg::findOrFail($regId);
@@ -178,6 +196,21 @@ class DossierList extends Component
         } catch (\Exception $e) {
             \Log::error('Error deleting registration: ' . $e->getMessage());
             session()->flash('error', 'Erreur lors de la suppression du paiement: ' . $e->getMessage());
+        }
+    }
+
+    private function performDeleteDossier($dossierId)
+    {
+        try {
+            if (auth()->user()->role === 'admin') {
+                $dossier = Dossier::findOrFail($dossierId);
+                $dossier->delete();
+                session()->flash('success', 'Dossier supprimé avec succès.');
+                $this->emit('refreshComponent');
+            }
+        } catch (\Exception $e) {
+            \Log::error('Error deleting dossier: ' . $e->getMessage());
+            session()->flash('error', 'Erreur lors de la suppression du dossier: ' . $e->getMessage());
         }
     }
 

@@ -6,6 +6,7 @@
   'components.forms' => 'App\\Http\\Livewire\\Components\\Forms',
   'components.modals' => 'App\\Http\\Livewire\\Components\\Modals',
   'components.notifications' => 'App\\Http\\Livewire\\Components\\Notifications',
+  'components.payment-modal' => 'App\\Http\\Livewire\\Components\\PaymentModal',
   'components.typography' => 'App\\Http\\Livewire\\Components\\Typography',
   'dashboard' => 'App\\Http\\Livewire\\Dashboard',
   'dossier-list' => 'App\\Http\\Livewire\\DossierList',
