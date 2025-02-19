@@ -57,22 +57,21 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
+                               
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="col-form-label">Type :</label>
-                                        <select class="form-select <?php $__errorArgs = ['exam.type_exam'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" 
-                                            wire:model.defer="exam.type_exam" required>
-                                            <option value="">Sélectionner un type</option>
-                                            <option value="Theorique">Theorique</option>
-                                            <option value="Pratique">Pratique</option>
-                                        </select>
+                                        <?php if(count($exams) === 0): ?>
+                                            <select class="form-select" wire:model.defer="exam.type_exam" disabled>
+                                                <option value="Theorique">Theorique</option>
+                                            </select>
+                                            <input type="hidden" wire:model.defer="exam.type_exam" value="Theorique">
+                                        <?php else: ?>
+                                            <select class="form-select" wire:model.defer="exam.type_exam" disabled>
+                                                <option value="<?php echo e($exam['type_exam']); ?>"><?php echo e($exam['type_exam']); ?></option>
+                                            </select>
+                                            <input type="hidden" wire:model.defer="exam.type_exam" value="<?php echo e($exam['type_exam']); ?>">
+                                        <?php endif; ?>
                                         <?php $__errorArgs = ['exam.type_exam'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -82,6 +81,30 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
+                                </div>
+                                <div class="col">
+                                    <?php if(count($exams) === 0): ?>
+                                    <div class="mb-3">
+                                        <label class="col-form-label">N'serie :</label>
+                                        <input type="text" class="form-control <?php $__errorArgs = ['exam.n_serie'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            wire:model.defer="exam.n_serie" required>
+                                        <?php $__errorArgs = ['exam.n_serie'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> <div class="invalid-feedback"><?php echo e($message); ?></div> <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 

@@ -43,17 +43,33 @@
                                         @error('exam.date_exam') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
+                               
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="col-form-label">Type :</label>
-                                        <select class="form-select @error('exam.type_exam') is-invalid @enderror" 
-                                            wire:model.defer="exam.type_exam" required>
-                                            <option value="">Sélectionner un type</option>
-                                            <option value="Theorique">Theorique</option>
-                                            <option value="Pratique">Pratique</option>
-                                        </select>
+                                        @if(count($exams) === 0)
+                                            <select class="form-select" wire:model.defer="exam.type_exam" disabled>
+                                                <option value="Theorique">Theorique</option>
+                                            </select>
+                                            <input type="hidden" wire:model.defer="exam.type_exam" value="Theorique">
+                                        @else
+                                            <select class="form-select" wire:model.defer="exam.type_exam" disabled>
+                                                <option value="{{ $exam['type_exam'] }}">{{ $exam['type_exam'] }}</option>
+                                            </select>
+                                            <input type="hidden" wire:model.defer="exam.type_exam" value="{{ $exam['type_exam'] }}">
+                                        @endif
                                         @error('exam.type_exam') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
+                                </div>
+                                <div class="col">
+                                    @if(count($exams) === 0)
+                                    <div class="mb-3">
+                                        <label class="col-form-label">N'serie :</label>
+                                        <input type="text" class="form-control @error('exam.n_serie') is-invalid @enderror" 
+                                            wire:model.defer="exam.n_serie" required>
+                                        @error('exam.n_serie') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
 

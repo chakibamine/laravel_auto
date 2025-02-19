@@ -18,6 +18,7 @@ class ExamModal extends Component
         'date_exam' => '',
         'type_exam' => '',
         'dossier_id' => '',
+        'n_serie' => '',
     ];
     public $exams = [];
 
@@ -26,7 +27,8 @@ class ExamModal extends Component
     protected $rules = [
         'exam.date_exam' => 'required|date',
         'exam.type_exam' => 'required|string|max:25',
-        'exam.dossier_id' => 'required|exists:dossier,id'
+        'exam.dossier_id' => 'required|exists:dossier,id',
+        'exam.n_serie' => 'required_if:exams.*.count,0|string|max:50'
     ];
 
     public function mount()
@@ -40,6 +42,46 @@ class ExamModal extends Component
             $this->selectedDossier = Dossier::with('student')->findOrFail($dossierId);
             $this->exam['dossier_id'] = $dossierId;
             $this->loadExams();
+            
+            $examCount = count($this->exams);
+            
+            switch ($examCount) {
+                case 0:
+                    $this->exam['type_exam'] = 'Theorique';
+                    break;
+                    
+                case 1:
+                    if ($this->exams[0]->resultat == '2') {
+                        $this->exam['type_exam'] = 'Pratique';
+                    } elseif ($this->exams[0]->resultat == '0' || $this->exams[0]->resultat == '1') {
+                        $this->exam['type_exam'] = 'Theorique';
+                    }
+                    break;
+                    
+                case 2:
+                    // Most recent exam first (due to orderBy desc in loadExams)
+                    if ($this->exams[0]->resultat == '2' && $this->exams[1]->resultat == '0') {
+                        $this->exam['type_exam'] = 'Pratique';
+                    } elseif ($this->exams[0]->resultat == '1' && $this->exams[1]->resultat == '0') {
+                        $this->exam['type_exam'] = 'Theorique';
+                    } elseif ($this->exams[0]->resultat == '1' && $this->exams[1]->resultat == '2') {
+                        $this->exam['type_exam'] = 'Pratique';
+                    } elseif ($this->exams[0]->resultat == '2' && $this->exams[1]->resultat == '1') {
+                        $this->exam['type_exam'] = 'Pratique';
+                    } elseif ($this->exams[0]->resultat == '1' && $this->exams[1]->resultat == '1') {
+                        // No more exams allowed - handled by canAddMore in view
+                    } elseif ($this->exams[0]->resultat == '2' && $this->exams[1]->resultat == '2') {
+                        // No more exams allowed - handled by canAddMore in view
+                    }
+                    break;
+                    
+                case 3:
+                    if ($this->exams[2]->resultat == '0') {
+                        $this->exam['type_exam'] = 'Pratique';
+                    }
+                    break;
+            }
+            
             $this->showModal = true;
         } catch (\Exception $e) {
             session()->flash('error', 'Error loading exam modal: ' . $e->getMessage());
@@ -66,14 +108,26 @@ class ExamModal extends Component
                 throw new \Exception('Maximum number of exams (3) reached.');
             }
 
-            $newExam = Exam::create([
+            $examData = [
                 'date_exam' => $this->exam['date_exam'],
                 'type_exam' => $this->exam['type_exam'],
                 'resultat' => '0', // 0 = En cours, 1 = Inapte, 2 = Apte
                 'dossier_id' => $this->exam['dossier_id'],
                 'date_insertion' => now(),
                 'insert_user' => Auth::user()->name
-            ]);
+            ];
+
+            // If this is the first exam
+            if ($examCount === 0) {
+                // Update dossier with n_serie and date_cloture
+                $dossier = Dossier::findOrFail($this->exam['dossier_id']);
+                $dossier->update([
+                    'n_serie' => $this->exam['n_serie'],
+                    'date_cloture' => now()
+                ]);
+            }
+
+            $newExam = Exam::create($examData);
 
             if (!$newExam) {
                 throw new \Exception('Failed to create exam record');
@@ -148,10 +202,12 @@ class ExamModal extends Component
 
     private function resetExam()
     {
+        $examCount = count($this->exams);
         $this->exam = [
             'date_exam' => now()->format('Y-m-d'),
-            'type_exam' => '',
+            'type_exam' => $this->exam['type_exam'] ?? '', // Keep the type determined by show()
             'dossier_id' => $this->selectedDossier ? $this->selectedDossier->id : '',
+            'n_serie' => '',
         ];
     }
 
