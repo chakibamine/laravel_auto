@@ -89,7 +89,9 @@
 
     <!-- Include Payment Modal -->
     @include('livewire.modals.payment-modal')
-    @include('livewire.modals.exam-modal')
+
+    <!-- Include Exam Modal -->
+    <livewire:exam-modal />
 
     <!-- Include Confirm Modal -->
     <livewire:confirm-modal 

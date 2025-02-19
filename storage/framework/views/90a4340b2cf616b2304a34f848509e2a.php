@@ -90,21 +90,37 @@
 
     <!-- Include Payment Modal -->
     <?php echo $__env->make('livewire.modals.payment-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php echo $__env->make('livewire.modals.exam-modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <!-- Include Confirm Modal -->
+    <!-- Include Exam Modal -->
     <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('confirm-modal', ['title' => 'Confirmation de suppression','message' => 'Êtes-vous sûr de vouloir supprimer ce dossier ? Cette action est irréversible.','confirmButtonText' => 'Supprimer','cancelButtonText' => 'Annuler','confirmButtonClass' => 'btn-danger'])->html();
+    $html = \Livewire\Livewire::mount('exam-modal', [])->html();
 } elseif ($_instance->childHasBeenRendered('l1588430505-0')) {
     $componentId = $_instance->getRenderedChildComponentId('l1588430505-0');
     $componentTag = $_instance->getRenderedChildComponentTagName('l1588430505-0');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
     $_instance->preserveRenderedChild('l1588430505-0');
 } else {
-    $response = \Livewire\Livewire::mount('confirm-modal', ['title' => 'Confirmation de suppression','message' => 'Êtes-vous sûr de vouloir supprimer ce dossier ? Cette action est irréversible.','confirmButtonText' => 'Supprimer','cancelButtonText' => 'Annuler','confirmButtonClass' => 'btn-danger']);
+    $response = \Livewire\Livewire::mount('exam-modal', []);
     $html = $response->html();
     $_instance->logRenderedChild('l1588430505-0', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+
+    <!-- Include Confirm Modal -->
+    <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('confirm-modal', ['title' => 'Confirmation de suppression','message' => 'Êtes-vous sûr de vouloir supprimer ce dossier ? Cette action est irréversible.','confirmButtonText' => 'Supprimer','cancelButtonText' => 'Annuler','confirmButtonClass' => 'btn-danger'])->html();
+} elseif ($_instance->childHasBeenRendered('l1588430505-1')) {
+    $componentId = $_instance->getRenderedChildComponentId('l1588430505-1');
+    $componentTag = $_instance->getRenderedChildComponentTagName('l1588430505-1');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('l1588430505-1');
+} else {
+    $response = \Livewire\Livewire::mount('confirm-modal', ['title' => 'Confirmation de suppression','message' => 'Êtes-vous sûr de vouloir supprimer ce dossier ? Cette action est irréversible.','confirmButtonText' => 'Supprimer','cancelButtonText' => 'Annuler','confirmButtonClass' => 'btn-danger']);
+    $html = $response->html();
+    $_instance->logRenderedChild('l1588430505-1', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

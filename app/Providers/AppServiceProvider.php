@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use App\Http\Livewire\Components\PaymentModal;
 use App\Http\Livewire\Components\ConfirmModal;
+use App\Http\Livewire\Components\ExamModal;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Livewire::component('payment-modal', PaymentModal::class);
         Livewire::component('confirm-modal', ConfirmModal::class);
+        Livewire::component('exam-modal', ExamModal::class);
     }
 }
