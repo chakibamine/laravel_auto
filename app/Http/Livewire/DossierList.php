@@ -73,23 +73,47 @@ class DossierList extends Component
 
     public function openPaymentModal($dossierId)
     {
-        $this->selectedDossier = Dossier::with('student')->findOrFail($dossierId);
-        $this->calculateTotals();
-        
-        // Only show modal if there's remaining amount to pay
-        if ($this->remaining > 0) {
+        try {
+            \Log::info('Opening payment modal for dossier ID: ' . $dossierId);
+            
+            $this->selectedDossier = Dossier::with('student')->findOrFail($dossierId);
+            \Log::info('Loaded dossier:', ['dossier' => $this->selectedDossier->toArray()]);
+            
+            $this->calculateTotals();
+            \Log::info('Calculated totals:', [
+                'totalPaid' => $this->totalPaid,
+                'remaining' => $this->remaining
+            ]);
+            
+            // Force show modal regardless of remaining amount for debugging
             $this->showPaymentModal = true;
             $this->reg['dossier_id'] = $dossierId;
-        } else {
-            session()->flash('info', 'Ce dossier est déjà entièrement payé.');
+            \Log::info('Modal should show now');
+            
+            // Emit an event for debugging
+            $this->emit('modalOpened');
+            
+        } catch (\Exception $e) {
+            \Log::error('Error in openPaymentModal: ' . $e->getMessage());
+            session()->flash('error', 'Error loading payment modal: ' . $e->getMessage());
         }
     }
 
     public function calculateTotals()
     {
         if ($this->selectedDossier) {
-            $this->totalPaid = Reg::where('dossier_id', $this->selectedDossier->id)->sum('prix');
-            $this->remaining = $this->selectedDossier->price - $this->totalPaid;
+            try {
+                $this->totalPaid = Reg::where('dossier_id', $this->selectedDossier->id)->sum('prix');
+                $this->remaining = floatval($this->selectedDossier->price) - floatval($this->totalPaid);
+                \Log::info('Calculated totals in calculateTotals:', [
+                    'dossier_id' => $this->selectedDossier->id,
+                    'price' => $this->selectedDossier->price,
+                    'totalPaid' => $this->totalPaid,
+                    'remaining' => $this->remaining
+                ]);
+            } catch (\Exception $e) {
+                \Log::error('Error calculating totals: ' . $e->getMessage());
+            }
         }
     }
 

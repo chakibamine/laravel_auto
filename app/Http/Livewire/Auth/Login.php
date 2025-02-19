@@ -17,28 +17,24 @@ class Login extends Component
         'password' => 'required|min:6',
     ];
 
-    //This mounts the default credentials for the admin. Remove this section if you want to make it public.
-    public function mount()
-    {
-        if (auth()->user()) {
-            return redirect()->intended('/dashboard');
-        }
-        $this->fill([
-            'email' => 'admin@volt.com',
-            'password' => 'secret',
-        ]);
-    }
+    // //This mounts the default credentials for the admin. Remove this section if you want to make it public.
+    // public function mount()
+    // {
+    //     if (auth()->user()) {
+    //         return redirect()->intended('/dashboard');
+    //     }
+    //     $this->fill([
+    //         'email' => 'admin@volt.com',
+    //         'password' => 'secret',
+    //     ]);
+    // }
 
     public function login()
     {
         $credentials = $this->validate();
-        if (auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
-            $user = User::where(['email' => $this->email])->first();
-            auth()->login($user, $this->remember_me);
-            return redirect()->intended('/dashboard');
-        } else {
-            return $this->addError('email', trans('auth.failed'));
-        }
+        return auth()->attempt($credentials)
+                ? redirect()->intended('/profile')
+                : $this->addError('email', trans('auth.failed'));
     }
 
     public function render()

@@ -29,14 +29,12 @@ class Register extends Component
     public function register()
     {
         $this->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email|unique:users',
+            'email' => 'required',
             'password' => 'required|same:passwordConfirmation|min:6',
         ]);
 
         $user = User::create([
-            'name' => $this->name,
-            'email' => $this->email,
+            'email' =>$this->email,
             'password' => Hash::make($this->password),
             'remember_token' => Str::random(10),
         ]);

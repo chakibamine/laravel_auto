@@ -1,5 +1,24 @@
+
+<?php if($showPaymentModal): ?>
+    <div style="display:none">
+        Debug: Modal should be visible
+        ShowPaymentModal: <?php echo e(var_export($showPaymentModal, true)); ?>
+
+        SelectedDossier exists: <?php echo e(isset($selectedDossier) ? 'Yes' : 'No'); ?>
+
+        <?php if(isset($selectedDossier)): ?>
+            Dossier ID: <?php echo e($selectedDossier->id); ?>
+
+            Price: <?php echo e($selectedDossier->price); ?>
+
+            Remaining: <?php echo e($remaining); ?>
+
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+
 <?php if($showPaymentModal && $selectedDossier): ?>
-<div class="modal show d-block" tabindex="-1" role="dialog">
+<div class="modal show" style="display: block; background-color: rgba(0,0,0,0.5);" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
