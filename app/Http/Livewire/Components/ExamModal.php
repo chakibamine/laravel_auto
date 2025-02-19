@@ -36,52 +36,51 @@ class ExamModal extends Component
         $this->exam['date_exam'] = now()->format('Y-m-d');
     }
 
+    private function determineExamType()
+    {
+        $examCount = count($this->exams);
+        
+        switch ($examCount) {
+            case 0:
+                $this->exam['type_exam'] = 'Theorique';
+                break;
+                
+            case 1:
+                if ($this->exams[0]->resultat == '2') {
+                    $this->exam['type_exam'] = 'Pratique';
+                } elseif ($this->exams[0]->resultat == '0' || $this->exams[0]->resultat == '1') {
+                    $this->exam['type_exam'] = 'Theorique';
+                }
+                break;
+                
+            case 2:
+                // Most recent exam first (due to orderBy desc in loadExams)
+                if ($this->exams[0]->resultat == '2' && $this->exams[1]->resultat == '0') {
+                    $this->exam['type_exam'] = 'Pratique';
+                } elseif ($this->exams[0]->resultat == '1' && $this->exams[1]->resultat == '0') {
+                    $this->exam['type_exam'] = 'Theorique';
+                } elseif ($this->exams[0]->resultat == '1' && $this->exams[1]->resultat == '2') {
+                    $this->exam['type_exam'] = 'Pratique';
+                } elseif ($this->exams[0]->resultat == '2' && $this->exams[1]->resultat == '1') {
+                    $this->exam['type_exam'] = 'Pratique';
+                }
+                break;
+                
+            case 3:
+                if ($this->exams[2]->resultat == '0') {
+                    $this->exam['type_exam'] = 'Pratique';
+                }
+                break;
+        }
+    }
+
     public function show($dossierId)
     {
         try {
             $this->selectedDossier = Dossier::with('student')->findOrFail($dossierId);
             $this->exam['dossier_id'] = $dossierId;
             $this->loadExams();
-            
-            $examCount = count($this->exams);
-            
-            switch ($examCount) {
-                case 0:
-                    $this->exam['type_exam'] = 'Theorique';
-                    break;
-                    
-                case 1:
-                    if ($this->exams[0]->resultat == '2') {
-                        $this->exam['type_exam'] = 'Pratique';
-                    } elseif ($this->exams[0]->resultat == '0' || $this->exams[0]->resultat == '1') {
-                        $this->exam['type_exam'] = 'Theorique';
-                    }
-                    break;
-                    
-                case 2:
-                    // Most recent exam first (due to orderBy desc in loadExams)
-                    if ($this->exams[0]->resultat == '2' && $this->exams[1]->resultat == '0') {
-                        $this->exam['type_exam'] = 'Pratique';
-                    } elseif ($this->exams[0]->resultat == '1' && $this->exams[1]->resultat == '0') {
-                        $this->exam['type_exam'] = 'Theorique';
-                    } elseif ($this->exams[0]->resultat == '1' && $this->exams[1]->resultat == '2') {
-                        $this->exam['type_exam'] = 'Pratique';
-                    } elseif ($this->exams[0]->resultat == '2' && $this->exams[1]->resultat == '1') {
-                        $this->exam['type_exam'] = 'Pratique';
-                    } elseif ($this->exams[0]->resultat == '1' && $this->exams[1]->resultat == '1') {
-                        // No more exams allowed - handled by canAddMore in view
-                    } elseif ($this->exams[0]->resultat == '2' && $this->exams[1]->resultat == '2') {
-                        // No more exams allowed - handled by canAddMore in view
-                    }
-                    break;
-                    
-                case 3:
-                    if ($this->exams[2]->resultat == '0') {
-                        $this->exam['type_exam'] = 'Pratique';
-                    }
-                    break;
-            }
-            
+            $this->determineExamType();
             $this->showModal = true;
         } catch (\Exception $e) {
             session()->flash('error', 'Error loading exam modal: ' . $e->getMessage());
@@ -148,17 +147,14 @@ class ExamModal extends Component
         try {
             $exam = Exam::findOrFail($examId);
             
-            // Only allow updating if exam date is today or in the past
             if ($exam->date_exam->isAfter(now())) {
                 throw new \Exception('Cannot update result for future exams.');
             }
 
-            $exam->update([
-                'resultat' => $result
-            ]);
-
+            $exam->update(['resultat' => $result]);
             session()->flash('success', 'Résultat mis à jour avec succès.');
             $this->loadExams();
+            $this->determineExamType();
 
         } catch (\Exception $e) {
             session()->flash('error', 'Erreur lors de la mise à jour: ' . $e->getMessage());
@@ -185,6 +181,7 @@ class ExamModal extends Component
                 $exam->delete();
                 session()->flash('success', 'Examen supprimé avec succès.');
                 $this->loadExams();
+                $this->determineExamType();
                 $this->cancelDelete();
             }
         } catch (\Exception $e) {

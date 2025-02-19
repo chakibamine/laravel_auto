@@ -48,14 +48,10 @@
                                     <div class="mb-3">
                                         <label class="col-form-label">Type :</label>
                                         @if(count($exams) === 0)
-                                            <select class="form-select" wire:model.defer="exam.type_exam" disabled>
-                                                <option value="Theorique">Theorique</option>
-                                            </select>
+                                            <input type="text" class="form-control" wire:model.defer="exam.type_exam" value="Theorique" readonly>
                                             <input type="hidden" wire:model.defer="exam.type_exam" value="Theorique">
                                         @else
-                                            <select class="form-select" wire:model.defer="exam.type_exam" disabled>
-                                                <option value="{{ $exam['type_exam'] }}">{{ $exam['type_exam'] }}</option>
-                                            </select>
+                                            <input type="text" class="form-control" wire:model.defer="exam.type_exam" value="{{ $exam['type_exam'] }}" readonly>
                                             <input type="hidden" wire:model.defer="exam.type_exam" value="{{ $exam['type_exam'] }}">
                                         @endif
                                         @error('exam.type_exam') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -94,14 +90,16 @@
                                     $examCount = count($exams);
                                     $canAddMore = true;
                                     
-                                    if ($examCount >= 3) {
-                                        $canAddMore = false;
-                                    } elseif ($examCount == 2) {
-                                        $results = collect($exams)->pluck('resultat')->toArray();
-                                        if ((in_array('1', $results) && in_array('1', $results)) || 
-                                            (in_array('2', $results) && in_array('2', $results))) {
+                                    switch ($examCount) {
+                                        case 2:
+                                            if (($exams[0]->resultat == '1' && $exams[1]->resultat == '1') || 
+                                                ($exams[0]->resultat == '2' && $exams[1]->resultat == '2')) {
+                                                $canAddMore = false;
+                                            }
+                                            break;
+                                        case 3:
                                             $canAddMore = false;
-                                        }
+                                            break;
                                     }
                                 @endphp
 
