@@ -46,7 +46,7 @@
                     <tbody>
                         @forelse($dossiers as $dossier)
                         <tr>
-                            <td>{{ str_pad($dossier->id, 4, '0', STR_PAD_LEFT) }}</td>
+                            <td>{{ $dossier->ref }}</td>
                             <td>{{ $dossier->student->cin }}</td>
                             <td>{{ strtoupper($dossier->student->lastname) }} {{ ucfirst($dossier->student->firstname) }}</td>
                             <td>{{ $dossier->student->phone }}</td>
@@ -63,7 +63,7 @@
                                 <a href="#" class="text-info me-2">
                                     <i class="fas fa-edit fa-sm"></i>
                                 </a>
-                                <a href="#" class="text-secondary me-2">
+                                <a href="{{ route('dossier.contract.pdf', ['id' => $dossier->id]) }}" class="text-secondary me-2" target="_blank">
                                     <i class="fas fa-print fa-sm"></i>
                                 </a>
                                 @if(auth()->user()->role == 'admin')

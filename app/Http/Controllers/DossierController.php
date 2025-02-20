@@ -6,6 +6,7 @@ use App\Models\Dossier;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DossierController extends Controller
 {
@@ -94,5 +95,15 @@ class DossierController extends Controller
 
         return redirect()->route('dossiers.index')
             ->with('success', 'Dossier deleted successfully.');
+    }
+
+    public function generateContractPdf($id)
+    {
+        try {
+            $dossier = Dossier::with('student')->findOrFail($id);
+            return view('contract.show', compact('dossier'));
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error displaying contract: ' . $e->getMessage());
+        }
     }
 } 

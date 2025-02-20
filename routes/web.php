@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ResetPasswordExample;
 use App\Http\Livewire\UpgradeToPro;
 use App\Http\Livewire\Users;
+use App\Http\Controllers\DossierController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,7 +80,8 @@ Route::middleware('auth')->group(function () {
 
 // Student Management Routes
 Route::middleware(['auth'])->group(function () {
-    Route::controller(App\Http\Controllers\StudentController::class)->group(function () {
+    // Student routes
+    Route::controller(StudentController::class)->group(function () {
         Route::get('/students', 'index')->name('students.index');
         Route::get('/students/create', 'create')->name('students.create');
         Route::post('/students', 'store')->name('students.store');
@@ -91,6 +94,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/students/import', 'import')->name('students.import');
         Route::get('/students/{student}/photo', 'downloadPhoto')->name('students.photo.download');
         Route::delete('/students/{student}/photo', 'removePhoto')->name('students.photo.remove');
+    });
+
+    // Dossier routes
+    Route::controller(DossierController::class)->group(function () {
+        Route::get('/dossiers/{id}/contract', 'generateContractPdf')->name('dossier.contract.pdf');
     });
 });
 

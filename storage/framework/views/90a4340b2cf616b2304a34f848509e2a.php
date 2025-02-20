@@ -46,7 +46,7 @@
                     <tbody>
                         <?php $__empty_1 = true; $__currentLoopData = $dossiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dossier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr>
-                            <td><?php echo e(str_pad($dossier->id, 4, '0', STR_PAD_LEFT)); ?></td>
+                            <td><?php echo e($dossier->ref); ?></td>
                             <td><?php echo e($dossier->student->cin); ?></td>
                             <td><?php echo e(strtoupper($dossier->student->lastname)); ?> <?php echo e(ucfirst($dossier->student->firstname)); ?></td>
                             <td><?php echo e($dossier->student->phone); ?></td>
@@ -63,7 +63,7 @@
                                 <a href="#" class="text-info me-2">
                                     <i class="fas fa-edit fa-sm"></i>
                                 </a>
-                                <a href="#" class="text-secondary me-2">
+                                <a href="<?php echo e(route('dossier.contract.pdf', ['id' => $dossier->id])); ?>" class="text-secondary me-2" target="_blank">
                                     <i class="fas fa-print fa-sm"></i>
                                 </a>
                                 <?php if(auth()->user()->role == 'admin'): ?>
