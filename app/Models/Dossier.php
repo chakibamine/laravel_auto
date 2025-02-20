@@ -20,17 +20,15 @@ class Dossier extends Model
      * @var array
      */
     protected $fillable = [
-        'id',                // int
-        'category',          // varchar(2)
-        'price',            // int
-        'ref',              // varchar(6)
-        'date_inscription', // timestamp
-        'insert_user',      // varchar(50)
-        'student_id',       // int
-        'status',           // tinyint(1)
-        'resultat',         // tinyint(1)
-        'n_serie',          // int
-        'date_cloture'      // timestamp
+        'category',
+        'price',
+        'ref',
+        'status',
+        'resultat',
+        'n_serie',
+        'date_inscription',
+        'date_cloture',
+        'insert_user'
     ];
 
     /**
@@ -39,14 +37,8 @@ class Dossier extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'price' => 'integer',
         'date_inscription' => 'datetime',
-        'student_id' => 'integer',
-        'status' => 'boolean',
-        'resultat' => 'boolean',
-        'n_serie' => 'integer',
-        'date_cloture' => 'datetime'
+        'date_cloture' => 'datetime',
     ];
 
     /**

@@ -60,7 +60,7 @@
                                 <a href="#" class="text-primary me-2" wire:click.prevent="$emit('showExamModal', {{ $dossier->id }})">
                                     <i class="fas fa-graduation-cap fa-sm"></i>
                                 </a>
-                                <a href="#" class="text-info me-2">
+                                <a href="#" class="text-info me-2" wire:click.prevent="openEditModal({{ $dossier->id }})">
                                     <i class="fas fa-edit fa-sm"></i>
                                 </a>
                                 <a href="{{ route('dossier.contract.pdf', ['id' => $dossier->id]) }}" class="text-secondary me-2" target="_blank">
@@ -89,6 +89,70 @@
 
     <!-- Include Payment Modal -->
     @include('livewire.modals.payment-modal')
+
+    <!-- Include Edit Modal -->
+    @if($showEditModal && $selectedDossier)
+    <div class="modal fade show" style="display: block; background-color: rgba(0,0,0,0.5);" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifier le Dossier</h5>
+                    <button wire:click="closeEditModal" type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form wire:submit.prevent="updateDossier">
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select wire:model.defer="editDossier.category" class="form-select @error('editDossier.category') is-invalid @enderror">
+                                <option value="">Select Category</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="EC">EC</option>
+                            </select>
+                            @error('editDossier.category') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Prix</label>
+                            <input type="number" class="form-control @error('editDossier.price') is-invalid @enderror" 
+                                wire:model.defer="editDossier.price">
+                            @error('editDossier.price') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Référence</label>
+                            <input type="text" class="form-control @error('editDossier.ref') is-invalid @enderror" 
+                                wire:model.defer="editDossier.ref">
+                            @error('editDossier.ref') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+
+                        <!-- Success/Error Messages -->
+                        @if (session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        @if (session()->has('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button wire:click="closeEditModal" type="button" class="btn btn-link text-gray ms-auto">Annuler</button>
+                    <button wire:click="updateDossier" type="button" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+    @endif
 
     <!-- Include Exam Modal -->
     <livewire:exam-modal />

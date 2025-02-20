@@ -22,6 +22,12 @@ class DossierList extends Component
     public $totalPaid = 0;
     public $remaining = 0;
     public $showPaymentModal = false;
+    public $showEditModal = false;
+    public $editDossier = [
+        'category' => '',
+        'price' => '',
+        'ref' => ''
+    ];
     public $reg = [
         'date_reg' => '',
         'prix' => '',
@@ -35,6 +41,12 @@ class DossierList extends Component
         'reg.motif' => 'required|string|max:50',
         'reg.nom_du_payeur' => 'required|string|max:75',
         'reg.dossier_id' => 'required|exists:dossier,id'
+    ];
+
+    protected $editRules = [
+        'editDossier.category' => 'required|string|max:2',
+        'editDossier.price' => 'required|numeric|min:1',
+        'editDossier.ref' => 'required|string|max:6'
     ];
 
     protected $listeners = [
@@ -233,6 +245,53 @@ class DossierList extends Component
     {
         $this->showPaymentModal = false;
         $this->selectedDossier = null;
+    }
+
+    public function openEditModal($dossierId)
+    {
+        try {
+            $dossier = Dossier::findOrFail($dossierId);
+            $this->selectedDossier = $dossier;
+            $this->editDossier = [
+                'category' => $dossier->category,
+                'price' => $dossier->price,
+                'ref' => $dossier->ref
+            ];
+            $this->showEditModal = true;
+        } catch (\Exception $e) {
+            session()->flash('error', 'Error loading dossier: ' . $e->getMessage());
+        }
+    }
+
+    public function updateDossier()
+    {
+        try {
+            $this->validate($this->editRules);
+
+            $this->selectedDossier->update([
+                'category' => $this->editDossier['category'],
+                'price' => $this->editDossier['price'],
+                'ref' => $this->editDossier['ref']
+            ]);
+
+            session()->flash('success', 'Dossier mis à jour avec succès.');
+            $this->closeEditModal();
+            $this->emit('refreshComponent');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Erreur lors de la mise à jour du dossier: ' . $e->getMessage());
+        }
+    }
+
+    public function closeEditModal()
+    {
+        $this->showEditModal = false;
+        $this->selectedDossier = null;
+        $this->editDossier = [
+            'category' => '',
+            'price' => '',
+            'ref' => ''
+        ];
+        $this->resetValidation();
     }
 
     public function render()
