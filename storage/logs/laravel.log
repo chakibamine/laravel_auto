@@ -14503,3 +14503,5 @@ Ensure that the [name, id, data] of the Livewire component wasn't tampered with 
 [2025-02-20 09:01:55] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":3000,"totalPaid":0,"remaining":3000.0} 
 [2025-02-20 09:03:32] local.INFO: Opening payment modal for dossier: 7  
 [2025-02-20 09:03:32] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":0,"remaining":2500.0} 
+[2025-02-20 09:26:25] local.INFO: Opening payment modal for dossier: 9  
+[2025-02-20 09:26:25] local.INFO: Calculated totals in calculateTotals: {"dossier_id":9,"price":2500,"totalPaid":0,"remaining":2500.0} 

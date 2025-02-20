@@ -9,6 +9,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
+                        @if(session()->has('quota_info') && count($exams) === 0 && $selectedDossier->category === 'B')
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                {{ session('quota_info') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
                         <form wire:submit.prevent="saveExam">
                             <!-- Student Info -->
                             <div class="row">
@@ -58,11 +65,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    @if(count($exams) === 0)
+                                    @if(count($exams) === 0 && $selectedDossier->category === 'B')
                                     <div class="mb-3">
-                                        <label class="col-form-label">N'serie :</label>
+                                        <label class="col-form-label">N° série :</label>
                                         <input type="text" class="form-control @error('exam.n_serie') is-invalid @enderror" 
-                                            wire:model.defer="exam.n_serie" required>
+                                            wire:model.defer="exam.n_serie">
+                                        <small class="text-muted">Numéro généré automatiquement</small>
                                         @error('exam.n_serie') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                     @endif

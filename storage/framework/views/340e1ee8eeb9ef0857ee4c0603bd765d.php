@@ -9,6 +9,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
+                        <?php if(session()->has('quota_info') && count($exams) === 0 && $selectedDossier->category === 'B'): ?>
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <?php echo e(session('quota_info')); ?>
+
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif; ?>
+
                         <form wire:submit.prevent="saveExam">
                             <!-- Student Info -->
                             <div class="row">
@@ -79,9 +87,9 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <?php if(count($exams) === 0): ?>
+                                    <?php if(count($exams) === 0 && $selectedDossier->category === 'B'): ?>
                                     <div class="mb-3">
-                                        <label class="col-form-label">N'serie :</label>
+                                        <label class="col-form-label">N° série :</label>
                                         <input type="text" class="form-control <?php $__errorArgs = ['exam.n_serie'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -90,7 +98,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                            wire:model.defer="exam.n_serie" required>
+                                            wire:model.defer="exam.n_serie">
+                                        <small class="text-muted">Numéro généré automatiquement</small>
                                         <?php $__errorArgs = ['exam.n_serie'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

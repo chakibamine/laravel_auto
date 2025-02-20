@@ -74,6 +74,29 @@ class ExamModal extends Component
         }
     }
 
+    private function getNextNSerie()
+    {
+        $currentMonth = Carbon::now()->format('Y-m');
+        
+        $lastDossier = Dossier::where('category', 'B')
+            ->whereNotNull('n_serie')
+            ->whereYear('date_cloture', Carbon::now()->year)
+            ->whereMonth('date_cloture', Carbon::now()->month)
+            ->orderBy('n_serie', 'desc')
+            ->first();
+
+        $nextNumber = $lastDossier ? intval($lastDossier->n_serie) + 1 : 1;
+        return (string) $nextNumber; // Convert to string before returning
+    }
+
+    private function getQuotaCount()
+    {
+        return Dossier::where('category', 'B')
+            ->whereYear('date_cloture', Carbon::now()->year)
+            ->whereMonth('date_cloture', Carbon::now()->month)
+            ->count();
+    }
+
     public function show($dossierId)
     {
         try {
@@ -81,6 +104,14 @@ class ExamModal extends Component
             $this->exam['dossier_id'] = $dossierId;
             $this->loadExams();
             $this->determineExamType();
+            
+            // Set n_serie automatically if this is the first exam and category is B
+            if (count($this->exams) === 0 && $this->selectedDossier->category === 'B') {
+                $this->exam['n_serie'] = $this->getNextNSerie();
+                $quotaCount = $this->getQuotaCount();
+                session()->flash('quota_info', "Quota actuel: $quotaCount/12 examens ce mois-ci");
+            }
+            
             $this->showModal = true;
         } catch (\Exception $e) {
             session()->flash('error', 'Error loading exam modal: ' . $e->getMessage());
@@ -96,15 +127,43 @@ class ExamModal extends Component
         }
     }
 
+    private function checkQuota()
+    {
+        if ($this->selectedDossier && $this->selectedDossier->category === 'B') {
+            $currentMonth = Carbon::now()->format('Y-m');
+            
+            $totalExams = Dossier::where('category', 'B')
+                ->whereYear('date_cloture', Carbon::now()->year)
+                ->whereMonth('date_cloture', Carbon::now()->month)
+                ->count();
+
+            return $totalExams < 12;
+        }
+        
+        return true; // No quota restriction for other categories
+    }
+
     public function saveExam()
     {
         try {
             $this->validate();
 
-            // Check if maximum exams reached
+            // Check if this is the first exam
             $examCount = Exam::where('dossier_id', $this->exam['dossier_id'])->count();
-            if ($examCount >= 3) {
-                throw new \Exception('Maximum number of exams (3) reached.');
+            
+            if ($examCount === 0) {
+                // Check quota for category B
+                if (!$this->checkQuota()) {
+                    session()->flash('error', 'Le quota est plein pour ce mois (12/12).');
+                    return;
+                }
+
+                // For first exam, update dossier with n_serie and date_cloture
+                $dossier = Dossier::findOrFail($this->exam['dossier_id']);
+                $dossier->update([
+                    'n_serie' => $this->exam['n_serie'],
+                    'date_cloture' => now()
+                ]);
             }
 
             $examData = [
@@ -115,16 +174,6 @@ class ExamModal extends Component
                 'date_insertion' => now(),
                 'insert_user' => Auth::user()->name
             ];
-
-            // If this is the first exam
-            if ($examCount === 0) {
-                // Update dossier with n_serie and date_cloture
-                $dossier = Dossier::findOrFail($this->exam['dossier_id']);
-                $dossier->update([
-                    'n_serie' => $this->exam['n_serie'],
-                    'date_cloture' => now()
-                ]);
-            }
 
             $newExam = Exam::create($examData);
 
