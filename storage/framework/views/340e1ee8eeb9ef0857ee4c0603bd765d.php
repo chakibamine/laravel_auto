@@ -173,7 +173,7 @@ unset($__errorArgs, $__bag); ?>
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <?php if($exam->resultat == '0' && $exam->date_exam->isToday()): ?>
+                                        <?php if($exam->resultat == '0' &&  $exam->date_exam->isPast()): ?>
                                             <button class="btn btn-outline-success btn-sm" 
                                                 wire:click="updateExamResult(<?php echo e($exam->id); ?>, '2')">APTE</button>
                                             <button class="btn btn-outline-warning btn-sm mx-2" 

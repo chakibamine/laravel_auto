@@ -136,7 +136,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($exam->resultat == '0' && $exam->date_exam->isToday())
+                                        @if($exam->resultat == '0' &&  $exam->date_exam->isPast())
                                             <button class="btn btn-outline-success btn-sm" 
                                                 wire:click="updateExamResult({{ $exam->id }}, '2')">APTE</button>
                                             <button class="btn btn-outline-warning btn-sm mx-2" 

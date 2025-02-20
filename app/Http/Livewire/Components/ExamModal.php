@@ -142,24 +142,70 @@ class ExamModal extends Component
         }
     }
 
-    public function updateExamResult($examId, $result)
-    {
-        try {
-            $exam = Exam::findOrFail($examId);
-            
-            if ($exam->date_exam->isAfter(now())) {
-                throw new \Exception('Cannot update result for future exams.');
-            }
-
-            $exam->update(['resultat' => $result]);
-            session()->flash('success', 'Résultat mis à jour avec succès.');
-            $this->loadExams();
-            $this->determineExamType();
-
-        } catch (\Exception $e) {
-            session()->flash('error', 'Erreur lors de la mise à jour: ' . $e->getMessage());
-        }
+    private function isFullyPaid()
+{
+    if (!$this->selectedDossier) {
+        return false;
     }
+
+    $totalPaid = \App\Models\Reg::where('dossier_id', $this->selectedDossier->id)->sum('prix');
+    return floatval($totalPaid) >= floatval($this->selectedDossier->price);
+}
+
+private function isLastExam($result)
+{
+    if (!$this->selectedDossier) {
+        return false;
+    }
+
+    $allExams = Exam::where('dossier_id', $this->selectedDossier->id)
+                    ->orderBy('date_exam', 'asc') // Order by asc to get oldest first
+                    ->get();
+
+    $examCount = count($allExams);
+
+    switch ($examCount) {
+        case 2:
+            // Check if we're trying to update the second exam
+            if ($allExams[1]->resultat == '0') {
+                if ($allExams[0]->resultat == '1' && $result == '1') {
+                    return true;
+                }
+                if ($allExams[0]->resultat == '2' && $result == '2') {
+                    return true;
+                }
+            }
+            break;
+
+        case 3:
+            return true;
+
+        default:
+            return false;
+    }
+
+    return false;
+}
+
+public function updateExamResult($examId, $result)
+{
+    if ($this->isLastExam($result) && !$this->isFullyPaid()) {
+        session()->flash('error', 'Le dossier doit être entièrement payé avant de pouvoir entrer le résultat.');
+        return;
+    }
+
+    $exam = Exam::findOrFail($examId);
+
+    if ($exam->date_exam->isAfter(now())) {
+        session()->flash('error', 'Impossible de mettre à jour le résultat pour un examen futur.');
+        return;
+    }
+
+    $exam->update(['resultat' => $result]);
+    session()->flash('success', 'Résultat mis à jour avec succès.');
+    $this->loadExams();
+    $this->determineExamType();
+}
 
     public function confirmDelete($examId)
     {
