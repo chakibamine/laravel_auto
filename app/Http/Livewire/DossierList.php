@@ -238,7 +238,7 @@ class DossierList extends Component
     public function render()
     {
         $dossiers = Dossier::with('student')
-            ->where('status', 0)
+            ->where('status', 1)
             ->when($this->searchTerm, function($query) {
                 $query->whereHas('student', function($query) {
                     $query->where('firstname', 'like', '%'.$this->searchTerm.'%')

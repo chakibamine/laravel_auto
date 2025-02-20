@@ -13872,3 +13872,18 @@ Ensure that the [name, id, data] of the Livewire component wasn't tampered with 
 [2025-02-20 00:34:21] local.INFO: Attempting to save registration with data: {"date_reg":"2025-02-20","prix":"2500","motif":"Free inscription","nom_du_payeur":"454 132156","dossier_id":7} 
 [2025-02-20 00:34:21] local.INFO: Registration saved successfully with ID: 21  
 [2025-02-20 00:34:21] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":"2500","remaining":0.0} 
+[2025-02-20 08:10:10] local.INFO: Opening payment modal for dossier: 7  
+[2025-02-20 08:10:10] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":"2500","remaining":0.0} 
+[2025-02-20 08:10:14] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":0,"remaining":2500.0} 
+[2025-02-20 08:11:11] local.INFO: Opening payment modal for dossier: 7  
+[2025-02-20 08:11:11] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":0,"remaining":2500.0} 
+[2025-02-20 08:11:18] local.INFO: Attempting to save registration with data: {"date_reg":"2025-02-20","prix":"2500","motif":"Free inscription","nom_du_payeur":"454 132156","dossier_id":7} 
+[2025-02-20 08:11:18] local.INFO: Registration saved successfully with ID: 22  
+[2025-02-20 08:11:18] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":"2500","remaining":0.0} 
+[2025-02-20 08:31:57] local.INFO: Opening payment modal for dossier: 7  
+[2025-02-20 08:31:57] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":"2500","remaining":0.0} 
+[2025-02-20 08:32:18] local.INFO: Opening payment modal for dossier: 7  
+[2025-02-20 08:32:18] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":"2500","remaining":0.0} 
+[2025-02-20 08:33:07] local.INFO: Opening payment modal for dossier: 7  
+[2025-02-20 08:33:07] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":"2500","remaining":0.0} 
+[2025-02-20 08:33:20] local.INFO: Calculated totals in calculateTotals: {"dossier_id":7,"price":2500,"totalPaid":0,"remaining":2500.0} 

@@ -183,7 +183,7 @@
                                     <td>{{ $reg->date_reg->format('d/m/Y') }}</td>
                                     <td>{{ $reg->nom_du_payeur }}</td>
                                     <td>
-                                        @if($selectedDossier->status == '0' && auth()->user()->role == 'admin')
+                                        @if($selectedDossier->status == '1' && auth()->user()->role == 'admin')
                                             <button type="button" 
                                                 class="btn btn-outline-danger btn-sm"
                                                 wire:click="deleteReg({{ $reg->id }})">

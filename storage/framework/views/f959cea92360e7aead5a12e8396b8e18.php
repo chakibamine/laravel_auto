@@ -246,7 +246,7 @@ unset($__errorArgs, $__bag); ?>
                                     <td><?php echo e($reg->date_reg->format('d/m/Y')); ?></td>
                                     <td><?php echo e($reg->nom_du_payeur); ?></td>
                                     <td>
-                                        <?php if($selectedDossier->status == '0' && auth()->user()->role == 'admin'): ?>
+                                        <?php if($selectedDossier->status == '1' && auth()->user()->role == 'admin'): ?>
                                             <button type="button" 
                                                 class="btn btn-outline-danger btn-sm"
                                                 wire:click="deleteReg(<?php echo e($reg->id); ?>)">
