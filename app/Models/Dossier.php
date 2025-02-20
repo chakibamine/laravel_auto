@@ -12,6 +12,7 @@ class Dossier extends Model
     use HasFactory;
 
     protected $table = 'dossier';
+    public $timestamps = false;
     protected $guarded = [];
 
     /**

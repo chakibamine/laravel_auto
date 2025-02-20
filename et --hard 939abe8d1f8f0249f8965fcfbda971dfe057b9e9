@@ -1,0 +1,78 @@
+[33mcommit 939abe8d1f8f0249f8965fcfbda971dfe057b9e9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Thu Feb 20 10:30:42 2025 +0100
+
+    changes
+
+[33mcommit 418eb9256bc70bc7e0cad1f7ff888b06423d4078[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Thu Feb 20 10:12:27 2025 +0100
+
+    changes
+
+[33mcommit dd861fb1fb449efc3ae1071f5797f74d74a6beef[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Thu Feb 20 09:50:37 2025 +0100
+
+    changes
+
+[33mcommit edb450af48a93de64252fb946d4ef67690936e8d[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Thu Feb 20 09:34:41 2025 +0100
+
+    changes
+
+[33mcommit ce613867a77b61fe87b86c68723e6f8cf1010ff7[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Thu Feb 20 01:34:46 2025 +0100
+
+    changes
+
+[33mcommit ce97b738c6614cda67894014178b62208c8113d6[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Wed Feb 19 23:57:17 2025 +0100
+
+    changes
+
+[33mcommit ca3b6a82057a51048f903c5628ef245a540a8468[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Wed Feb 19 23:38:41 2025 +0100
+
+    changes
+
+[33mcommit c7dbe2374f18ce4bc3cca423df04298a05c99128[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Wed Feb 19 22:19:37 2025 +0100
+
+    changes
+
+[33mcommit 6bbcaa17f6e93c7b18292472044ed437f3106d1f[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Wed Feb 19 14:07:20 2025 +0100
+
+    change the payment modal to show the remaining amount
+
+[33mcommit 1142aaa0c63a1fc405fb288745223d88bf77186c[m
+Merge: afb750f 40aebf5
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Wed Feb 19 13:42:40 2025 +0100
+
+    Merge branch 'main' of https://github.com/chakibamine/laravel_auto
+
+[33mcommit afb750ffb1be7a24266738dc8d92c36a759e6f72[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Wed Feb 19 13:41:56 2025 +0100
+
+    change the payment modal to show the remaining amount
+
+[33mcommit 40aebf51fe5176f009672b609332e3ef1356d7aa[m
+Author: chakibamine <104866605+chakibamine@users.noreply.github.com>
+Date:   Wed Feb 19 13:34:31 2025 +0100
+
+    Update README.md
+
+[33mcommit 9a24757b0e08c0da5df73fc32a14b3728de71013[m
+Author: RadimYassin <radimyassin20@gmail.com>
+Date:   Wed Feb 19 13:19:06 2025 +0100
+
+    first

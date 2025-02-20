@@ -80,8 +80,6 @@ class ExamModal extends Component
         
         $lastDossier = Dossier::where('category', 'B')
             ->whereNotNull('n_serie')
-            ->whereYear('date_cloture', Carbon::now()->year)
-            ->whereMonth('date_cloture', Carbon::now()->month)
             ->orderBy('n_serie', 'desc')
             ->first();
 

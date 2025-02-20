@@ -1,39 +1,37 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\DBAL\Platforms;
 
 use Doctrine\DBAL\Schema\Index;
 use Doctrine\DBAL\Schema\TableDiff;
 
 /**
- * Provides the behavior, features and SQL dialect of the MariaDB 10.5 database platform.
+ * Provides the behavior, features and SQL dialect of the MariaDB 10.5 (10.5.2 GA) database platform.
  *
- * @deprecated This class will be removed once support for MariaDB 10.4 is dropped.
+ * Note: Should not be used with versions prior to 10.5.2.
  */
-class MariaDB1052Platform extends MariaDBPlatform
+class MariaDb1052Platform extends MariaDb1043Platform
 {
     /**
      * {@inheritDoc}
      */
-    protected function getPreAlterTableRenameIndexForeignKeySQL(TableDiff $diff): array
+    protected function getPreAlterTableRenameIndexForeignKeySQL(TableDiff $diff)
     {
-        return AbstractMySQLPlatform::getPreAlterTableRenameIndexForeignKeySQL($diff);
+        return [];
     }
 
     /**
      * {@inheritDoc}
      */
-    protected function getPostAlterTableIndexForeignKeySQL(TableDiff $diff): array
+    protected function getPostAlterTableRenameIndexForeignKeySQL(TableDiff $diff)
     {
-        return AbstractMySQLPlatform::getPostAlterTableIndexForeignKeySQL($diff);
+        return [];
     }
 
     /**
      * {@inheritDoc}
      */
-    protected function getRenameIndexSQL(string $oldIndexName, Index $index, $tableName): array
+    protected function getRenameIndexSQL($oldIndexName, Index $index, $tableName)
     {
         return ['ALTER TABLE ' . $tableName . ' RENAME INDEX ' . $oldIndexName . ' TO ' . $index->getQuotedName($this)];
     }
