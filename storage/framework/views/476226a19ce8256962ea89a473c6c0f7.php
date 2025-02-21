@@ -17,30 +17,59 @@
         
         <?php echo $__env->make('layouts.topbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         
-        <div class="py-4">
-            <?php
+        
+        <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('student')->html();
-} elseif ($_instance->childHasBeenRendered('25xsLTI')) {
-    $componentId = $_instance->getRenderedChildComponentId('25xsLTI');
-    $componentTag = $_instance->getRenderedChildComponentTagName('25xsLTI');
+    $html = \Livewire\Livewire::mount('cour-list', [])->html();
+} elseif ($_instance->childHasBeenRendered('nhJSyPs')) {
+    $componentId = $_instance->getRenderedChildComponentId('nhJSyPs');
+    $componentTag = $_instance->getRenderedChildComponentTagName('nhJSyPs');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('25xsLTI');
+    $_instance->preserveRenderedChild('nhJSyPs');
 } else {
-    $response = \Livewire\Livewire::mount('student');
+    $response = \Livewire\Livewire::mount('cour-list', []);
     $html = $response->html();
-    $_instance->logRenderedChild('25xsLTI', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('nhJSyPs', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
-        </div>
 
         
         <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </main>
+
+    
+    <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('components.add-cour-modal', [])->html();
+} elseif ($_instance->childHasBeenRendered('henA0DH')) {
+    $componentId = $_instance->getRenderedChildComponentId('henA0DH');
+    $componentTag = $_instance->getRenderedChildComponentTagName('henA0DH');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('henA0DH');
+} else {
+    $response = \Livewire\Livewire::mount('components.add-cour-modal', []);
+    $html = $response->html();
+    $_instance->logRenderedChild('henA0DH', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginala7e3e3ab156e6fa1f86927d4765c5327)): ?>
 <?php $component = $__componentOriginala7e3e3ab156e6fa1f86927d4765c5327; ?>
 <?php unset($__componentOriginala7e3e3ab156e6fa1f86927d4765c5327); ?>
-<?php endif; ?> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/students/index.blade.php ENDPATH**/ ?>
+<?php endif; ?>
+
+<?php $__env->startPush('scripts'); ?>
+<script>
+    window.addEventListener('closeModal', event => {
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.style.display = 'none';
+        });
+        document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+            backdrop.remove();
+        });
+    });
+</script>
+<?php $__env->stopPush(); ?> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/pages/courses.blade.php ENDPATH**/ ?>

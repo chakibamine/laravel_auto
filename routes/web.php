@@ -27,6 +27,7 @@ use App\Http\Livewire\UpgradeToPro;
 use App\Http\Livewire\Users;
 use App\Http\Controllers\DossierController;
 use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\PDF;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/dossiers', function () {
         return view('dossiers.index');
     })->name('dossiers');
+    
+    // Course routes
+    Route::get('/courses', function () {
+        return view('pages.courses');
+    })->name('courses.index');
+    
+    Route::get('/dossier/{id}/courses/print', function ($id) {
+        // Add your print logic here
+        return response()->streamDownload(function () use ($id) {
+            $dossier = App\Models\Dossier::with(['student', 'courses'])->findOrFail($id);
+            $pdf = PDF::loadView('pdf.courses', ['dossier' => $dossier]);
+            echo $pdf->output();
+        }, 'courses.pdf');
+    })->name('dossier.courses.print');
 });
 
 // Student Management Routes

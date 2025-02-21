@@ -10,8 +10,9 @@ class Cour extends Model
 {
     use HasFactory;
 
-    protected $table = 'cour';
+    protected $table = 'cours';
     protected $guarded = [];
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -19,11 +20,11 @@ class Cour extends Model
      * @var array
      */
     protected $fillable = [
-        'id',                // int
-        'date_cour',        // date
-        'type',             // varchar(50)
-        'id_dossier',       // int
-        'date_insertion'    // timestamp
+        'date_cours',
+        'type_cours',
+        'dossier_id',
+        'date_insertion',
+        'insert_user'
     ];
 
     /**
@@ -32,8 +33,7 @@ class Cour extends Model
      * @var array
      */
     protected $casts = [
-        'date_cour' => 'date',
-        'id_dossier' => 'integer',
+        'date_cours' => 'datetime',
         'date_insertion' => 'datetime'
     ];
 
@@ -42,6 +42,6 @@ class Cour extends Model
      */
     public function dossier(): BelongsTo
     {
-        return $this->belongsTo(Dossier::class, 'id_dossier');
+        return $this->belongsTo(Dossier::class);
     }
 }

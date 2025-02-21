@@ -56,6 +56,6 @@ class Dossier extends Model
      */
     public function courses(): HasMany 
     {
-        return $this->hasMany(Cour::class, 'id_dossier');
+        return $this->hasMany(Cour::class, 'dossier_id');
     }
 }

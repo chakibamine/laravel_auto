@@ -9,6 +9,7 @@
   'components.modals' => 'App\\Http\\Livewire\\Components\\Modals',
   'components.notifications' => 'App\\Http\\Livewire\\Components\\Notifications',
   'components.typography' => 'App\\Http\\Livewire\\Components\\Typography',
+  'cour-list' => 'App\\Http\\Livewire\\CourList',
   'dashboard' => 'App\\Http\\Livewire\\Dashboard',
   'dossier-list' => 'App\\Http\\Livewire\\DossierList',
   'err404' => 'App\\Http\\Livewire\\Err404',

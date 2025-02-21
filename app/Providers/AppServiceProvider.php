@@ -7,6 +7,8 @@ use Livewire\Livewire;
 use App\Http\Livewire\Components\PaymentModal;
 use App\Http\Livewire\Components\ConfirmModal;
 use App\Http\Livewire\Components\ExamModal;
+use App\Http\Livewire\Components\AddCourModal;
+use App\Http\Livewire\CourList;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,8 +29,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Livewire::component('components.exam-modal', \App\Http\Livewire\Components\ExamModal::class);
+        Livewire::component('components.exam-modal', ExamModal::class);
+        Livewire::component('components.add-cour-modal', AddCourModal::class);
         Livewire::component('payment-modal', PaymentModal::class);
         Livewire::component('confirm-modal', ConfirmModal::class);
+        Livewire::component('cour-list', CourList::class);
     }
 }
