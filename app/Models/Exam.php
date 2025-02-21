@@ -10,7 +10,7 @@ class Exam extends Model
 {
     use HasFactory;
 
-    protected $table = 'exam';
+    protected $table = 'exams';
     protected $guarded = [];
     public $timestamps = false;
 
@@ -20,13 +20,12 @@ class Exam extends Model
      * @var array
      */
     protected $fillable = [
-        'id',                // int
-        'date_exam',         // date
-        'type_exam',         // varchar(25)
-        'resultat',          // varchar(1)
-        'date_insertion',    // timestamp
-        'insert_user',       // varchar(50)
-        'dossier_id'        // int
+        'date_exam',
+        'type_exam',
+        'n_serie',
+        'resultat',
+        'dossier_id',
+        'insert_user'
     ];
 
     /**
@@ -35,9 +34,8 @@ class Exam extends Model
      * @var array
      */
     protected $casts = [
-        'date_exam' => 'date',
-        'date_insertion' => 'datetime',
-        'dossier_id' => 'integer'
+        'date_exam' => 'datetime',
+        'resultat' => 'string'
     ];
 
     /**

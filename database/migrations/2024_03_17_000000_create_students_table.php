@@ -11,27 +11,32 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('gender', 10);
-            $table->string('cin', 10);
-            $table->string('firstname', 50);
-            $table->string('lastname', 50);
-            $table->date('date_birth');
-            $table->string('place_birth', 50);
-            $table->string('address', 50);
-            $table->string('city', 30);
-            $table->string('phone', 10);
+            $table->string('firstname', 50)->nullable();
+            $table->string('firstname_ar', 50)->nullable();
+            $table->string('lastname', 50)->nullable();
+            $table->string('lastname_ar', 50)->nullable();
+            $table->string('cin', 10)->unique()->nullable();
+            $table->string('phone', 15)->nullable();
+            $table->string('address', 150)->nullable();
+            $table->string('address_ar', 150)->nullable();
+            $table->string('gender', 10)->default('M');
+            $table->date('date_birth')->nullable();
+            $table->string('place_birth', 50)->nullable();
+            $table->string('place_birth_ar', 50)->nullable();
+            $table->string('city', 30)->nullable();
             
             // Guardian Information
-            $table->string('a_firstname', 30);
-            $table->string('a_lastname', 30);
-            $table->string('a_place_birth', 50);
-            $table->string('a_address', 50);
+            $table->string('a_firstname', 30)->nullable();
+            $table->string('a_lastname', 30)->nullable();
+            $table->string('a_place_birth', 50)->nullable();
+            $table->string('a_address', 50)->nullable();
             
             // System Fields
+            $table->string('insert_user', 50);
+            $table->timestamp('date_insertion')->nullable();
             $table->timestamp('reg_date')->nullable();
-            $table->string('insert_user', 50)->nullable();
             $table->text('image_url')->nullable();
         });
     }
@@ -41,6 +46,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('student');
+        Schema::dropIfExists('students');
     }
 }; 

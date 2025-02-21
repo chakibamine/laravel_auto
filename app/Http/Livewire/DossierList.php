@@ -30,14 +30,14 @@ class DossierList extends Component
     ];
     public $reg = [
         'date_reg' => '',
-        'prix' => '',
+        'price' => '',
         'motif' => '',
         'nom_du_payeur' => '',
     ];
 
     protected $rules = [
         'reg.date_reg' => 'required|date',
-        'reg.prix' => 'required|numeric|min:1',
+        'reg.price' => 'required|numeric|min:1',
         'reg.motif' => 'required|string|max:50',
         'reg.nom_du_payeur' => 'required|string|max:75',
         'reg.dossier_id' => 'required|exists:dossier,id'
@@ -103,7 +103,7 @@ class DossierList extends Component
     {
         if ($this->selectedDossier) {
             try {
-                $this->totalPaid = Reg::where('dossier_id', $this->selectedDossier->id)->sum('prix');
+                $this->totalPaid = Reg::where('dossier_id', $this->selectedDossier->id)->sum('price');
                 $this->remaining = floatval($this->selectedDossier->price) - floatval($this->totalPaid);
                 \Log::info('Calculated totals in calculateTotals:', [
                     'dossier_id' => $this->selectedDossier->id,
@@ -131,7 +131,7 @@ class DossierList extends Component
             // Create the registration with properly quoted values
             $newReg = Reg::create([
                 'date_reg' => $date_reg,
-                'prix' => floatval($this->reg['prix']),
+                'price' => floatval($this->reg['price']),
                 'motif' => $this->reg['motif'],
                 'nom_du_payeur' => $this->reg['nom_du_payeur'],
                 'dossier_id' => intval($this->reg['dossier_id']),
@@ -149,7 +149,7 @@ class DossierList extends Component
             $this->calculateTotals();
             
             // Reset only the form fields, not the entire reg array
-            $this->reg['prix'] = '';
+            $this->reg['price'] = '';
             $this->reg['motif'] = '';
             if (!$this->isLuiMeme) {
                 $this->reg['nom_du_payeur'] = '';
@@ -292,6 +292,20 @@ class DossierList extends Component
             'ref' => ''
         ];
         $this->resetValidation();
+    }
+
+    public function openExamModal($dossierId)
+    {
+        try {
+            \Log::info('Attempting to open exam modal for dossier: ' . $dossierId);
+            $dossier = Dossier::findOrFail($dossierId);
+            \Log::info('Found dossier: ' . $dossier->id);
+            $this->emit('showExamModal', $dossierId);
+            \Log::info('Emitted showExamModal event');
+        } catch (\Exception $e) {
+            \Log::error('Error in openExamModal: ' . $e->getMessage());
+            session()->flash('error', 'Error opening exam modal: ' . $e->getMessage());
+        }
     }
 
     public function render()

@@ -267,28 +267,33 @@ class Student extends Component
             'dossier.category' => 'required|string|max:2',
             'dossier.price' => 'required|integer',
             'dossier.ref' => 'required|string|max:6',
-            'dossier.student_id' => 'required|exists:student,id'
+            'dossier.student_id' => 'required|exists:students,id'
         ]);
 
-        $dossier = Dossier::create([
-            'category' => $this->dossier['category'],
-            'price' => $this->dossier['price'],
-            'ref' => $this->dossier['ref'],
-            'student_id' => $this->dossier['student_id'],
-            'insert_user' => auth()->user()->name,
-            'date_inscription' => now(),
-            'status' => false,
-            'resultat' => false
-        ]);
+        try {
+            $dossier = Dossier::create([
+                'category' => $this->dossier['category'],
+                'price' => $this->dossier['price'],
+                'ref' => $this->dossier['ref'],
+                'student_id' => $this->dossier['student_id'],
+                'insert_user' => auth()->user()->name,
+                'date_inscription' => now(),
+                'status' => true,
+                'resultat' => false
+            ]);
 
-        $this->showDossierModal = false;
-        $this->dossier = [
-            'category' => '',
-            'price' => '',
-            'ref' => '',
-            'student_id' => null
-        ];
-        $this->showSavedAlert = true;
+            $this->showDossierModal = false;
+            $this->dossier = [
+                'category' => '',
+                'price' => '',
+                'ref' => '',
+                'student_id' => null
+            ];
+            $this->showSavedAlert = true;
+            session()->flash('success', 'Dossier créé avec succès.');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Erreur lors de la création du dossier: ' . $e->getMessage());
+        }
     }
 
     public function closeDossierModal()

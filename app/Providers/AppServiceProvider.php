@@ -27,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Livewire::component('components.exam-modal', \App\Http\Livewire\Components\ExamModal::class);
         Livewire::component('payment-modal', PaymentModal::class);
         Livewire::component('confirm-modal', ConfirmModal::class);
-        Livewire::component('exam-modal', ExamModal::class);
     }
 }

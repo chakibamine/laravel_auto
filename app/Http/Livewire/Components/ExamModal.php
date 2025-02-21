@@ -75,16 +75,20 @@ class ExamModal extends Component
     }
 
     private function getNextNSerie()
-    {
-        $currentMonth = Carbon::now()->format('Y-m');
-        
+    {        
         $lastDossier = Dossier::where('category', 'B')
             ->whereNotNull('n_serie')
             ->orderBy('n_serie', 'desc')
             ->first();
 
         $nextNumber = $lastDossier ? intval($lastDossier->n_serie) + 1 : 1;
-        return (string) $nextNumber; // Convert to string before returning
+        
+        // If next number is 10 or greater, increment from 10 (10, 11, 12, etc)
+        if ($nextNumber >= 10) {
+            return (string) $nextNumber;
+        }
+        
+        return (string) $nextNumber;
     }
 
     private function getQuotaCount()
@@ -98,20 +102,41 @@ class ExamModal extends Component
     public function show($dossierId)
     {
         try {
-            $this->selectedDossier = Dossier::with('student')->findOrFail($dossierId);
-            $this->exam['dossier_id'] = $dossierId;
-            $this->loadExams();
-            $this->determineExamType();
+            \Log::info('ExamModal show method called with dossier ID: ' . $dossierId);
             
-            // Set n_serie automatically if this is the first exam and category is B
+            // Reset any existing state
+            $this->resetExam();
+            $this->showConfirmModal = false;
+            $this->examToDelete = null;
+            
+            // Find the dossier with student relationship
+            $this->selectedDossier = Dossier::with('student')->findOrFail($dossierId);
+            \Log::info('Found dossier with student: ' . $this->selectedDossier->id);
+            
+            // Set the dossier ID
+            $this->exam['dossier_id'] = $dossierId;
+            
+            // Load exams
+            $this->loadExams();
+            \Log::info('Loaded ' . count($this->exams) . ' exams');
+            
+            // If this is the first exam and category is B, generate n_serie
             if (count($this->exams) === 0 && $this->selectedDossier->category === 'B') {
                 $this->exam['n_serie'] = $this->getNextNSerie();
-                $quotaCount = $this->getQuotaCount();
-                session()->flash('quota_info', "Quota actuel: $quotaCount/12 examens ce mois-ci");
+                \Log::info('Generated n_serie for first exam: ' . $this->exam['n_serie']);
             }
             
+            // Determine exam type based on existing exams
+            $this->determineExamType();
+            \Log::info('Determined exam type: ' . $this->exam['type_exam']);
+            
+            // Show the modal
             $this->showModal = true;
+            \Log::info('Set showModal to true');
+            
         } catch (\Exception $e) {
+            \Log::error('Error in ExamModal show method: ' . $e->getMessage());
+            \Log::error('Stack trace: ' . $e->getTraceAsString());
             session()->flash('error', 'Error loading exam modal: ' . $e->getMessage());
         }
     }
@@ -195,13 +220,13 @@ class ExamModal extends Component
             return false;
         }
 
-        $totalPaid = \App\Models\Reg::where('dossier_id', $this->selectedDossier->id)->sum('prix');
+        $totalPaid = \App\Models\Reg::where('dossier_id', $this->selectedDossier->id)->sum('price');
         return floatval($totalPaid) >= floatval($this->selectedDossier->price);
     }
 
     private function isLastExam($result)
     {
-        if (!$this->selectedDossier) {
+        if (!$result) {
             return false;
         }
 

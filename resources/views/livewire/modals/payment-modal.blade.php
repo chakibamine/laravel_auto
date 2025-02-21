@@ -85,9 +85,9 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="col-form-label">Montant :</label>
-                                        <input type="number" step="0.01" class="form-control @error('reg.prix') is-invalid @enderror" 
-                                            wire:model.defer="reg.prix">
-                                        @error('reg.prix') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                        <input type="number" step="0.01" class="form-control @error('reg.price') is-invalid @enderror" 
+                                            wire:model.defer="reg.price">
+                                        @error('reg.price') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $reg->motif }}</td>
-                                    <td>{{ $reg->prix }}</td>
+                                    <td>{{ $reg->price }}</td>
                                     <td>{{ $reg->date_reg->format('d/m/Y') }}</td>
                                     <td>{{ $reg->nom_du_payeur }}</td>
                                     <td>

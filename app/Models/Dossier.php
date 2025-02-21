@@ -29,7 +29,8 @@ class Dossier extends Model
         'n_serie',
         'date_inscription',
         'date_cloture',
-        'insert_user'
+        'insert_user',
+        'student_id'
     ];
 
     /**

@@ -57,7 +57,7 @@
                                 <a href="#" class="text-success me-2" wire:click.prevent="openPaymentModal({{ $dossier->id }})">
                                     <i class="fas fa-money-bill fa-sm"></i>
                                 </a>
-                                <a href="#" class="text-primary me-2" wire:click.prevent="$emit('showExamModal', {{ $dossier->id }})">
+                                <a href="#" class="text-primary me-2" wire:click.prevent="openExamModal({{ $dossier->id }})">
                                     <i class="fas fa-graduation-cap fa-sm"></i>
                                 </a>
                                 <a href="#" class="text-info me-2" wire:click.prevent="openEditModal({{ $dossier->id }})">
@@ -154,9 +154,6 @@
     <div class="modal-backdrop fade show"></div>
     @endif
 
-    <!-- Include Exam Modal -->
-    <livewire:exam-modal />
-
     <!-- Include Confirm Modal -->
     <livewire:confirm-modal 
         title="Confirmation de suppression"
@@ -165,6 +162,9 @@
         cancel-button-text="Annuler"
         confirm-button-class="btn-danger"
     />
+
+    <!-- Include Exam Modal -->
+    @livewire('components.exam-modal')
 
 </div>
 

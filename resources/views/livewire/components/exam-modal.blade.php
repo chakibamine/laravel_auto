@@ -1,4 +1,15 @@
 <div>
+    @if($showModal)
+        <div style="display:none">
+            Debug: Modal should be visible
+            ShowModal: {{ var_export($showModal, true) }}
+            SelectedDossier exists: {{ isset($selectedDossier) ? 'Yes' : 'No' }}
+            @if(isset($selectedDossier))
+                Dossier ID: {{ $selectedDossier->id }}
+            @endif
+        </div>
+    @endif
+
     @if($showModal && $selectedDossier)
     <div class="modal fade show" style="display: block;" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg">

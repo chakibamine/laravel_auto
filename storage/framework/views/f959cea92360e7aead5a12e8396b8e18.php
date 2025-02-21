@@ -104,7 +104,7 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="col-form-label">Montant :</label>
-                                        <input type="number" step="0.01" class="form-control <?php $__errorArgs = ['reg.prix'];
+                                        <input type="number" step="0.01" class="form-control <?php $__errorArgs = ['reg.price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -112,8 +112,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                            wire:model.defer="reg.prix">
-                                        <?php $__errorArgs = ['reg.prix'];
+                                            wire:model.defer="reg.price">
+                                        <?php $__errorArgs = ['reg.price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -242,7 +242,7 @@ unset($__errorArgs, $__bag); ?>
                                 <tr>
                                     <td><?php echo e($index + 1); ?></td>
                                     <td><?php echo e($reg->motif); ?></td>
-                                    <td><?php echo e($reg->prix); ?></td>
+                                    <td><?php echo e($reg->price); ?></td>
                                     <td><?php echo e($reg->date_reg->format('d/m/Y')); ?></td>
                                     <td><?php echo e($reg->nom_du_payeur); ?></td>
                                     <td>

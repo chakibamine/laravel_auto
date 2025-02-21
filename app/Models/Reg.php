@@ -20,7 +20,7 @@ class Reg extends Model
      */
     protected $fillable = [
         'date_reg',
-        'prix',
+        'price',
         'motif',
         'nom_du_payeur',
         'dossier_id',
@@ -36,7 +36,7 @@ class Reg extends Model
     protected $casts = [
         'date_reg' => 'datetime',
         'date_insertion' => 'datetime',
-        'prix' => 'float',
+        'price' => 'float',
         'dossier_id' => 'integer'
     ];
 

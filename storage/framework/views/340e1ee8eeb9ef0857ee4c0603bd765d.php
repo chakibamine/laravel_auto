@@ -1,4 +1,18 @@
 <div>
+    <?php if($showModal): ?>
+        <div style="display:none">
+            Debug: Modal should be visible
+            ShowModal: <?php echo e(var_export($showModal, true)); ?>
+
+            SelectedDossier exists: <?php echo e(isset($selectedDossier) ? 'Yes' : 'No'); ?>
+
+            <?php if(isset($selectedDossier)): ?>
+                Dossier ID: <?php echo e($selectedDossier->id); ?>
+
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+
     <?php if($showModal && $selectedDossier): ?>
     <div class="modal fade show" style="display: block;" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
