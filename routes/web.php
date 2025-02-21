@@ -117,3 +117,7 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+Route::get('/comptabilite', function () {
+    return view('pages.comptabilite');
+})->name('comptabilite');
+

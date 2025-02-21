@@ -7,4 +7,13 @@
           <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-</nav><?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/layouts/nav.blade.php ENDPATH**/ ?>
+</nav>
+
+<li class="nav-item">
+    <a href="<?php echo e(route('comptabilite')); ?>" class="nav-link d-flex align-items-center">
+        <span class="sidebar-icon">
+            <i class="fas fa-wallet"></i>
+        </span>
+        <span class="sidebar-text">Comptabilité</span>
+    </a>
+</li><?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/layouts/nav.blade.php ENDPATH**/ ?>

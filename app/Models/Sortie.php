@@ -10,8 +10,7 @@ class Sortie extends Model
     use HasFactory;
 
     protected $table = 'sortie';
-    protected $primaryKey = 'id_sortie';
-    protected $guarded = [];
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
     /**
@@ -20,11 +19,11 @@ class Sortie extends Model
      * @var array
      */
     protected $fillable = [
-        'id_sortie',         // int
-        'date_sortie',       // date
-        'motif',             // varchar(70)
-        'montant',           // varchar(15)
-        'date_entry'         // timestamp
+        'date_sortie',
+        'motif',
+        'montant',
+        'date_entry',
+        'insert_user'
     ];
 
     /**
@@ -34,6 +33,7 @@ class Sortie extends Model
      */
     protected $casts = [
         'date_sortie' => 'date',
-        'date_entry' => 'datetime'
+        'date_entry' => 'datetime',
+        'montant' => 'decimal:2'
     ];
 }

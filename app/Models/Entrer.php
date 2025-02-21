@@ -9,8 +9,8 @@ class Entrer extends Model
 {
     use HasFactory;
 
-    protected $table = 'entrer';
-    protected $primaryKey = 'id_entry';
+    protected $table = 'entres';
+    protected $primaryKey = 'id';
     protected $guarded = [];
     public $timestamps = false;
 
@@ -20,11 +20,11 @@ class Entrer extends Model
      * @var array
      */
     protected $fillable = [
-        'id_entry',          // int
-        'date_entrer',       // date
-        'motif',             // varchar(70)
-        'montant',           // varchar(15)
-        'date_entry'         // timestamp
+        'date_entrer',
+        'motif',
+        'montant',
+        'date_entry',
+        'insert_user'
     ];
 
     /**
@@ -34,6 +34,7 @@ class Entrer extends Model
      */
     protected $casts = [
         'date_entrer' => 'date',
-        'date_entry' => 'datetime'
+        'date_entry' => 'datetime',
+        'montant' => 'decimal:2'
     ];
 }
