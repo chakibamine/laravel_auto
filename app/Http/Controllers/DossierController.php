@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Exam;
+use App\Models\Reg;
 
 class DossierController extends Controller
 {
@@ -118,6 +119,33 @@ class DossierController extends Controller
             ]);
         } catch (\Exception $e) {
             return back()->with('error', 'Error displaying exam fiche: ' . $e->getMessage());
+        }
+    }
+
+    public function generateInvoice($id)
+    {
+        $dossier = Dossier::with('student')->findOrFail($id);
+        $reglements = Reg::where('dossier_id', $id)->orderBy('date_reg', 'desc')->get();
+        $totalPaid = $reglements->sum('price');
+        $remaining = $dossier->price - $totalPaid;
+
+        return view('pdf.invoice', [
+            'dossier' => $dossier,
+            'reglements' => $reglements,
+            'totalPaid' => $totalPaid,
+            'remaining' => $remaining
+        ]);
+    }
+
+    public function generateExternalPayment($id)
+    {
+        try {
+            $dossier = Dossier::with('student')->findOrFail($id);
+            return view('pdf.external-payment', [
+                'dossier' => $dossier
+            ]);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error generating external payment receipt: ' . $e->getMessage());
         }
     }
 } 

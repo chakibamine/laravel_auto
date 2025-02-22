@@ -123,6 +123,8 @@ Route::middleware(['auth'])->group(function () {
     // Dossier routes
     Route::controller(DossierController::class)->group(function () {
         Route::get('/dossiers/{id}/contract', 'generateContractPdf')->name('dossier.contract.pdf');
+        Route::get('/dossiers/{id}/invoice', 'generateInvoice')->name('dossier.invoice');
+        Route::get('/dossiers/{id}/external-payment', 'generateExternalPayment')->name('dossier.external.payment');
         Route::get('/exam/{examId}/fiche', 'generateExamFiche')->name('exam.fiche');
     });
 });

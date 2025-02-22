@@ -218,10 +218,14 @@
 
                     <div class="d-flex flex-row-reverse">
                         <div>
-                            <a href="#" class="btn btn-outline-primary btn-sm p-2">
+                            <a href="{{ route('dossier.invoice', ['id' => $selectedDossier->id]) }}" 
+                               class="btn btn-outline-primary btn-sm p-2"
+                               target="_blank">
                                 <i class="bi bi-printer"></i> Facture
                             </a>
-                            <a href="#" class="btn btn-outline-primary btn-sm p-2 m-2">
+                            <a href="{{ route('dossier.external.payment', ['id' => $selectedDossier->id]) }}" 
+                               class="btn btn-outline-primary btn-sm p-2 m-2"
+                               target="_blank">
                                 <i class="bi bi-printer"></i> Reglement Exterieur
                             </a>
                         </div>

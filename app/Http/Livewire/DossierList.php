@@ -228,6 +228,8 @@ class DossierList extends Component
 
             $reg->delete();
             session()->flash('success', 'Paiement supprimé avec succès.');
+            $this->calculateTotals();
+            $this->emit('refreshComponent');
 
         } catch (\Exception $e) {
             session()->flash('error', 'Erreur lors de la suppression du paiement: ' . $e->getMessage());
