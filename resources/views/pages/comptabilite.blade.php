@@ -1,8 +1,8 @@
 <x-layouts.base>
-    {{-- Nav --}}
+    {{-- Navigation --}}
     @include('layouts.nav')
     
-    {{-- SideNav --}}
+    {{-- Menu Latéral --}}
     @include('layouts.sidenav')
     
     <main class="content">
@@ -13,7 +13,7 @@
             @livewire('comptabilite')
         </div>
 
-        {{-- Footer --}}
+        {{-- Pied de page --}}
         @include('layouts.footer')
     </main>
 </x-layouts.base> 

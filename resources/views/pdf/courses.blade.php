@@ -93,25 +93,25 @@
         
         <div class="info-section">
             <div class="student-info">
-                <strong>Auto Ecole Ait Mhand</strong><br>
+                <strong>Auto École Ait Mhand</strong><br>
                 @if($dossier->student->image_url)
                     <img class="student-photo" src="{{ asset('storage/' . $dossier->student->image_url) }}" alt="Photo"><br>
                 @endif
                 <strong>C.I.N : </strong>{{ $dossier->student->cin }}<br>
                 <strong>Candidat : </strong>{{ $dossier->student->lastname }} {{ $dossier->student->firstname }}<br>
-                <strong>Dossier : </strong>{{ $dossier->ref }}
+                <strong>N° Dossier : </strong>{{ $dossier->ref }}
             </div>
             <div class="date-info">
-                <strong>Date de Fiche : </strong>{{ now()->format('d/m/y') }}
+                <strong>Date d'Édition : </strong>{{ now()->format('d/m/y') }}
             </div>
         </div>
 
         <table class="course-table">
             <thead>
                 <tr>
-                    <th class="serie-col">Serie</th>
+                    <th class="serie-col">Séance</th>
                     <th class="date-col">Date Théorique</th>
-                    <th class="serie-col">Serie</th>
+                    <th class="serie-col">Séance</th>
                     <th class="date-col">Date Pratique</th>
                 </tr>
             </thead>

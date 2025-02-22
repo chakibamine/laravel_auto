@@ -2,7 +2,7 @@
     <!-- Header -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div>
-            <h2 class="h4">Cloture Management</h2>
+            <h2 class="h4">Gestion des Clôtures</h2>
         </div>
     </div>
 
@@ -29,13 +29,13 @@
                 <table class="table table-centered table-nowrap mb-0 rounded">
                     <thead class="thead-light">
                         <tr>
-                            <th class="border-0">Serie</th>
-                            <th class="border-0">CIN</th>
-                            <th class="border-0">Nom et prenom</th>
-                            <th class="border-0">Categorie</th>
-                            <th class="border-0">Date d'inscription</th>
-                            <th class="border-0">Date de cloture</th>
-                            <th class="border-0">Date d'examen</th>
+                            <th class="border-0">N° Série</th>
+                            <th class="border-0">C.I.N</th>
+                            <th class="border-0">Nom et Prénom</th>
+                            <th class="border-0">Catégorie</th>
+                            <th class="border-0">Date d'Inscription</th>
+                            <th class="border-0">Date de Clôture</th>
+                            <th class="border-0">Date d'Examen</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,7 +51,7 @@
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <tr>
-                                <td colspan="7" class="text-center">No records found.</td>
+                                <td colspan="7" class="text-center">Aucun dossier trouvé.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
@@ -61,7 +61,7 @@
             <!-- Total Section -->
             <div class="d-flex justify-content-end mt-3">
                 <div class="me-3">
-                    <strong>Total: </strong><?php echo e($dossiers->count()); ?>
+                    <strong>Total des Dossiers : </strong><?php echo e($dossiers->count()); ?>
 
                 </div>
                 <button onclick="printPage()" class="btn btn-primary btn-sm">

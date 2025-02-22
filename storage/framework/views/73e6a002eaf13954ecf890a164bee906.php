@@ -93,17 +93,17 @@
         
         <div class="info-section">
             <div class="student-info">
-                <strong>Auto Ecole Ait Mhand</strong><br>
+                <strong>Auto École Ait Mhand</strong><br>
                 <?php if($dossier->student->image_url): ?>
                     <img class="student-photo" src="<?php echo e(asset('storage/' . $dossier->student->image_url)); ?>" alt="Photo"><br>
                 <?php endif; ?>
                 <strong>C.I.N : </strong><?php echo e($dossier->student->cin); ?><br>
                 <strong>Candidat : </strong><?php echo e($dossier->student->lastname); ?> <?php echo e($dossier->student->firstname); ?><br>
-                <strong>Dossier : </strong><?php echo e($dossier->ref); ?>
+                <strong>N° Dossier : </strong><?php echo e($dossier->ref); ?>
 
             </div>
             <div class="date-info">
-                <strong>Date de Fiche : </strong><?php echo e(now()->format('d/m/y')); ?>
+                <strong>Date d'Édition : </strong><?php echo e(now()->format('d/m/y')); ?>
 
             </div>
         </div>
@@ -111,9 +111,9 @@
         <table class="course-table">
             <thead>
                 <tr>
-                    <th class="serie-col">Serie</th>
+                    <th class="serie-col">Séance</th>
                     <th class="date-col">Date Théorique</th>
-                    <th class="serie-col">Serie</th>
+                    <th class="serie-col">Séance</th>
                     <th class="date-col">Date Pratique</th>
                 </tr>
             </thead>

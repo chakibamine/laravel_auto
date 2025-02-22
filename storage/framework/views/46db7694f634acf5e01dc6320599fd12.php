@@ -14,22 +14,19 @@
     <?php echo $__env->make('layouts.sidenav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
     <main class="content">
-        
-        <?php echo $__env->make('layouts.topbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        
         <div class="py-4">
             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('cloture')->html();
-} elseif ($_instance->childHasBeenRendered('On6zBJp')) {
-    $componentId = $_instance->getRenderedChildComponentId('On6zBJp');
-    $componentTag = $_instance->getRenderedChildComponentTagName('On6zBJp');
+} elseif ($_instance->childHasBeenRendered('EgGXeLw')) {
+    $componentId = $_instance->getRenderedChildComponentId('EgGXeLw');
+    $componentTag = $_instance->getRenderedChildComponentTagName('EgGXeLw');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('On6zBJp');
+    $_instance->preserveRenderedChild('EgGXeLw');
 } else {
     $response = \Livewire\Livewire::mount('cloture');
     $html = $response->html();
-    $_instance->logRenderedChild('On6zBJp', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('EgGXeLw', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

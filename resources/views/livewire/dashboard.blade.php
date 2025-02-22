@@ -2,8 +2,8 @@
     <!-- Header -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div class="d-block mb-4 mb-md-0">
-            <h2 class="h4">Dashboard</h2>
-            <p class="mb-0">Your auto school management statistics and overview.</p>
+            <h2 class="h4">Tableau de bord</h2>
+            <p class="mb-0">Vos statistiques et vue d'ensemble de la gestion de votre école de conduite.</p>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Total Students</h2>
+                                <h2 class="h6 text-gray-400 mb-0">Total des Étudiants</h2>
                                 <h3 class="fw-extrabold mb-2">{{ $totalStudents }}</h3>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Active Dossiers</h2>
+                                <h2 class="h6 text-gray-400 mb-0">Dossiers Actifs</h2>
                                 <h3 class="fw-extrabold mb-2">{{ $totalActiveDossiers }}</h3>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Success Rate</h2>
+                                <h2 class="h6 text-gray-400 mb-0">Taux de Succès</h2>
                                 <h3 class="fw-extrabold mb-2">{{ $examSuccessRate }}%</h3>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Exams</h2>
+                                <h2 class="h6 text-gray-400 mb-0">Examens</h2>
                                 <h3 class="fw-extrabold mb-2">{{ $upcomingExams->count() }}</h3>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h2 class="fs-5 fw-bold mb-0">Recent Payments</h2>
+                            <h2 class="fs-5 fw-bold mb-0">Paiements Récents</h2>
                         </div>
                     </div>
                 </div>
@@ -110,10 +110,10 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th class="border-bottom" scope="col">Student</th>
-                                <th class="border-bottom" scope="col">Amount</th>
+                                <th class="border-bottom" scope="col">Étudiant</th>
+                                <th class="border-bottom" scope="col">Montant</th>
                                 <th class="border-bottom" scope="col">Date</th>
-                                <th class="border-bottom" scope="col">Status</th>
+                                <th class="border-bottom" scope="col">État</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,7 +129,7 @@
                                     {{ $payment->date_reg->format('d M Y') }}
                                 </td>
                                 <td>
-                                    <span class="badge bg-success">Completed</span>
+                                    <span class="badge bg-success">Terminé</span>
                                 </td>
                             </tr>
                             @endforeach
@@ -145,7 +145,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h2 class="fs-5 fw-bold mb-0">Upcoming Exams</h2>
+                            <h2 class="fs-5 fw-bold mb-0">Examens à Venir</h2>
                         </div>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h2 class="fs-5 fw-bold mb-0">Monthly Inscriptions</h2>
+                            <h2 class="fs-5 fw-bold mb-0">Inscriptions Mensuelles</h2>
                         </div>
                     </div>
                 </div>
@@ -184,9 +184,9 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Month</th>
-                                    <th scope="col">Year</th>
-                                    <th scope="col">Total Inscriptions</th>
+                                    <th scope="col">Mois</th>
+                                    <th scope="col">Année</th>
+                                    <th scope="col">Total des Inscriptions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -210,7 +210,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h2 class="fs-5 fw-bold mb-0">License Categories</h2>
+                            <h2 class="fs-5 fw-bold mb-0">Catégories de Permis</h2>
                         </div>
                     </div>
                 </div>
@@ -219,11 +219,11 @@
                     <div class="d-flex align-items-center justify-content-between border-bottom py-3">
                         <div>
                             <div class="h6 mb-0 d-flex align-items-center">
-                                Category {{ $category }}
+                                Catégorie {{ $category }}
                             </div>
                         </div>
                         <div>
-                            <span class="badge bg-primary">{{ $total }} Students</span>
+                            <span class="badge bg-primary">{{ $total }} Étudiants</span>
                         </div>
                     </div>
                     @endforeach
@@ -241,10 +241,10 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h2 class="fs-5 fw-bold mb-0">Financial Overview</h2>
+                            <h2 class="fs-5 fw-bold mb-0">Aperçu Financier</h2>
                         </div>
                         <div class="col text-end">
-                            <a href="{{ route('comptabilite') }}" class="btn btn-sm btn-primary">View Full Report</a>
+                            <a href="{{ route('comptabilite') }}" class="btn btn-sm btn-primary">Voir le Rapport Complet</a>
                         </div>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Revenue</span>
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Revenu Total</span>
                                             <span class="h3 font-bold mb-0">{{ number_format($totalRevenue, 2) }} DH</span>
                                         </div>
                                         <div class="col-auto">
@@ -274,7 +274,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Expenses</span>
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Dépenses Totales</span>
                                             <span class="h3 font-bold mb-0">{{ number_format($totalExpenses, 2) }} DH</span>
                                         </div>
                                         <div class="col-auto">
@@ -292,7 +292,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Net Income</span>
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Revenu Net</span>
                                             <span class="h3 font-bold mb-0 {{ $netIncome >= 0 ? 'text-success' : 'text-danger' }}">
                                                 {{ number_format($netIncome, 2) }} DH
                                             </span>
@@ -311,13 +311,13 @@
                     <!-- Today's Transactions -->
                     <div class="row">
                         <div class="col-12">
-                            <h5 class="mb-4">Today's Transactions</h5>
+                            <h5 class="mb-4">Transactions d'Aujourd'hui</h5>
                             <div class="row g-3">
                                 <div class="col-6">
                                     <div class="p-3 border rounded bg-light">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <span class="text-muted">Income</span>
+                                                <span class="text-muted">Revenu</span>
                                                 <h4 class="mb-0 text-success">{{ number_format($dailyTransactions['income'], 2) }} DH</h4>
                                             </div>
                                             <div class="icon-shape bg-success text-white rounded-circle">
@@ -330,7 +330,7 @@
                                     <div class="p-3 border rounded bg-light">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <span class="text-muted">Expenses</span>
+                                                <span class="text-muted">Dépenses</span>
                                                 <h4 class="mb-0 text-danger">{{ number_format($dailyTransactions['expenses'], 2) }} DH</h4>
                                             </div>
                                             <div class="icon-shape bg-danger text-white rounded-circle">
@@ -350,15 +350,15 @@
         <div class="col-12 col-xl-6 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-header">
-                    <h5 class="mb-0">Monthly Expenses</h5>
+                    <h5 class="mb-0">Dépenses Mensuelles</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-centered table-nowrap mb-0">
                             <thead>
                                 <tr>
-                                    <th>Category</th>
-                                    <th>Amount</th>
+                                    <th>Catégorie</th>
+                                    <th>Montant</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -379,15 +379,15 @@
         <div class="col-12 col-xl-6 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-header">
-                    <h5 class="mb-0">Revenue by Category</h5>
+                    <h5 class="mb-0">Revenu par Catégorie</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-centered table-nowrap mb-0">
                             <thead>
                                 <tr>
-                                    <th>Category</th>
-                                    <th>Amount</th>
+                                    <th>Catégorie</th>
+                                    <th>Montant</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -408,19 +408,19 @@
         <div class="col-12 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-header">
-                    <h5 class="mb-0">Unpaid Dossiers</h5>
+                    <h5 class="mb-0">Dossiers Impayés</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-centered table-nowrap mb-0">
                             <thead>
                                 <tr>
-                                    <th>Student</th>
-                                    <th>Dossier Ref</th>
-                                    <th>Total Price</th>
-                                    <th>Paid Amount</th>
-                                    <th>Remaining</th>
-                                    <th>Status</th>
+                                    <th>Étudiant</th>
+                                    <th>Référence du Dossier</th>
+                                    <th>Montant Total</th>
+                                    <th>Montant Payé</th>
+                                    <th>Restant</th>
+                                    <th>État</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -432,7 +432,7 @@
                                     <td>{{ number_format($dossier->total_paid ?? 0, 2) }} DH</td>
                                     <td>{{ number_format($dossier->price - ($dossier->total_paid ?? 0), 2) }} DH</td>
                                     <td>
-                                        <span class="badge bg-warning">Pending Payment</span>
+                                        <span class="badge bg-warning">En Attente de Paiement</span>
                                     </td>
                                 </tr>
                                 @endforeach

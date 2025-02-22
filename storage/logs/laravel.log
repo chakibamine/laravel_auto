@@ -6595,3 +6595,24 @@
 #50 D:\\laravel\\volt-laravel-dashboard\\server.php(21): require_once('D:\\\\laravel\\\\volt...')
 #51 {main}
 "} 
+[2025-02-22 21:19:02] local.INFO: Opening payment modal for dossier: 1000168  
+[2025-02-22 21:19:02] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1000168,"price":"2500.00","totalPaid":"2500.00","remaining":0.0} 
+[2025-02-22 21:19:13] local.INFO: Attempting to open exam modal for dossier: 1000168  
+[2025-02-22 21:19:13] local.INFO: Found dossier: 1000168  
+[2025-02-22 21:19:13] local.INFO: Emitted showExamModal event  
+[2025-02-22 21:19:13] local.INFO: ExamModal show method called with dossier ID: 1000168  
+[2025-02-22 21:19:13] local.INFO: Found dossier with student: 1000168  
+[2025-02-22 21:19:13] local.INFO: Loaded 1 exams  
+[2025-02-22 21:19:13] local.INFO: Determined exam type: Theorique  
+[2025-02-22 21:19:13] local.INFO: Set showModal to true  
+[2025-02-22 21:22:48] local.INFO: Opening payment modal for dossier: 1000168  
+[2025-02-22 21:22:48] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1000168,"price":"2500.00","totalPaid":"2500.00","remaining":0.0} 
+[2025-02-22 21:23:02] local.INFO: Attempting to open exam modal for dossier: 1000166  
+[2025-02-22 21:23:02] local.INFO: Found dossier: 1000166  
+[2025-02-22 21:23:02] local.INFO: Emitted showExamModal event  
+[2025-02-22 21:23:03] local.INFO: ExamModal show method called with dossier ID: 1000166  
+[2025-02-22 21:23:03] local.INFO: Found dossier with student: 1000166  
+[2025-02-22 21:23:03] local.INFO: Loaded 0 exams  
+[2025-02-22 21:23:03] local.INFO: Generated n_serie for first exam: 539  
+[2025-02-22 21:23:03] local.INFO: Determined exam type: Theorique  
+[2025-02-22 21:23:03] local.INFO: Set showModal to true  

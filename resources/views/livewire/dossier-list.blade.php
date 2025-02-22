@@ -1,10 +1,8 @@
-
-
 <div>
     <!-- Header -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div>
-            <h2 class="h4">Liste des Dossiers</h2>
+            <h2 class="h4">Gestion des Dossiers</h2>
         </div>
     </div>
 
@@ -19,7 +17,7 @@
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
                             </svg>
                         </span>
-                        <input wire:model.debounce.300ms="searchTerm" class="form-control" type="text" placeholder="Rechercher...">
+                        <input wire:model.debounce.300ms="searchTerm" class="form-control" type="text" placeholder="Rechercher un dossier...">
                     </div>
                 </div>
             </div>
@@ -33,14 +31,14 @@
                 <table class="table table-centered table-nowrap mb-0 rounded">
                     <thead class="thead-light">
                         <tr>
-                            <th class="border-0">N'web</th>
+                            <th class="border-0">N° Dossier</th>
                             <th class="border-0">CIN</th>
-                            <th class="border-0">Nom et prénom</th>
-                            <th class="border-0">Phone</th>
-                            <th class="border-0">Permis</th>
-                            <th class="border-0">Date d'inscription</th>
-                            <th class="border-0">Date de cloture</th>
-                            <th class="border-0">Action</th>
+                            <th class="border-0">Nom et Prénom</th>
+                            <th class="border-0">Téléphone</th>
+                            <th class="border-0">Catégorie</th>
+                            <th class="border-0">Date d'Inscription</th>
+                            <th class="border-0">Date de Clôture</th>
+                            <th class="border-0">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,9 +100,9 @@
                 <div class="modal-body">
                     <form wire:submit.prevent="updateDossier">
                         <div class="mb-3">
-                            <label class="form-label">Category</label>
+                            <label class="form-label">Catégorie</label>
                             <select wire:model.defer="editDossier.category" class="form-select @error('editDossier.category') is-invalid @enderror">
-                                <option value="">Select Category</option>
+                                <option value="">Sélectionner une catégorie</option>
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -122,13 +120,12 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Référence</label>
+                            <label class="form-label">N° Dossier</label>
                             <input type="text" class="form-control @error('editDossier.ref') is-invalid @enderror" 
                                 wire:model.defer="editDossier.ref">
                             @error('editDossier.ref') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
-                        <!-- Success/Error Messages -->
                         @if (session()->has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('success') }}

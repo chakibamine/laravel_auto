@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Nouveau Examen</h5>
+                <h5 class="modal-title">Gestion des Examens</h5>
                 <button type="button" class="btn-close" wire:click="closeModal"></button>
             </div>
             <div class="modal-body">
@@ -19,14 +19,14 @@
                             </div>
                             <div class="col">
                                 <div class="mb-3">
-                                    <label class="col-form-label">Examen pour :</label>
+                                    <label class="col-form-label">Candidat :</label>
                                     <input type="text" class="form-control" 
                                         value="{{ $selectedDossier->student->lastname }} {{ $selectedDossier->student->firstname }}" disabled>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="mb-3">
-                                    <label class="col-form-label">Dossier :</label>
+                                    <label class="col-form-label">N° Dossier :</label>
                                     <input type="text" class="form-control" value="{{ $selectedDossier->ref }}" disabled>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
-                                    <label class="col-form-label">Date d'examen :</label>
+                                    <label class="col-form-label">Date d'Examen :</label>
                                     <input type="date" class="form-control @error('exam.date_exam') is-invalid @enderror" 
                                         wire:model.defer="exam.date_exam">
                                     @error('exam.date_exam') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -44,11 +44,11 @@
                             </div>
                             <div class="col">
                                 <div class="mb-3">
-                                    <label class="col-form-label">Type :</label>
+                                    <label class="col-form-label">Type d'Examen :</label>
                                     <select class="form-select @error('exam.type_exam') is-invalid @enderror" 
                                         wire:model.defer="exam.type_exam">
                                         <option value="">Sélectionner un type</option>
-                                        <option value="Theorique">Theorique</option>
+                                        <option value="Theorique">Théorique</option>
                                         <option value="Pratique">Pratique</option>
                                     </select>
                                     @error('exam.type_exam') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -98,10 +98,10 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Examen</th>
+                                        <th scope="col">Type d'Examen</th>
                                         <th scope="col">Date</th>
-                                        <th scope="col">Resultat</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Résultat</th>
+                                        <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -115,7 +115,7 @@
                                             @elseif($exam->resultat == '2')
                                                 Apte
                                             @else
-                                                En cours ...
+                                                En cours
                                             @endif
                                         </td>
                                         <td>
@@ -133,8 +133,8 @@
                                             @if($exam->resultat == '0' && auth()->user()->role == 'admin')
                                                 <button type="button" class="btn btn-outline-danger btn-sm"
                                                     wire:click="deleteExam({{ $exam->id }})"
-                                                    onclick="return confirm('Etes-vous sur???')">
-                                                    delete
+                                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet examen ?')">
+                                                    Supprimer
                                                 </button>
                                             @endif
                                         </td>
