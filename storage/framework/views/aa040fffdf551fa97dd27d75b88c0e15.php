@@ -2,14 +2,14 @@
     <!-- Header -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div>
-            <h2 class="h4">Student Management</h2>
+            <h2 class="h4">Gestion des Étudiants</h2>
         </div>
         <div>
             <button wire:click="create" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
                 <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                 </svg>
-                Add New Student
+                Ajouter un Étudiant
             </button>
         </div>
     </div>
@@ -25,19 +25,19 @@
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
                             </svg>
                         </span>
-                        <input wire:model.debounce.300ms="searchTerm" class="form-control" type="text" placeholder="Search students...">
+                        <input wire:model.debounce.300ms="searchTerm" class="form-control" type="text" placeholder="Rechercher des étudiants...">
                             </div>
                         </div>
                 <div class="col-md-3 mb-3">
                     <select wire:model="filters.gender" class="form-select">
-                        <option value="">All Genders</option>
+                        <option value="">Tous les Genres</option>
                         <option value="Masculin">Masculin</option>
                         <option value="Féminin">Féminin</option>
                     </select>
                 </div>
                 <div class="col-md-3 mb-3">
                     <select wire:model="filters.city" class="form-select">
-                        <option value="">All Cities</option>
+                        <option value="">Toutes les Villes</option>
                         <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($city); ?>"><?php echo e($city); ?></option>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -48,7 +48,7 @@
                         <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                         </svg>
-                        Reset
+                        Réinitialiser
                     </button>
                 </div>
                             </div>
@@ -72,7 +72,7 @@
                             </th>
                             <th class="border-0">
                                 <a wire:click="sortBy('firstname')" role="button" class="text-decoration-none">
-                                    Name
+                                    Nom
                                     <?php if($sortField === 'firstname'): ?>
                                         <i class="fas fa-sort-<?php echo e($sortDirection === 'asc' ? 'up' : 'down'); ?>"></i>
                                     <?php endif; ?>
@@ -81,16 +81,16 @@
                             <th class="border-0">CIN</th>
                             <th class="border-0">
                                 <a wire:click="sortBy('gender')" role="button" class="text-decoration-none">
-                                    Gender
+                                    Genre
                                     <?php if($sortField === 'gender'): ?>
                                         <i class="fas fa-sort-<?php echo e($sortDirection === 'asc' ? 'up' : 'down'); ?>"></i>
                                     <?php endif; ?>
                                 </a>
                             </th>
-                            <th class="border-0">Phone</th>
+                            <th class="border-0">Téléphone</th>
                             <th class="border-0">
                                 <a wire:click="sortBy('city')" role="button" class="text-decoration-none">
-                                    City
+                                    Ville
                                     <?php if($sortField === 'city'): ?>
                                         <i class="fas fa-sort-<?php echo e($sortDirection === 'asc' ? 'up' : 'down'); ?>"></i>
                                     <?php endif; ?>
@@ -153,7 +153,7 @@
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
-                            <td colspan="8" class="text-center">No students found.</td>
+                            <td colspan="8" class="text-center">Aucun étudiant trouvé.</td>
                         </tr>
                         <?php endif; ?>
                     </tbody>
@@ -172,7 +172,7 @@
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><?php echo e($editMode ? 'Edit Student' : 'Add New Student'); ?></h5>
+                    <h5 class="modal-title"><?php echo e($editMode ? 'Modifier l\'Étudiant' : 'Ajouter un Nouvel Étudiant'); ?></h5>
                     <button wire:click="closeModal" type="button" class="btn-close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -182,7 +182,7 @@
                     <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="form-label mb-3">Gender:</label>
+                                        <label class="form-label mb-3">Genre :</label>
                                         <div class="d-flex align-items-center">
                                             <div class="form-check me-4">
                                                 <input class="form-check-input" type="radio" wire:model="student.gender" value="Masculin" id="gender-male">
@@ -240,7 +240,7 @@ unset($__errorArgs, $__bag); ?>
                             <!-- Name Fields -->
                             <div class="row mt-3">
                                 <div class="col">
-                                    <label class="form-label">Prenom :</label>
+                                    <label class="form-label">Prénom :</label>
                                     <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.firstname'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -450,7 +450,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="col">
-                                    <label class="form-label">Telephone GSM :</label>
+                                    <label class="form-label">Téléphone GSM :</label>
                                     <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.phone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -495,8 +495,8 @@ unset($__errorArgs, $__bag); ?>
                     </form>
                     </div>
                 <div class="modal-footer">
-                    <button wire:click="closeModal" type="button" class="btn btn-outline-primary">Cancel</button>
-                    <button wire:click="save" type="button" class="btn btn-primary"><?php echo e($editMode ? 'Update' : 'Inserer'); ?></button>
+                    <button wire:click="closeModal" type="button" class="btn btn-outline-primary">Annuler</button>
+                    <button wire:click="save" type="button" class="btn btn-primary"><?php echo e($editMode ? 'Mettre à jour' : 'Insérer'); ?></button>
                 </div>
             </div>
         </div>
@@ -509,15 +509,15 @@ unset($__errorArgs, $__bag); ?>
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Student</h5>
+                    <h5 class="modal-title">Supprimer l'Étudiant</h5>
                     <button wire:click="$set('showDeleteModal', false)" type="button" class="btn-close" aria-label="Close"></button>
                         </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete this student? This action cannot be undone.</p>
+                    <p>Êtes-vous sûr de vouloir supprimer cet étudiant ? Cette action ne peut pas être annulée.</p>
                     </div>
                 <div class="modal-footer">
-                    <button wire:click="$set('showDeleteModal', false)" type="button" class="btn btn-link text-gray ms-auto">Cancel</button>
-                    <button wire:click="deleteStudent" type="button" class="btn btn-danger">Delete</button>
+                    <button wire:click="$set('showDeleteModal', false)" type="button" class="btn btn-link text-gray ms-auto">Annuler</button>
+                    <button wire:click="deleteStudent" type="button" class="btn btn-danger">Supprimer</button>
                 </div>
             </div>
         </div>
@@ -530,13 +530,13 @@ unset($__errorArgs, $__bag); ?>
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add New Dossier</h5>
+                    <h5 class="modal-title">Ajouter un Nouveau Dossier</h5>
                     <button wire:click="closeDossierModal" type="button" class="btn-close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form wire:submit.prevent="saveDossier">
                         <div class="mb-3">
-                            <label class="form-label">Category</label>
+                            <label class="form-label">Catégorie</label>
                             <select wire:model="dossier.category" class="form-select <?php $__errorArgs = ['dossier.category'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -545,7 +545,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                <option value="">Select Category</option>
+                                <option value="">Sélectionner une Catégorie</option>
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -563,7 +563,7 @@ unset($__errorArgs, $__bag); ?>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Price</label>
+                            <label class="form-label">Prix</label>
                             <input type="number" class="form-control <?php $__errorArgs = ['dossier.price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -584,7 +584,7 @@ unset($__errorArgs, $__bag); ?>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Reference Number</label>
+                            <label class="form-label">Numéro de Référence</label>
                             <input type="text" class="form-control <?php $__errorArgs = ['dossier.ref'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -606,8 +606,8 @@ unset($__errorArgs, $__bag); ?>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button wire:click="closeDossierModal" type="button" class="btn btn-link text-gray ms-auto">Cancel</button>
-                    <button wire:click="saveDossier" type="button" class="btn btn-primary">Create Dossier</button>
+                    <button wire:click="closeDossierModal" type="button" class="btn btn-link text-gray ms-auto">Annuler</button>
+                    <button wire:click="saveDossier" type="button" class="btn btn-primary">Créer le Dossier</button>
                 </div>
             </div>
         </div>
@@ -617,7 +617,7 @@ unset($__errorArgs, $__bag); ?>
     <!-- Notifications -->
     <?php if($showSavedAlert): ?>
     <div class="alert alert-success alert-dismissible fade show position-fixed bottom-0 end-0 mb-4 me-4" role="alert">
-        <?php echo e($editMode ? 'Student updated successfully!' : 'Student created successfully!'); ?>
+        <?php echo e($editMode ? 'Étudiant mis à jour avec succès !' : 'Étudiant créé avec succès !'); ?>
 
         <button wire:click="$set('showSavedAlert', false)" type="button" class="btn-close" aria-label="Close"></button>
     </div>
@@ -625,7 +625,7 @@ unset($__errorArgs, $__bag); ?>
 
     <?php if($showDemoNotification): ?>
     <div class="alert alert-info alert-dismissible fade show position-fixed bottom-0 end-0 mb-4 me-4" role="alert">
-        You cannot do that in the demo version.
+        Vous ne pouvez pas faire cela dans la version de démonstration.
         <button wire:click="$set('showDemoNotification', false)" type="button" class="btn-close" aria-label="Close"></button>
     </div>
     <?php endif; ?>

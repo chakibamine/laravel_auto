@@ -6,9 +6,6 @@
     @include('layouts.sidenav')
     
     <main class="content">
-        {{-- TopBar --}}
-        @include('layouts.topbar')
-        
         <div class="py-4">
             @livewire('cloture')
         </div>

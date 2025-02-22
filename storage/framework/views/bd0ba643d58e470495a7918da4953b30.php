@@ -9,7 +9,7 @@
 
     <!-- Statistics Cards -->
     <div class="row">
-        <div class="col-12 col-sm-6 col-xl-3 mb-4">
+        <div class="col-3 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <div class="row d-block d-xl-flex align-items-center">
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-xl-3 mb-4">
+        <div class="col-3 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <div class="row d-block d-xl-flex align-items-center">
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-xl-3 mb-4">
+        <div class="col-3 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <div class="row d-block d-xl-flex align-items-center">
@@ -72,21 +72,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-xl-3 mb-4">
+        <div class="col-3 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <div class="row d-block d-xl-flex align-items-center">
                         <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <div class="icon-shape icon-shape-success rounded me-4 me-sm-0">
+                            <div class="icon-shape icon-shape-info rounded me-4 me-sm-0">
                                 <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
                                 </svg>
                             </div>
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Monthly Revenue</h2>
-                                <h3 class="fw-extrabold mb-2"><?php echo e(number_format($monthlyRevenue, 2)); ?> DH</h3>
+                                <h2 class="h6 text-gray-400 mb-0">Exams</h2>
+                                <h3 class="fw-extrabold mb-2"><?php echo e($upcomingExams->count()); ?></h3>
                             </div>
                         </div>
                     </div>

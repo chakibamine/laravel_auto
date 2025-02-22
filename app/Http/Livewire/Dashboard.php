@@ -49,10 +49,12 @@ class Dashboard extends Component
         // Total active dossiers
         $this->totalActiveDossiers = Dossier::where('status', 1)->count();
 
-        // Monthly revenue
-        $this->monthlyRevenue = Reg::whereMonth('date_reg', Carbon::now()->month)
-            ->whereYear('date_reg', Carbon::now()->year)
-            ->sum('price');
+        // Monthly revenue (admin only)
+        if (auth()->user()->role === 'admin') {
+            $this->monthlyRevenue = Reg::whereMonth('date_reg', Carbon::now()->month)
+                ->whereYear('date_reg', Carbon::now()->year)
+                ->sum('price');
+        }
 
         // Exam success rate
         $totalExams = Exam::count();
@@ -65,11 +67,10 @@ class Dashboard extends Component
             ->limit(5)
             ->get();
 
-        // Upcoming exams
+        // All upcoming exams for the count
         $this->upcomingExams = Exam::with(['dossier.student'])
-            ->where('date_exam', '>=', Carbon::now())
+            ->where('date_exam', '>=', Carbon::today())
             ->orderBy('date_exam', 'asc')
-            ->limit(5)
             ->get();
 
         // Monthly statistics for the last 6 months
