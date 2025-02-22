@@ -314,6 +314,19 @@ class ExamModal extends Component
         try {
             if (auth()->user()->role === 'admin' && $this->examToDelete) {
                 $exam = Exam::findOrFail($this->examToDelete);
+                $dossier = Dossier::findOrFail($exam->dossier_id);
+                
+                // Check if this is the last exam for this dossier
+                $examCount = Exam::where('dossier_id', $exam->dossier_id)->count();
+                
+                if ($examCount === 1) {
+                    // This is the last/only exam, update dossier
+                    $dossier->update([
+                        'date_cloture' => null,
+                        'n_serie' => null
+                    ]);
+                }
+                
                 $exam->delete();
                 session()->flash('success', 'Examen supprimé avec succès.');
                 $this->loadExams();

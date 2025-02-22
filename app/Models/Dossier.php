@@ -58,4 +58,12 @@ class Dossier extends Model
     {
         return $this->hasMany(Cour::class, 'dossier_id');
     }
+
+    /**
+     * Get the exams for this dossier
+     */
+    public function exams(): HasMany
+    {
+        return $this->hasMany(Exam::class, 'dossier_id');
+    }
 }

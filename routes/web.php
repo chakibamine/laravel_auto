@@ -78,6 +78,11 @@ Route::middleware('auth')->group(function () {
         return view('dossiers.index');
     })->name('dossiers');
     
+    // Add cloture route
+    Route::get('/cloture', function () {
+        return view('pages.cloture');
+    })->name('cloture');
+    
     // Course routes
     Route::get('/courses', function () {
         return view('pages.courses');

@@ -5913,3 +5913,270 @@
 [2025-02-22 04:48:48] local.INFO: Loaded 3 exams  
 [2025-02-22 04:48:48] local.INFO: Determined exam type:   
 [2025-02-22 04:48:48] local.INFO: Set showModal to true  
+[2025-02-22 04:54:35] local.INFO: Attempting to open exam modal for dossier: 1  
+[2025-02-22 04:54:35] local.INFO: Found dossier: 1  
+[2025-02-22 04:54:35] local.INFO: Emitted showExamModal event  
+[2025-02-22 04:54:35] local.INFO: ExamModal show method called with dossier ID: 1  
+[2025-02-22 04:54:35] local.INFO: Found dossier with student: 1  
+[2025-02-22 04:54:35] local.INFO: Loaded 0 exams  
+[2025-02-22 04:54:35] local.INFO: Generated n_serie for first exam: 1  
+[2025-02-22 04:54:35] local.INFO: Determined exam type: Theorique  
+[2025-02-22 04:54:35] local.INFO: Set showModal to true  
+[2025-02-22 04:54:51] local.INFO: Attempting to open exam modal for dossier: 1  
+[2025-02-22 04:54:51] local.INFO: Found dossier: 1  
+[2025-02-22 04:54:51] local.INFO: Emitted showExamModal event  
+[2025-02-22 04:54:51] local.INFO: ExamModal show method called with dossier ID: 1  
+[2025-02-22 04:54:51] local.INFO: Found dossier with student: 1  
+[2025-02-22 04:54:51] local.INFO: Loaded 1 exams  
+[2025-02-22 04:54:51] local.INFO: Determined exam type: Theorique  
+[2025-02-22 04:54:51] local.INFO: Set showModal to true  
+[2025-02-22 13:26:56] local.INFO: Opening payment modal for dossier: 2  
+[2025-02-22 13:26:56] local.INFO: Calculated totals in calculateTotals: {"dossier_id":2,"price":"2500.00","totalPaid":0,"remaining":2500.0} 
+[2025-02-22 13:27:58] local.INFO: Calculated totals in calculateTotals: {"dossier_id":2,"price":"2500.00","totalPaid":"200.00","remaining":2300.0} 
+[2025-02-22 13:29:23] local.INFO: Calculated totals in calculateTotals: {"dossier_id":2,"price":"2500.00","totalPaid":"1000.00","remaining":1500.0} 
+[2025-02-22 13:29:52] local.INFO: Calculated totals in calculateTotals: {"dossier_id":2,"price":"2500.00","totalPaid":"2500.00","remaining":0.0} 
+[2025-02-22 13:30:07] local.INFO: Calculated totals in calculateTotals: {"dossier_id":2,"price":"2500.00","totalPaid":"1000.00","remaining":1500.0} 
+[2025-02-22 13:30:18] local.INFO: Calculated totals in calculateTotals: {"dossier_id":2,"price":"2500.00","totalPaid":"200.00","remaining":2300.0} 
+[2025-02-22 13:30:26] local.INFO: Calculated totals in calculateTotals: {"dossier_id":2,"price":"2500.00","totalPaid":"1000.00","remaining":1500.0} 
+[2025-02-22 13:32:28] local.INFO: Attempting to open exam modal for dossier: 2  
+[2025-02-22 13:32:28] local.INFO: Found dossier: 2  
+[2025-02-22 13:32:28] local.INFO: Emitted showExamModal event  
+[2025-02-22 13:32:29] local.INFO: ExamModal show method called with dossier ID: 2  
+[2025-02-22 13:32:29] local.INFO: Found dossier with student: 2  
+[2025-02-22 13:32:29] local.INFO: Loaded 0 exams  
+[2025-02-22 13:32:29] local.INFO: Determined exam type: Theorique  
+[2025-02-22 13:32:29] local.INFO: Set showModal to true  
+[2025-02-22 13:32:45] local.INFO: Attempting to open exam modal for dossier: 2  
+[2025-02-22 13:32:45] local.INFO: Found dossier: 2  
+[2025-02-22 13:32:45] local.INFO: Emitted showExamModal event  
+[2025-02-22 13:32:45] local.INFO: ExamModal show method called with dossier ID: 2  
+[2025-02-22 13:32:45] local.INFO: Found dossier with student: 2  
+[2025-02-22 13:32:45] local.INFO: Loaded 0 exams  
+[2025-02-22 13:32:45] local.INFO: Generated n_serie for first exam: 1  
+[2025-02-22 13:32:45] local.INFO: Determined exam type: Theorique  
+[2025-02-22 13:32:45] local.INFO: Set showModal to true  
+[2025-02-22 13:33:02] local.INFO: Attempting to open exam modal for dossier: 2  
+[2025-02-22 13:33:02] local.INFO: Found dossier: 2  
+[2025-02-22 13:33:02] local.INFO: Emitted showExamModal event  
+[2025-02-22 13:33:02] local.INFO: ExamModal show method called with dossier ID: 2  
+[2025-02-22 13:33:02] local.INFO: Found dossier with student: 2  
+[2025-02-22 13:33:02] local.INFO: Loaded 1 exams  
+[2025-02-22 13:33:02] local.INFO: Determined exam type: Theorique  
+[2025-02-22 13:33:02] local.INFO: Set showModal to true  
+[2025-02-22 13:33:17] local.INFO: Attempting to open exam modal for dossier: 2  
+[2025-02-22 13:33:17] local.INFO: Found dossier: 2  
+[2025-02-22 13:33:17] local.INFO: Emitted showExamModal event  
+[2025-02-22 13:33:18] local.INFO: ExamModal show method called with dossier ID: 2  
+[2025-02-22 13:33:18] local.INFO: Found dossier with student: 2  
+[2025-02-22 13:33:18] local.INFO: Loaded 0 exams  
+[2025-02-22 13:33:18] local.INFO: Generated n_serie for first exam: 1  
+[2025-02-22 13:33:18] local.INFO: Determined exam type: Theorique  
+[2025-02-22 13:33:18] local.INFO: Set showModal to true  
+[2025-02-22 13:33:55] local.INFO: Attempting to open exam modal for dossier: 2  
+[2025-02-22 13:33:55] local.INFO: Found dossier: 2  
+[2025-02-22 13:33:55] local.INFO: Emitted showExamModal event  
+[2025-02-22 13:33:55] local.INFO: ExamModal show method called with dossier ID: 2  
+[2025-02-22 13:33:55] local.INFO: Found dossier with student: 2  
+[2025-02-22 13:33:55] local.INFO: Loaded 1 exams  
+[2025-02-22 13:33:55] local.INFO: Determined exam type: Pratique  
+[2025-02-22 13:33:55] local.INFO: Set showModal to true  
+[2025-02-22 13:34:29] local.INFO: Attempting to open exam modal for dossier: 2  
+[2025-02-22 13:34:29] local.INFO: Found dossier: 2  
+[2025-02-22 13:34:29] local.INFO: Emitted showExamModal event  
+[2025-02-22 13:34:29] local.INFO: ExamModal show method called with dossier ID: 2  
+[2025-02-22 13:34:29] local.INFO: Found dossier with student: 2  
+[2025-02-22 13:34:29] local.INFO: Loaded 0 exams  
+[2025-02-22 13:34:29] local.INFO: Generated n_serie for first exam: 1  
+[2025-02-22 13:34:29] local.INFO: Determined exam type: Theorique  
+[2025-02-22 13:34:29] local.INFO: Set showModal to true  
+[2025-02-22 13:35:13] local.INFO: Opening payment modal for dossier: 2  
+[2025-02-22 13:35:13] local.INFO: Calculated totals in calculateTotals: {"dossier_id":2,"price":"2500.00","totalPaid":"1000.00","remaining":1500.0} 
+[2025-02-22 13:35:26] local.INFO: Calculated totals in calculateTotals: {"dossier_id":2,"price":"2500.00","totalPaid":"2500.00","remaining":0.0} 
+[2025-02-22 13:35:34] local.INFO: Attempting to open exam modal for dossier: 2  
+[2025-02-22 13:35:34] local.INFO: Found dossier: 2  
+[2025-02-22 13:35:34] local.INFO: Emitted showExamModal event  
+[2025-02-22 13:35:35] local.INFO: ExamModal show method called with dossier ID: 2  
+[2025-02-22 13:35:35] local.INFO: Found dossier with student: 2  
+[2025-02-22 13:35:35] local.INFO: Loaded 3 exams  
+[2025-02-22 13:35:35] local.INFO: Determined exam type: Pratique  
+[2025-02-22 13:35:35] local.INFO: Set showModal to true  
+[2025-02-22 13:36:46] local.INFO: Attempting to open exam modal for dossier: 2  
+[2025-02-22 13:36:46] local.INFO: Found dossier: 2  
+[2025-02-22 13:36:46] local.INFO: Emitted showExamModal event  
+[2025-02-22 13:36:47] local.INFO: ExamModal show method called with dossier ID: 2  
+[2025-02-22 13:36:47] local.INFO: Found dossier with student: 2  
+[2025-02-22 13:36:47] local.INFO: Loaded 3 exams  
+[2025-02-22 13:36:47] local.INFO: Determined exam type: Pratique  
+[2025-02-22 13:36:47] local.INFO: Set showModal to true  
+[2025-02-22 13:50:04] local.ERROR: Call to undefined relationship [exams] on model [App\Models\Dossier]. {"view":{"view":"D:\\laravel\\volt-laravel-dashboard\\resources\\views\\pages\\cloture.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1028376742 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#450</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1028376742\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"userId":2,"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Call to undefined relationship [exams] on model [App\\Models\\Dossier]. at D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\RelationNotFoundException.php:35)
+[stacktrace]
+#0 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(784): Illuminate\\Database\\Eloquent\\RelationNotFoundException::make(Object(App\\Models\\Dossier), 'exams')
+#1 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Relations\\Relation.php(110): Illuminate\\Database\\Eloquent\\Builder->Illuminate\\Database\\Eloquent\\{closure}()
+#2 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(780): Illuminate\\Database\\Eloquent\\Relations\\Relation::noConstraints(Object(Closure))
+#3 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(754): Illuminate\\Database\\Eloquent\\Builder->getRelation('exams')
+#4 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(734): Illuminate\\Database\\Eloquent\\Builder->eagerLoadRelation(Array, 'exams', Object(Closure))
+#5 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(702): Illuminate\\Database\\Eloquent\\Builder->eagerLoadRelations(Array)
+#6 D:\\laravel\\volt-laravel-dashboard\\app\\Http\\Livewire\\Cloture.php(40): Illuminate\\Database\\Eloquent\\Builder->get()
+#7 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\Cloture->getDossiersProperty()
+#8 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#10 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#11 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#12 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\Component.php(300): Illuminate\\Container\\Container->call(Array)
+#13 D:\\laravel\\volt-laravel-dashboard\\app\\Http\\Livewire\\Cloture.php(46): Livewire\\Component->__get('dossiers')
+#14 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\Cloture->render()
+#15 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#17 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#18 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#19 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\Component.php(173): Illuminate\\Container\\Container->call(Array)
+#20 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(131): Livewire\\Component->renderToView()
+#21 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\LivewireManager.php(131): Livewire\\LifecycleManager->renderToView()
+#22 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(353): Livewire\\LivewireManager->mount('cloture')
+#23 D:\\laravel\\volt-laravel-dashboard\\resources\\views\\pages\\cloture.blade.php(4): Illuminate\\Support\\Facades\\Facade::__callStatic('mount', Array)
+#24 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('D:\\\\laravel\\\\volt...')
+#25 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#26 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laravel\\\\volt...', Array)
+#27 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laravel\\\\volt...', Array)
+#28 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('D:\\\\laravel\\\\volt...', Array)
+#29 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laravel\\\\volt...', Array)
+#30 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('D:\\\\laravel\\\\volt...', Array)
+#31 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#32 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#33 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#34 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#35 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#36 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#37 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#38 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#39 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(45): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#49 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#56 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#57 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#58 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#59 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#60 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#61 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#62 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#64 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#65 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#69 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#70 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#72 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#74 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#75 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#76 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#77 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#78 D:\\laravel\\volt-laravel-dashboard\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#79 D:\\laravel\\volt-laravel-dashboard\\server.php(21): require_once('D:\\\\laravel\\\\volt...')
+#80 {main}
+
+[previous exception] [object] (Illuminate\\Database\\Eloquent\\RelationNotFoundException(code: 0): Call to undefined relationship [exams] on model [App\\Models\\Dossier]. at D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\RelationNotFoundException.php:35)
+[stacktrace]
+#0 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(784): Illuminate\\Database\\Eloquent\\RelationNotFoundException::make(Object(App\\Models\\Dossier), 'exams')
+#1 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Relations\\Relation.php(110): Illuminate\\Database\\Eloquent\\Builder->Illuminate\\Database\\Eloquent\\{closure}()
+#2 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(780): Illuminate\\Database\\Eloquent\\Relations\\Relation::noConstraints(Object(Closure))
+#3 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(754): Illuminate\\Database\\Eloquent\\Builder->getRelation('exams')
+#4 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(734): Illuminate\\Database\\Eloquent\\Builder->eagerLoadRelation(Array, 'exams', Object(Closure))
+#5 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(702): Illuminate\\Database\\Eloquent\\Builder->eagerLoadRelations(Array)
+#6 D:\\laravel\\volt-laravel-dashboard\\app\\Http\\Livewire\\Cloture.php(40): Illuminate\\Database\\Eloquent\\Builder->get()
+#7 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\Cloture->getDossiersProperty()
+#8 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#10 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#11 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#12 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\Component.php(300): Illuminate\\Container\\Container->call(Array)
+#13 D:\\laravel\\volt-laravel-dashboard\\app\\Http\\Livewire\\Cloture.php(46): Livewire\\Component->__get('dossiers')
+#14 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Http\\Livewire\\Cloture->render()
+#15 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#17 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#18 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#19 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\Component.php(173): Illuminate\\Container\\Container->call(Array)
+#20 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\LifecycleManager.php(131): Livewire\\Component->renderToView()
+#21 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\LivewireManager.php(131): Livewire\\LifecycleManager->renderToView()
+#22 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(353): Livewire\\LivewireManager->mount('cloture')
+#23 D:\\laravel\\volt-laravel-dashboard\\storage\\framework\\views\\46db7694f634acf5e01dc6320599fd12.php(6): Illuminate\\Support\\Facades\\Facade::__callStatic('mount', Array)
+#24 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('D:\\\\laravel\\\\volt...')
+#25 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#26 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\laravel\\\\volt...', Array)
+#27 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\laravel\\\\volt...', Array)
+#28 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('D:\\\\laravel\\\\volt...', Array)
+#29 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\laravel\\\\volt...', Array)
+#30 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('D:\\\\laravel\\\\volt...', Array)
+#31 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#32 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#33 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#34 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#35 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#36 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#37 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#38 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#39 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(45): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#49 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#56 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#57 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#58 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#59 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#60 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#61 D:\\laravel\\volt-laravel-dashboard\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#62 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#64 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#65 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#69 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#70 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#72 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#74 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#75 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#76 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#77 D:\\laravel\\volt-laravel-dashboard\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#78 D:\\laravel\\volt-laravel-dashboard\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#79 D:\\laravel\\volt-laravel-dashboard\\server.php(21): require_once('D:\\\\laravel\\\\volt...')
+#80 {main}
+"} 
