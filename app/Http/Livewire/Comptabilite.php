@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class Comptabilite extends Component
 {
-    use WithPagination;
-
     public $searchTerm = '';
     public $dateFilter = '';
     public $showEntrerModal = false;
@@ -66,9 +64,9 @@ class Comptabilite extends Component
 
     public function mount()
     {
-        $this->currentMonth = Carbon::now()->month;
-        $this->currentYear = Carbon::now()->year;
-        $this->selectedMonth = Carbon::now()->format('Y-m');
+        $this->currentMonth = now()->month;
+        $this->currentYear = now()->year;
+        $this->selectedMonth = now()->format('Y-m');
         $this->entrer['date_entrer'] = now()->format('Y-m-d');
         $this->sortie['date_sortie'] = now()->format('Y-m-d');
     }
@@ -84,9 +82,9 @@ class Comptabilite extends Component
 
     public function resetToCurrentMonth()
     {
-        $this->currentMonth = Carbon::now()->month;
-        $this->currentYear = Carbon::now()->year;
-        $this->selectedMonth = Carbon::now()->format('Y-m');
+        $this->currentMonth = now()->month;
+        $this->currentYear = now()->year;
+        $this->selectedMonth = now()->format('Y-m');
     }
 
     public function getCurrentMonthNameProperty()
@@ -238,7 +236,6 @@ class Comptabilite extends Component
     public function toggleType($type)
     {
         $this->selectedType = $type;
-        $this->resetPage();
     }
 
     public function getTotalEntreesProperty()
@@ -268,6 +265,88 @@ class Comptabilite extends Component
         return $this->totalEntrees - $this->totalSorties;
     }
 
+    public function openMonthlyReport()
+    {
+        // Get year and month from selectedMonth
+        $date = Carbon::createFromFormat('Y-m', $this->selectedMonth);
+        $year = $date->year;
+        $month = $date->month;
+
+        // Open report in new tab
+        $this->dispatchBrowserEvent('open-report', [
+            'url' => route('comptabilite.report', ['year' => $year, 'month' => $month])
+        ]);
+    }
+
+    public function getMonthlyReportData()
+    {
+        $startDate = Carbon::createFromDate($this->currentYear, $this->currentMonth, 1);
+        $endDate = $startDate->copy()->endOfMonth();
+        $days = [];
+
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+            $currentDate = $date->format('Y-m-d');
+            
+            $entrees = Entrer::whereDate('date_entrer', $currentDate)
+                ->orderBy('date_entrer')
+                ->get();
+                
+            $sorties = Sortie::whereDate('date_sortie', $currentDate)
+                ->orderBy('date_sortie')
+                ->get();
+
+            if ($entrees->isEmpty() && $sorties->isEmpty()) {
+                $days[$currentDate] = [
+                    'date' => $date->format('d/m/Y'),
+                    'entries' => [],
+                    'exits' => [],
+                    'total_entries' => 0,
+                    'total_exits' => 0,
+                    'balance' => 0
+                ];
+                continue;
+            }
+
+            $maxCount = max($entrees->count(), $sorties->count());
+            $entries = [];
+            $exits = [];
+
+            for ($i = 0; $i < $maxCount; $i++) {
+                $entry = $entrees->get($i);
+                $exit = $sorties->get($i);
+
+                $entries[] = $entry ? [
+                    'montant' => $entry->montant,
+                    'motif' => $entry->motif
+                ] : null;
+
+                $exits[] = $exit ? [
+                    'montant' => $exit->montant,
+                    'motif' => $exit->motif
+                ] : null;
+            }
+
+            $totalEntries = $entrees->sum('montant');
+            $totalExits = $sorties->sum('montant');
+
+            $days[$currentDate] = [
+                'date' => $date->format('d/m/Y'),
+                'entries' => $entries,
+                'exits' => $exits,
+                'total_entries' => $totalEntries,
+                'total_exits' => $totalExits,
+                'balance' => $totalEntries - $totalExits
+            ];
+        }
+
+        return [
+            'days' => $days,
+            'total_entries' => collect($days)->sum('total_entries'),
+            'total_exits' => collect($days)->sum('total_exits'),
+            'total_balance' => collect($days)->sum('balance')
+        ];
+    }
+
     public function render()
     {
         $entrees = Entrer::whereYear('date_entrer', $this->currentYear)
@@ -280,7 +359,7 @@ class Comptabilite extends Component
                 $query->whereDate('date_entrer', $this->dateFilter);
             })
             ->orderBy('date_entrer', 'desc')
-            ->paginate(10);
+            ->get();
 
         $sorties = Sortie::whereYear('date_sortie', $this->currentYear)
             ->whereMonth('date_sortie', $this->currentMonth)
@@ -292,7 +371,7 @@ class Comptabilite extends Component
                 $query->whereDate('date_sortie', $this->dateFilter);
             })
             ->orderBy('date_sortie', 'desc')
-            ->paginate(10);
+            ->get();
 
         return view('livewire.comptabilite', [
             'entrees' => $entrees,

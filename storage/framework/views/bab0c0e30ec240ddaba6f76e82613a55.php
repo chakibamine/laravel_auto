@@ -5,11 +5,12 @@
             <h2 class="h4">Comptabilité - <?php echo e($this->currentMonthName); ?></h2>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <button class="btn btn-sm btn-gray-800 d-inline-flex align-items-center me-2" wire:click="resetToCurrentMonth">
-                <i class="fas fa-calendar-day me-2"></i> Mois Actuel
-            </button>
+            
             <div class="d-flex gap-2">
-                <input type="month" class="form-control form-control-sm" wire:model="selectedMonth">
+                
+                <button class="btn btn-sm btn-primary" wire:click="openMonthlyReport">
+                    <i class="fas fa-print me-2"></i> Imprimer Bilan
+                </button>
             </div>
         </div>
     </div>
@@ -18,18 +19,14 @@
     <div class="row mb-4">
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
             <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row d-block d-xl-flex align-items-center">
-                        <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <div class="icon-shape icon-shape-success rounded me-4 me-sm-0">
-                                <i class="fas fa-arrow-up"></i>
-                            </div>
+                <div class="card-body p-0">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-shape icon-shape-success rounded me-4 m-4">
+                            <i class="fas fa-arrow-up"></i>
                         </div>
-                        <div class="col-12 col-xl-7 px-xl-0">
-                            <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Total Entrées</h2>
-                                <h3 class="fw-extrabold mb-2"><?php echo e(number_format($this->totalEntrees, 2)); ?> DH</h3>
-                            </div>
+                        <div class="flex-grow-1">
+                            <div class="small text-gray-400 mb-0">Total Entrées</div>
+                            <div class="fs-5 fw-extrabold text-nowrap"><?php echo e(number_format($this->totalEntrees, 2, '.', ',')); ?> DH</div>
                         </div>
                     </div>
                 </div>
@@ -37,18 +34,14 @@
         </div>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
             <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row d-block d-xl-flex align-items-center">
-                        <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <div class="icon-shape icon-shape-danger rounded me-4 me-sm-0">
-                                <i class="fas fa-arrow-down"></i>
-                            </div>
+                <div class="card-body p-0">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-shape icon-shape-danger rounded me-4 m-4">
+                            <i class="fas fa-arrow-down"></i>
                         </div>
-                        <div class="col-12 col-xl-7 px-xl-0">
-                            <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Total Sorties</h2>
-                                <h3 class="fw-extrabold mb-2"><?php echo e(number_format($this->totalSorties, 2)); ?> DH</h3>
-                            </div>
+                        <div class="flex-grow-1">
+                            <div class="small text-gray-400 mb-0">Total Sorties</div>
+                            <div class="fs-5 fw-extrabold text-nowrap"><?php echo e(number_format($this->totalSorties, 2, '.', ',')); ?> DH</div>
                         </div>
                     </div>
                 </div>
@@ -56,18 +49,14 @@
         </div>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
             <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row d-block d-xl-flex align-items-center">
-                        <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
-                                <i class="fas fa-wallet"></i>
-                            </div>
+                <div class="card-body p-0">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-shape icon-shape-tertiary rounded me-4 m-4">
+                            <i class="fas fa-wallet"></i>
                         </div>
-                        <div class="col-12 col-xl-7 px-xl-0">
-                            <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Balance</h2>
-                                <h3 class="fw-extrabold mb-2"><?php echo e(number_format($this->balance, 2)); ?> DH</h3>
-                            </div>
+                        <div class="flex-grow-1">
+                            <div class="small text-gray-400 mb-0">Balance</div>
+                            <div class="fs-5 fw-extrabold text-nowrap"><?php echo e(number_format($this->balance, 2, '.', ',')); ?> DH</div>
                         </div>
                     </div>
                 </div>
@@ -134,64 +123,77 @@
             </ul>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-centered table-nowrap mb-0 rounded">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="border-0">Date</th>
-                            <th class="border-0">Motif</th>
-                            <th class="border-0">Montant</th>
-                            <th class="border-0">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if($selectedType === 'entrees'): ?>
-                            <?php $__empty_1 = true; $__currentLoopData = $entrees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $entree): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                <tr>
-                                    <td><?php echo e(\Carbon\Carbon::parse($entree->date_entrer)->format('d/m/Y')); ?></td>
-                                    <td><?php echo e($entree->motif); ?></td>
-                                    <td><?php echo e(number_format($entree->montant, 2)); ?> DH</td>
-                                    <td class="text-end">
-                                        <button wire:click="confirmDelete(<?php echo e($entree->id); ?>, 'entree')" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                                <tr>
-                                    <td colspan="4" class="text-center">Aucune entrée trouvée</td>
-                                </tr>
-                            <?php endif; ?>
-                        <?php else: ?>
-                            <?php $__empty_1 = true; $__currentLoopData = $sorties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sortie): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                <tr>
-                                    <td><?php echo e(\Carbon\Carbon::parse($sortie->date_sortie)->format('d/m/Y')); ?></td>
-                                    <td><?php echo e($sortie->motif); ?></td>
-                                    <td><?php echo e(number_format($sortie->montant, 2)); ?> DH</td>
-                                    <td class="text-end">
-                                        <button wire:click="confirmDelete(<?php echo e($sortie->id); ?>, 'sortie')" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                                <tr>
-                                    <td colspan="4" class="text-center">Aucune sortie trouvée</td>
-                                </tr>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
-            <div class="mt-3">
-                <?php if($selectedType === 'entrees'): ?>
-                    <?php echo e($entrees->links()); ?>
-
-                <?php else: ?>
-                    <?php echo e($sorties->links()); ?>
-
-                <?php endif; ?>
-            </div>
+            <?php if($selectedType === 'entrees'): ?>
+                <div class="card border-0 shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-centered table-nowrap mb-0 rounded">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="border-0">Date</th>
+                                        <th class="border-0">Motif</th>
+                                        <th class="border-0">Montant</th>
+                                        <th class="border-0">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $__empty_1 = true; $__currentLoopData = $entrees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $entree): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <tr>
+                                            <td><?php echo e(\Carbon\Carbon::parse($entree->date_entrer)->format('d/m/Y')); ?></td>
+                                            <td><?php echo e($entree->motif); ?></td>
+                                            <td><?php echo e(number_format($entree->montant, 2)); ?> DH</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-danger" wire:click="confirmDelete(<?php echo e($entree->id); ?>, 'entree')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                        <tr>
+                                            <td colspan="4" class="text-center">Aucune entrée trouvée</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="card border-0 shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-centered table-nowrap mb-0 rounded">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="border-0">Date</th>
+                                        <th class="border-0">Motif</th>
+                                        <th class="border-0">Montant</th>
+                                        <th class="border-0">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $__empty_1 = true; $__currentLoopData = $sorties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sortie): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <tr>
+                                            <td><?php echo e(\Carbon\Carbon::parse($sortie->date_sortie)->format('d/m/Y')); ?></td>
+                                            <td><?php echo e($sortie->motif); ?></td>
+                                            <td><?php echo e(number_format($sortie->montant, 2)); ?> DH</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-danger" wire:click="confirmDelete(<?php echo e($sortie->id); ?>, 'sortie')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                        <tr>
+                                            <td colspan="4" class="text-center">Aucune sortie trouvée</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -456,5 +458,17 @@ echo $html;
         .table td {
             vertical-align: middle;
         }
+        .text-nowrap {
+            white-space: nowrap !important;
+        }
+        .small {
+            font-size: 0.875rem;
+        }
     </style>
+
+    <script>
+        window.addEventListener('open-report', event => {
+            window.open(event.detail.url, '_blank');
+        });
+    </script>
 </div> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/livewire/comptabilite.blade.php ENDPATH**/ ?>

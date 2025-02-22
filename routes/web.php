@@ -91,6 +91,19 @@ Route::middleware('auth')->group(function () {
             echo $pdf->output();
         }, 'courses.pdf');
     })->name('dossier.courses.print');
+
+    Route::get('/comptabilite/report/{year}/{month}', function ($year, $month) {
+        $comptabilite = new App\Http\Livewire\Comptabilite();
+        $comptabilite->currentYear = (int)$year;
+        $comptabilite->currentMonth = (int)$month;
+        $comptabilite->selectedMonth = sprintf('%d-%02d', $year, $month);
+        
+        return view('livewire.monthly-report', [
+            'currentYear' => $year,
+            'currentMonth' => $month,
+            'reportData' => $comptabilite->getMonthlyReportData()
+        ]);
+    })->name('comptabilite.report');
 });
 
 // Student Management Routes
