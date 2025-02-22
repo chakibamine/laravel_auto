@@ -102,7 +102,8 @@
         </a>
       </li>
 
-      <!-- Comptabilite -->
+      <!-- Comptabilite - Only show for admin users -->
+      @if(auth()->user()->role == 'admin')
       <li class="nav-item {{ Request::segment(1) == 'comptabilite' ? 'active' : '' }}">
         <a href="{{ route('comptabilite') }}" class="nav-link">
           <span class="sidebar-icon">
@@ -113,6 +114,7 @@
           <span class="sidebar-text">Comptabilite</span>
         </a>
       </li>
+      @endif
 
       @if(auth()->user()->role == 'admin')
       <!-- Settings Section -->

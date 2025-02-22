@@ -148,4 +148,14 @@ class DossierController extends Controller
             return back()->with('error', 'Error generating external payment receipt: ' . $e->getMessage());
         }
     }
+
+    public function ficheConduit()
+    {
+        $dossiers = Dossier::with(['student', 'exams', 'courses'])
+            ->whereHas('student')
+            ->where('status', 1)
+            ->get();
+
+        return view('pdf.fiche-conduit', compact('dossiers'));
+    }
 } 

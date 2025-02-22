@@ -102,7 +102,8 @@
         </a>
       </li>
 
-      <!-- Comptabilite -->
+      <!-- Comptabilite - Only show for admin users -->
+      <?php if(auth()->user()->role == 'admin'): ?>
       <li class="nav-item <?php echo e(Request::segment(1) == 'comptabilite' ? 'active' : ''); ?>">
         <a href="<?php echo e(route('comptabilite')); ?>" class="nav-link">
           <span class="sidebar-icon">
@@ -113,6 +114,7 @@
           <span class="sidebar-text">Comptabilite</span>
         </a>
       </li>
+      <?php endif; ?>
 
       <?php if(auth()->user()->role == 'admin'): ?>
       <!-- Settings Section -->

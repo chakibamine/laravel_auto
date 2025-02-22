@@ -90,19 +90,6 @@ Route::middleware('auth')->group(function () {
         $dossier = App\Models\Dossier::with(['student', 'courses'])->findOrFail($id);
         return view('pdf.courses', ['dossier' => $dossier]);
     })->name('dossier.courses.print');
-
-    Route::get('/comptabilite/report/{year}/{month}', function ($year, $month) {
-        $comptabilite = new App\Http\Livewire\Comptabilite();
-        $comptabilite->currentYear = (int)$year;
-        $comptabilite->currentMonth = (int)$month;
-        $comptabilite->selectedMonth = sprintf('%d-%02d', $year, $month);
-        
-        return view('livewire.monthly-report', [
-            'currentYear' => $year,
-            'currentMonth' => $month,
-            'reportData' => $comptabilite->getMonthlyReportData()
-        ]);
-    })->name('comptabilite.report');
 });
 
 // Student Management Routes
@@ -132,7 +119,24 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::get('/comptabilite', function () {
-    return view('pages.comptabilite');
-})->name('comptabilite');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/users', App\Http\Livewire\Users::class)->name('users');
+    Route::get('/comptabilite', function () {
+        return view('pages.comptabilite');
+    })->name('comptabilite');
+    Route::get('/comptabilite/report/{year}/{month}', function ($year, $month) {
+        $comptabilite = new App\Http\Livewire\Comptabilite();
+        $comptabilite->currentYear = (int)$year;
+        $comptabilite->currentMonth = (int)$month;
+        $comptabilite->selectedMonth = sprintf('%d-%02d', $year, $month);
+        
+        return view('livewire.monthly-report', [
+            'currentYear' => $year,
+            'currentMonth' => $month,
+            'reportData' => $comptabilite->getMonthlyReportData()
+        ]);
+    })->name('comptabilite.report');
+});
+
+Route::get('fiche-conduit', [DossierController::class, 'ficheConduit'])->name('fiche.conduit');
 
