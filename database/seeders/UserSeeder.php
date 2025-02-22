@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -13,13 +13,18 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        DB::table("users")->insert([
-            'first_name' => 'Admin',
-            'last_name' => 'User',
+        // Delete existing admin user if exists
+        User::where('email', 'admin@volt.com')->delete();
+
+        // Create fresh admin user
+        User::create([
+            'name' => 'Admin',
             'email' => 'admin@volt.com',
-            'password' => Hash::make('secret'),
+            'password' => 'secret', // The User model will automatically hash this
+            'role' => 'admin',
+            'email_verified_at' => now()
         ]);
     }
 }

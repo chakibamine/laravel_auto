@@ -46,6 +46,14 @@ Route::get('/register', Register::class)->name('register');
 
 Route::get('/login', Login::class)->name('login');
 
+// Add logout route
+Route::post('/logout', function () {
+    auth()->logout();
+    session()->invalidate();
+    session()->regenerateToken();
+    return redirect()->route('login');
+})->name('logout');
+
 Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
 
 Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')->middleware('signed');
