@@ -6180,3 +6180,5 @@
 #79 D:\\laravel\\volt-laravel-dashboard\\server.php(21): require_once('D:\\\\laravel\\\\volt...')
 #80 {main}
 "} 
+[2025-02-22 14:20:51] local.INFO: Opening payment modal for dossier: 1000168  
+[2025-02-22 14:20:51] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1000168,"price":"2500.00","totalPaid":"2500.00","remaining":0.0} 
