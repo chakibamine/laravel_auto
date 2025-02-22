@@ -94,15 +94,17 @@
         <div class="info-section">
             <div class="student-info">
                 <strong>Auto Ecole Ait Mhand</strong><br>
-                @if($dossier->student->image_url)
-                    <img class="student-photo" src="{{ asset('storage/' . $dossier->student->image_url) }}" alt="Photo"><br>
-                @endif
-                <strong>C.I.N : </strong>{{ $dossier->student->cin }}<br>
-                <strong>Candidat : </strong>{{ $dossier->student->lastname }} {{ $dossier->student->firstname }}<br>
-                <strong>Dossier : </strong>{{ $dossier->ref }}
+                <?php if($dossier->student->image_url): ?>
+                    <img class="student-photo" src="<?php echo e(asset('storage/' . $dossier->student->image_url)); ?>" alt="Photo"><br>
+                <?php endif; ?>
+                <strong>C.I.N : </strong><?php echo e($dossier->student->cin); ?><br>
+                <strong>Candidat : </strong><?php echo e($dossier->student->lastname); ?> <?php echo e($dossier->student->firstname); ?><br>
+                <strong>Dossier : </strong><?php echo e($dossier->ref); ?>
+
             </div>
             <div class="date-info">
-                <strong>Date de Fiche : </strong>{{ now()->format('d/m/y') }}
+                <strong>Date de Fiche : </strong><?php echo e(now()->format('d/m/y')); ?>
+
             </div>
         </div>
 
@@ -116,7 +118,7 @@
                 </tr>
             </thead>
             <tbody>
-                @php
+                <?php
                     $theoretical = $dossier->courses->where('type_cours', 'Theorique')->sortBy('date_cours')->values();
                     $practical = $dossier->courses->where('type_cours', 'Pratique')->sortBy('date_cours')->values();
                     $maxCount = max($theoretical->count(), $practical->count());
@@ -127,22 +129,22 @@
                     echo "\nPractical Courses: " . $practical->count();
                     echo "\nAll Courses Types: " . $dossier->courses->pluck('type_cours')->unique()->implode(', ');
                     echo "\n-->";
-                @endphp
+                ?>
 
-                @for($i = 0; $i < $maxCount; $i++)
+                <?php for($i = 0; $i < $maxCount; $i++): ?>
                     <tr>
-                        <td class="serie-col">{{ $i + 1 }}</td>
-                        <td>{{ $theoretical->get($i) ? $theoretical->get($i)->date_cours->format('d/m/Y') : '' }}</td>
-                        <td class="serie-col">{{ $i + 1 }}</td>
-                        <td>{{ $practical->get($i) ? $practical->get($i)->date_cours->format('d/m/Y') : '' }}</td>
+                        <td class="serie-col"><?php echo e($i + 1); ?></td>
+                        <td><?php echo e($theoretical->get($i) ? $theoretical->get($i)->date_cours->format('d/m/Y') : ''); ?></td>
+                        <td class="serie-col"><?php echo e($i + 1); ?></td>
+                        <td><?php echo e($practical->get($i) ? $practical->get($i)->date_cours->format('d/m/Y') : ''); ?></td>
                     </tr>
-                @endfor
+                <?php endfor; ?>
 
                 <tr class="total-row">
                     <td>Total</td>
-                    <td>{{ $theoretical->count() }}</td>
+                    <td><?php echo e($theoretical->count()); ?></td>
                     <td>Total</td>
-                    <td>{{ $practical->count() }}</td>
+                    <td><?php echo e($practical->count()); ?></td>
                 </tr>
             </tbody>
         </table>
@@ -156,4 +158,4 @@
         }
     </script>
 </body>
-</html> 
+</html> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/pdf/courses.blade.php ENDPATH**/ ?>

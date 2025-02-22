@@ -116,13 +116,13 @@
                                     <?php if($student->image_url && Storage::disk('public')->exists($student->image_url)): ?>
                                         <img src="<?php echo e(Storage::url($student->image_url)); ?>" class="rounded-circle me-3" width="32" height="32" alt="<?php echo e($student->firstname); ?>">
                                     <?php else: ?>
-                                        <div class="avatar rounded-circle me-3 bg-gray-600">
-                                            <span class="text-white"><?php echo e(substr($student->firstname, 0, 1)); ?></span>
-                            </div>
+                                        <div class="avatar rounded-circle me-3 bg-gray-600" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
+                                            <span class="text-white" style="font-size: 14px;"><?php echo e(substr(strtoupper($student->firstname), 0, 1)); ?></span>
+                                        </div>
                                     <?php endif; ?>
                                     <?php echo e($student->firstname); ?> <?php echo e($student->lastname); ?>
 
-                        </div>
+                                </div>
                             </td>
                             <td><?php echo e($student->cin); ?></td>
                             <td><?php echo e($student->gender); ?></td>

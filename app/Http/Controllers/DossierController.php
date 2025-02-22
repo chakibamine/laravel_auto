@@ -7,6 +7,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Exam;
 
 class DossierController extends Controller
 {
@@ -104,6 +105,19 @@ class DossierController extends Controller
             return view('contract.show', compact('dossier'));
         } catch (\Exception $e) {
             return back()->with('error', 'Error displaying contract: ' . $e->getMessage());
+        }
+    }
+
+    public function generateExamFiche($examId)
+    {
+        try {
+            $exam = Exam::with(['dossier.student'])->findOrFail($examId);
+            return view('pdf.exam-fiche', [
+                'exam' => $exam,
+                'dossier' => $exam->dossier
+            ]);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error displaying exam fiche: ' . $e->getMessage());
         }
     }
 } 

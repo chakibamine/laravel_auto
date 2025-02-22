@@ -116,12 +116,12 @@
                                     @if($student->image_url && Storage::disk('public')->exists($student->image_url))
                                         <img src="{{ Storage::url($student->image_url) }}" class="rounded-circle me-3" width="32" height="32" alt="{{ $student->firstname }}">
                                     @else
-                                        <div class="avatar rounded-circle me-3 bg-gray-600">
-                                            <span class="text-white">{{ substr($student->firstname, 0, 1) }}</span>
-                            </div>
+                                        <div class="avatar rounded-circle me-3 bg-gray-600" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
+                                            <span class="text-white" style="font-size: 14px;">{{ substr(strtoupper($student->firstname), 0, 1) }}</span>
+                                        </div>
                                     @endif
                                     {{ $student->firstname }} {{ $student->lastname }}
-                        </div>
+                                </div>
                             </td>
                             <td>{{ $student->cin }}</td>
                             <td>{{ $student->gender }}</td>

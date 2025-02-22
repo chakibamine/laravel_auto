@@ -1,18 +1,4 @@
 <div>
-    <?php if($showModal): ?>
-        <div style="display:none">
-            Debug: Modal should be visible
-            ShowModal: <?php echo e(var_export($showModal, true)); ?>
-
-            SelectedDossier exists: <?php echo e(isset($selectedDossier) ? 'Yes' : 'No'); ?>
-
-            <?php if(isset($selectedDossier)): ?>
-                Dossier ID: <?php echo e($selectedDossier->id); ?>
-
-            <?php endif; ?>
-        </div>
-    <?php endif; ?>
-
     <?php if($showModal && $selectedDossier): ?>
     <div class="modal fade show" style="display: block;" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -112,7 +98,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                            wire:model.defer="exam.n_serie">
+                                            wire:model.defer="exam.n_serie" required>
                                         <small class="text-muted">Numéro généré automatiquement</small>
                                         <?php $__errorArgs = ['exam.n_serie'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -215,11 +201,15 @@ unset($__errorArgs, $__bag); ?>
                         </table>
 
                         <!-- Print Button -->
-                        <div class="d-flex flex-row-reverse">
-                            <a href="#" class="btn btn-outline-primary btn-sm p-2">
-                                <i class="bi bi-printer"></i> fiche
-                            </a>
-                        </div>
+                        <?php if($exams->where('type_exam', 'Theorique')->first()): ?>
+                            <div class="d-flex justify-content-end mt-3">
+                                <a href="<?php echo e(route('exam.fiche', ['examId' => $exams->where('type_exam', 'Theorique')->first()->id])); ?>" 
+                                   class="btn btn-outline-primary" 
+                                   target="_blank">
+                                    <i class="fas fa-print me-2"></i> Imprimer Fiche
+                                </a>
+                            </div>
+                        <?php endif; ?>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -253,4 +243,4 @@ unset($__errorArgs, $__bag); ?>
     <?php if($showModal || $showConfirmModal): ?>
     <div class="modal-backdrop fade show"></div>
     <?php endif; ?>
-</div> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/livewire/components/exam-modal.blade.php ENDPATH**/ ?>
+</div><?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/livewire/components/exam-modal.blade.php ENDPATH**/ ?>

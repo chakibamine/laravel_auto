@@ -1,15 +1,4 @@
 <div>
-    @if($showModal)
-        <div style="display:none">
-            Debug: Modal should be visible
-            ShowModal: {{ var_export($showModal, true) }}
-            SelectedDossier exists: {{ isset($selectedDossier) ? 'Yes' : 'No' }}
-            @if(isset($selectedDossier))
-                Dossier ID: {{ $selectedDossier->id }}
-            @endif
-        </div>
-    @endif
-
     @if($showModal && $selectedDossier)
     <div class="modal fade show" style="display: block;" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -80,7 +69,7 @@
                                     <div class="mb-3">
                                         <label class="col-form-label">N° série :</label>
                                         <input type="text" class="form-control @error('exam.n_serie') is-invalid @enderror" 
-                                            wire:model.defer="exam.n_serie">
+                                            wire:model.defer="exam.n_serie" required>
                                         <small class="text-muted">Numéro généré automatiquement</small>
                                         @error('exam.n_serie') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
@@ -174,11 +163,15 @@
                         </table>
 
                         <!-- Print Button -->
-                        <div class="d-flex flex-row-reverse">
-                            <a href="#" class="btn btn-outline-primary btn-sm p-2">
-                                <i class="bi bi-printer"></i> fiche
-                            </a>
-                        </div>
+                        @if($exams->where('type_exam', 'Theorique')->first())
+                            <div class="d-flex justify-content-end mt-3">
+                                <a href="{{ route('exam.fiche', ['examId' => $exams->where('type_exam', 'Theorique')->first()->id]) }}" 
+                                   class="btn btn-outline-primary" 
+                                   target="_blank">
+                                    <i class="fas fa-print me-2"></i> Imprimer Fiche
+                                </a>
+                            </div>
+                        @endif
                         @endif
                     </div>
                 </div>
@@ -212,4 +205,4 @@
     @if($showModal || $showConfirmModal)
     <div class="modal-backdrop fade show"></div>
     @endif
-</div> 
+</div>

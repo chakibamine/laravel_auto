@@ -84,12 +84,8 @@ Route::middleware('auth')->group(function () {
     })->name('courses.index');
     
     Route::get('/dossier/{id}/courses/print', function ($id) {
-        // Add your print logic here
-        return response()->streamDownload(function () use ($id) {
-            $dossier = App\Models\Dossier::with(['student', 'courses'])->findOrFail($id);
-            $pdf = PDF::loadView('pdf.courses', ['dossier' => $dossier]);
-            echo $pdf->output();
-        }, 'courses.pdf');
+        $dossier = App\Models\Dossier::with(['student', 'courses'])->findOrFail($id);
+        return view('pdf.courses', ['dossier' => $dossier]);
     })->name('dossier.courses.print');
 
     Route::get('/comptabilite/report/{year}/{month}', function ($year, $month) {
@@ -127,6 +123,7 @@ Route::middleware(['auth'])->group(function () {
     // Dossier routes
     Route::controller(DossierController::class)->group(function () {
         Route::get('/dossiers/{id}/contract', 'generateContractPdf')->name('dossier.contract.pdf');
+        Route::get('/exam/{examId}/fiche', 'generateExamFiche')->name('exam.fiche');
     });
 });
 
