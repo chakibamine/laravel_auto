@@ -109,7 +109,7 @@ class Users extends Component
                     'name' => $this->user['name'],
                     'email' => $this->user['email'],
                     'role' => $this->user['role'],
-                    'password' => Hash::make($this->user['password'])
+                    'password' => $this->user['password']
                 ]);
                 session()->flash('success', 'Utilisateur créé avec succès.');
             }

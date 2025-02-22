@@ -52,7 +52,12 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute($value)
     {
-        $this->attributes['password'] = Hash::make($value);
+        // Only hash if the password is not already hashed
+        if (strlen($value) < 60 || !preg_match('/^\$2[ayb]\$.{56}$/', $value)) {
+            $this->attributes['password'] = Hash::make($value);
+        } else {
+            $this->attributes['password'] = $value;
+        }
     }
 
     /**
