@@ -86,7 +86,7 @@
                                     <div class="mb-3">
                                         <label class="col-form-label">Montant :</label>
                                         <input type="number" step="0.01" class="form-control @error('reg.price') is-invalid @enderror" 
-                                            wire:model.defer="reg.price">
+                                            wire:model="reg.price">
                                         @error('reg.price') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                     <div class="mb-3">
                                         <label class="col-form-label">Motif :</label>
                                         <select class="form-select @error('reg.motif') is-invalid @enderror" 
-                                            wire:model.defer="reg.motif">
+                                            wire:model="reg.motif">
                                             <option value="">Sélectionner un motif</option>
                                             <option value="Free inscription">Frais inscription</option>
                                             <option value="Free dossier">Frais dossier</option>
@@ -122,6 +122,25 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <script>
+                            function handleMotifChange(selectElement) {
+                                const priceInput = document.getElementById('payment_price');
+                                if (selectElement.value === 'Free dossier') {
+                                    priceInput.value = '800';
+                                    // Trigger Livewire update
+                                    Livewire.emit('set:reg.price', 800);
+                                }
+                            }
+
+                            // Add event listener when the modal is shown
+                            document.addEventListener('livewire:load', function () {
+                                const motifSelect = document.getElementById('payment_motif');
+                                if (motifSelect) {
+                                    handleMotifChange(motifSelect);
+                                }
+                            });
+                            </script>
 
                             <!-- Show any validation errors -->
                             @if ($errors->any())

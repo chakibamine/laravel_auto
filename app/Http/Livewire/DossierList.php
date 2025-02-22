@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Dossier;
 use App\Models\Reg;
 use App\Models\Entrer;
+use App\Models\Sortie;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +55,8 @@ class DossierList extends Component
         'refreshComponent' => '$refresh',
         'closePaymentModal' => 'closePaymentModal',
         'confirmed' => 'handleConfirmed',
-        'cancelled' => 'handleCancelled'
+        'cancelled' => 'handleCancelled',
+        'set:reg.price' => 'setRegPrice'
     ];
 
     public function mount()
@@ -122,9 +124,10 @@ class DossierList extends Component
     {
         $this->validate([
             'reg.date_reg' => 'required|date',
-            'reg.price' => 'required|numeric|min:0',
+            'reg.price' => 'required|numeric',
             'reg.motif' => 'required|string',
-            'reg.nom_du_payeur' => 'required|string'
+            'reg.nom_du_payeur' => 'required|string',
+            'reg.dossier_id' => 'required|exists:dossier,id'
         ]);
 
         try {
@@ -134,23 +137,35 @@ class DossierList extends Component
                 'price' => $this->reg['price'],
                 'motif' => $this->reg['motif'],
                 'nom_du_payeur' => $this->reg['nom_du_payeur'],
-                'dossier_id' => $this->selectedDossier->id,
+                'dossier_id' => $this->reg['dossier_id'],
                 'date_insertion' => now(),
-                'insert_user' => Auth::user()->name
+                'insert_user' => auth()->user()->name
             ]);
 
-            // Create corresponding entry in entres table
+            // Create entry in entres table
             Entrer::create([
                 'date_entrer' => $this->reg['date_reg'],
-                'motif' => "Paiement dossier {$this->selectedDossier->ref} - {$this->reg['motif']}",
+                'motif' => "Payment " . $this->reg['motif'] . " - Dossier " . $this->selectedDossier->ref,
                 'montant' => $this->reg['price'],
                 'date_entry' => now(),
-                'insert_user' => Auth::user()->name
+                'insert_user' => auth()->user()->name
             ]);
 
+            // If payment is for "Free dossier" and amount is 800 DH
+            if ($this->reg['motif'] === 'Free dossier') {
+                // Create corresponding entry in sortie table
+                Sortie::create([
+                    'date_sortie' => $this->reg['date_reg'],
+                    'motif' => "Frais dossier - Dossier " . $this->selectedDossier->ref,
+                    'montant' => $this->reg['price'],
+                    'date_entry' => now(),
+                    'insert_user' => auth()->user()->name
+                ]);
+            }
+
             $this->calculateTotals();
-            session()->flash('success', 'Paiement enregistré avec succès');
             $this->resetReg();
+            session()->flash('success', 'Paiement enregistré avec succès.');
 
         } catch (\Exception $e) {
             session()->flash('error', 'Erreur lors de l\'enregistrement du paiement: ' . $e->getMessage());
@@ -191,22 +206,31 @@ class DossierList extends Component
     {
         try {
             $reg = Reg::findOrFail($regId);
-            
-            // Delete corresponding entry
+            $dossierRef = $reg->dossier->ref;
+
+            // Delete corresponding entry in entres table
             Entrer::where('date_entrer', $reg->date_reg)
                   ->where('montant', $reg->price)
-                  ->where('motif', 'like', "%Paiement dossier {$reg->dossier->ref}%")
+                  ->where('motif', 'like', "%{$reg->motif}%")
+                  ->where('motif', 'like', "%{$dossierRef}%")
+                  ->limit(1)
                   ->delete();
-            
-            // Delete the payment
+
+            // If it was a "Free dossier" payment, delete corresponding sortie
+            if ($reg->motif === 'Free dossier') {
+                Sortie::where('date_sortie', $reg->date_reg)
+                      ->where('montant', $reg->price)
+                      ->where('motif', 'like', "%Frais dossier%")
+                      ->where('motif', 'like', "%{$dossierRef}%")
+                      ->limit(1)
+                      ->delete();
+            }
+
             $reg->delete();
-            
-            session()->flash('success', 'Paiement supprimé avec succès');
-            $this->calculateTotals();
-            $this->emit('refreshComponent');
-            
+            session()->flash('success', 'Paiement supprimé avec succès.');
+
         } catch (\Exception $e) {
-            session()->flash('error', 'Erreur lors de la suppression: ' . $e->getMessage());
+            session()->flash('error', 'Erreur lors de la suppression du paiement: ' . $e->getMessage());
         }
     }
 
@@ -304,6 +328,18 @@ class DossierList extends Component
         } catch (\Exception $e) {
             \Log::error('Error in openExamModal: ' . $e->getMessage());
             session()->flash('error', 'Error opening exam modal: ' . $e->getMessage());
+        }
+    }
+
+    public function setRegPrice($price)
+    {
+        $this->reg['price'] = $price;
+    }
+
+    public function updatedRegMotif($value)
+    {
+        if ($value === 'Free dossier') {
+            $this->reg['price'] = 800;
         }
     }
 

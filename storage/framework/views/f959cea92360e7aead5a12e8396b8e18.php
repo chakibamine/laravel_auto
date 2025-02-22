@@ -112,7 +112,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                            wire:model.defer="reg.price">
+                                            wire:model="reg.price">
                                         <?php $__errorArgs = ['reg.price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -137,7 +137,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                            wire:model.defer="reg.motif">
+                                            wire:model="reg.motif">
                                             <option value="">Sélectionner un motif</option>
                                             <option value="Free inscription">Frais inscription</option>
                                             <option value="Free dossier">Frais dossier</option>
@@ -183,6 +183,25 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                             </div>
+
+                            <script>
+                            function handleMotifChange(selectElement) {
+                                const priceInput = document.getElementById('payment_price');
+                                if (selectElement.value === 'Free dossier') {
+                                    priceInput.value = '800';
+                                    // Trigger Livewire update
+                                    Livewire.emit('set:reg.price', 800);
+                                }
+                            }
+
+                            // Add event listener when the modal is shown
+                            document.addEventListener('livewire:load', function () {
+                                const motifSelect = document.getElementById('payment_motif');
+                                if (motifSelect) {
+                                    handleMotifChange(motifSelect);
+                                }
+                            });
+                            </script>
 
                             <!-- Show any validation errors -->
                             <?php if($errors->any()): ?>

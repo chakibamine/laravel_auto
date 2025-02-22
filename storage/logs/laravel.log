@@ -2424,3 +2424,24 @@
 [2025-02-22 00:35:59] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"100.00","remaining":1900.0} 
 [2025-02-22 00:38:58] local.INFO: Opening payment modal for dossier: 1  
 [2025-02-22 00:38:58] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"100.00","remaining":1900.0} 
+[2025-02-22 00:57:37] local.INFO: Opening payment modal for dossier: 1  
+[2025-02-22 00:57:37] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"100.00","remaining":1900.0} 
+[2025-02-22 00:57:46] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"500.00","remaining":1500.0} 
+[2025-02-22 01:00:26] local.INFO: Opening payment modal for dossier: 1  
+[2025-02-22 01:00:26] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"100.00","remaining":1900.0} 
+[2025-02-22 01:00:36] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"500.00","remaining":1500.0} 
+[2025-02-22 01:00:57] local.INFO: Opening payment modal for dossier: 1  
+[2025-02-22 01:00:57] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"500.00","remaining":1500.0} 
+[2025-02-22 01:04:17] local.INFO: Opening payment modal for dossier: 1  
+[2025-02-22 01:04:17] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"100.00","remaining":1900.0} 
+[2025-02-22 01:05:41] local.INFO: Opening payment modal for dossier: 1  
+[2025-02-22 01:05:41] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"100.00","remaining":1900.0} 
+[2025-02-22 01:06:10] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"800.00","remaining":1200.0} 
+[2025-02-22 01:06:32] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"900.00","remaining":1100.0} 
+[2025-02-22 01:11:38] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"900.00","remaining":1100.0} 
+[2025-02-22 01:12:15] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"500.00","remaining":1500.0} 
+[2025-02-22 01:13:59] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"500.00","remaining":1500.0} 
+[2025-02-22 01:14:33] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"500.00","remaining":1500.0} 
+[2025-02-22 01:14:41] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"900.00","remaining":1100.0} 
+[2025-02-22 01:16:33] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"1300.00","remaining":700.0} 
+[2025-02-22 01:16:54] local.INFO: Calculated totals in calculateTotals: {"dossier_id":1,"price":"2000.00","totalPaid":"1700.00","remaining":300.0} 
