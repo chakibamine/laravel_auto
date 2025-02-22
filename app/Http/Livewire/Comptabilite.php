@@ -21,6 +21,9 @@ class Comptabilite extends Component
     public $showConfirmModal = false;
     public $itemToDelete = null;
     public $deleteType = null;
+    public $currentMonth;
+    public $currentYear;
+    public $selectedMonth;
     
     // Entrer form
     public $entrer = [
@@ -63,8 +66,32 @@ class Comptabilite extends Component
 
     public function mount()
     {
+        $this->currentMonth = Carbon::now()->month;
+        $this->currentYear = Carbon::now()->year;
+        $this->selectedMonth = Carbon::now()->format('Y-m');
         $this->entrer['date_entrer'] = now()->format('Y-m-d');
         $this->sortie['date_sortie'] = now()->format('Y-m-d');
+    }
+
+    public function updatedSelectedMonth($value)
+    {
+        if ($value) {
+            $date = Carbon::createFromFormat('Y-m', $value);
+            $this->currentMonth = $date->month;
+            $this->currentYear = $date->year;
+        }
+    }
+
+    public function resetToCurrentMonth()
+    {
+        $this->currentMonth = Carbon::now()->month;
+        $this->currentYear = Carbon::now()->year;
+        $this->selectedMonth = Carbon::now()->format('Y-m');
+    }
+
+    public function getCurrentMonthNameProperty()
+    {
+        return Carbon::createFromDate($this->currentYear, $this->currentMonth, 1)->format('F Y');
     }
 
     public function showEntrerForm()
@@ -216,16 +243,24 @@ class Comptabilite extends Component
 
     public function getTotalEntreesProperty()
     {
-        return Entrer::when($this->dateFilter, function($query) {
-            return $query->whereDate('date_entrer', $this->dateFilter);
-        })->sum('montant');
+        return Entrer::whereYear('date_entrer', $this->currentYear)
+            ->whereMonth('date_entrer', $this->currentMonth)
+            ->when($this->searchTerm, function($query) {
+                $query->where('motif', 'like', '%'.$this->searchTerm.'%')
+                    ->orWhere('montant', 'like', '%'.$this->searchTerm.'%');
+            })
+            ->sum('montant');
     }
 
     public function getTotalSortiesProperty()
     {
-        return Sortie::when($this->dateFilter, function($query) {
-            return $query->whereDate('date_sortie', $this->dateFilter);
-        })->sum('montant');
+        return Sortie::whereYear('date_sortie', $this->currentYear)
+            ->whereMonth('date_sortie', $this->currentMonth)
+            ->when($this->searchTerm, function($query) {
+                $query->where('motif', 'like', '%'.$this->searchTerm.'%')
+                    ->orWhere('montant', 'like', '%'.$this->searchTerm.'%');
+            })
+            ->sum('montant');
     }
 
     public function getBalanceProperty()
@@ -235,7 +270,9 @@ class Comptabilite extends Component
 
     public function render()
     {
-        $entrees = Entrer::when($this->searchTerm, function($query) {
+        $entrees = Entrer::whereYear('date_entrer', $this->currentYear)
+            ->whereMonth('date_entrer', $this->currentMonth)
+            ->when($this->searchTerm, function($query) {
                 $query->where('motif', 'like', '%'.$this->searchTerm.'%')
                     ->orWhere('montant', 'like', '%'.$this->searchTerm.'%');
             })
@@ -245,7 +282,9 @@ class Comptabilite extends Component
             ->orderBy('date_entrer', 'desc')
             ->paginate(10);
 
-        $sorties = Sortie::when($this->searchTerm, function($query) {
+        $sorties = Sortie::whereYear('date_sortie', $this->currentYear)
+            ->whereMonth('date_sortie', $this->currentMonth)
+            ->when($this->searchTerm, function($query) {
                 $query->where('motif', 'like', '%'.$this->searchTerm.'%')
                     ->orWhere('montant', 'like', '%'.$this->searchTerm.'%');
             })

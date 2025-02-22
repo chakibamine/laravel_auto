@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Dossier;
 use App\Models\Reg;
+use App\Models\Entrer;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
@@ -119,49 +120,40 @@ class DossierList extends Component
 
     public function saveReg()
     {
+        $this->validate([
+            'reg.date_reg' => 'required|date',
+            'reg.price' => 'required|numeric|min:0',
+            'reg.motif' => 'required|string',
+            'reg.nom_du_payeur' => 'required|string'
+        ]);
+
         try {
-            $this->validate();
-
-            // Debug log
-            \Log::info('Attempting to save registration with data:', $this->reg);
-
-            // Convert date to proper format
-            $date_reg = \Carbon\Carbon::parse($this->reg['date_reg'])->format('Y-m-d H:i:s');
-
-            // Create the registration with properly quoted values
-            $newReg = Reg::create([
-                'date_reg' => $date_reg,
-                'price' => floatval($this->reg['price']),
+            // Create the payment record
+            $payment = Reg::create([
+                'date_reg' => $this->reg['date_reg'],
+                'price' => $this->reg['price'],
                 'motif' => $this->reg['motif'],
                 'nom_du_payeur' => $this->reg['nom_du_payeur'],
-                'dossier_id' => intval($this->reg['dossier_id']),
+                'dossier_id' => $this->selectedDossier->id,
                 'date_insertion' => now(),
                 'insert_user' => Auth::user()->name
             ]);
-            
-            if (!$newReg) {
-                throw new \Exception('Failed to create registration record');
-            }
 
-            \Log::info('Registration saved successfully with ID: ' . $newReg->id);
+            // Create corresponding entry in entres table
+            Entrer::create([
+                'date_entrer' => $this->reg['date_reg'],
+                'motif' => "Paiement dossier {$this->selectedDossier->ref} - {$this->reg['motif']}",
+                'montant' => $this->reg['price'],
+                'date_entry' => now(),
+                'insert_user' => Auth::user()->name
+            ]);
 
-            // Recalculate totals
             $this->calculateTotals();
-            
-            // Reset only the form fields, not the entire reg array
-            $this->reg['price'] = '';
-            $this->reg['motif'] = '';
-            if (!$this->isLuiMeme) {
-                $this->reg['nom_du_payeur'] = '';
-            }
-            
-            session()->flash('success', 'Paiement ajouté avec succès.');
-            
-            // Don't close modal, just emit refresh event
-            $this->emit('refreshComponent');
+            session()->flash('success', 'Paiement enregistré avec succès');
+            $this->resetReg();
+
         } catch (\Exception $e) {
-            \Log::error('Error saving registration: ' . $e->getMessage());
-            session()->flash('error', 'Erreur lors de l\'ajout du paiement: ' . $e->getMessage());
+            session()->flash('error', 'Erreur lors de l\'enregistrement du paiement: ' . $e->getMessage());
         }
     }
 
@@ -198,16 +190,23 @@ class DossierList extends Component
     private function performDeleteReg($regId)
     {
         try {
-            if (auth()->user()->role === 'admin') {
-                $reg = Reg::findOrFail($regId);
-                $reg->delete();
-                $this->calculateTotals();
-                session()->flash('success', 'Paiement supprimé avec succès.');
-                $this->emit('refreshComponent');
-            }
+            $reg = Reg::findOrFail($regId);
+            
+            // Delete corresponding entry
+            Entrer::where('date_entrer', $reg->date_reg)
+                  ->where('montant', $reg->price)
+                  ->where('motif', 'like', "%Paiement dossier {$reg->dossier->ref}%")
+                  ->delete();
+            
+            // Delete the payment
+            $reg->delete();
+            
+            session()->flash('success', 'Paiement supprimé avec succès');
+            $this->calculateTotals();
+            $this->emit('refreshComponent');
+            
         } catch (\Exception $e) {
-            \Log::error('Error deleting registration: ' . $e->getMessage());
-            session()->flash('error', 'Erreur lors de la suppression du paiement: ' . $e->getMessage());
+            session()->flash('error', 'Erreur lors de la suppression: ' . $e->getMessage());
         }
     }
 

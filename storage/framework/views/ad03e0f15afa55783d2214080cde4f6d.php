@@ -20,16 +20,16 @@
         <div class="py-4">
             <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('comptabilite')->html();
-} elseif ($_instance->childHasBeenRendered('E9NMxuP')) {
-    $componentId = $_instance->getRenderedChildComponentId('E9NMxuP');
-    $componentTag = $_instance->getRenderedChildComponentTagName('E9NMxuP');
+    $html = \Livewire\Livewire::mount('dossier-list')->html();
+} elseif ($_instance->childHasBeenRendered('WCG68pT')) {
+    $componentId = $_instance->getRenderedChildComponentId('WCG68pT');
+    $componentTag = $_instance->getRenderedChildComponentTagName('WCG68pT');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('E9NMxuP');
+    $_instance->preserveRenderedChild('WCG68pT');
 } else {
-    $response = \Livewire\Livewire::mount('comptabilite');
+    $response = \Livewire\Livewire::mount('dossier-list');
     $html = $response->html();
-    $_instance->logRenderedChild('E9NMxuP', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('WCG68pT', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -43,4 +43,4 @@ echo $html;
 <?php if (isset($__componentOriginala7e3e3ab156e6fa1f86927d4765c5327)): ?>
 <?php $component = $__componentOriginala7e3e3ab156e6fa1f86927d4765c5327; ?>
 <?php unset($__componentOriginala7e3e3ab156e6fa1f86927d4765c5327); ?>
-<?php endif; ?> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/pages/comptabilite.blade.php ENDPATH**/ ?>
+<?php endif; ?> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/dossiers/index.blade.php ENDPATH**/ ?>

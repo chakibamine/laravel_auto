@@ -1,8 +1,16 @@
 <div>
     <!-- Header -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
-        <div>
-            <h2 class="h4">Comptabilité</h2>
+        <div class="d-block mb-4 mb-md-0">
+            <h2 class="h4">Comptabilité - <?php echo e($this->currentMonthName); ?></h2>
+        </div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <button class="btn btn-sm btn-gray-800 d-inline-flex align-items-center me-2" wire:click="resetToCurrentMonth">
+                <i class="fas fa-calendar-day me-2"></i> Mois Actuel
+            </button>
+            <div class="d-flex gap-2">
+                <input type="month" class="form-control form-control-sm" wire:model="selectedMonth">
+            </div>
         </div>
     </div>
 
@@ -71,7 +79,7 @@
     <div class="card border-0 shadow mb-4">
         <div class="card-body">
             <div class="row align-items-center">
-                <div class="col-md-6 mb-3 mb-md-0">
+                <div class="col-md-4 mb-3 mb-md-0">
                     <div class="input-group">
                         <span class="input-group-text border-0">
                             <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +89,17 @@
                         <input wire:model.debounce.300ms="searchTerm" class="form-control border-0" type="text" placeholder="Rechercher...">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="month" class="form-control" 
+                            wire:model="selectedMonth" 
+                            value="<?php echo e($currentYear); ?>-<?php echo e(str_pad($currentMonth, 2, '0', STR_PAD_LEFT)); ?>">
+                        <button class="btn btn-outline-primary" wire:click="resetToCurrentMonth">
+                            <i class="fas fa-calendar-day"></i> Mois Actuel
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <input wire:model="dateFilter" type="date" class="form-control" placeholder="Filtrer par date">
                 </div>
                 <div class="col-md-2 text-md-end">
@@ -151,10 +169,8 @@
                                     <td><?php echo e($sortie->motif); ?></td>
                                     <td><?php echo e(number_format($sortie->montant, 2)); ?> DH</td>
                                     <td class="text-end">
-                                        <button wire:click="confirmDelete(<?php echo e($sortie->id); ?>, 'sortie')" 
-                                            class="btn btn-sm btn-danger d-inline-flex align-items-center">
-                                            <i class="fas fa-trash me-2"></i>
-                                            Supprimer
+                                        <button wire:click="confirmDelete(<?php echo e($sortie->id); ?>, 'sortie')" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
                                 </tr>
