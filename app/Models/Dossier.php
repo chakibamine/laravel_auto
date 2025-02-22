@@ -66,4 +66,12 @@ class Dossier extends Model
     {
         return $this->hasMany(Exam::class, 'dossier_id');
     }
+
+    /**
+     * Get the payments for this dossier
+     */
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Reg::class, 'dossier_id');
+    }
 }

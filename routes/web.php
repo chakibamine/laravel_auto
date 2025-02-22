@@ -71,9 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/forms', Forms::class)->name('forms');
     Route::get('/modals', Modals::class)->name('modals');
     Route::get('/typography', Typography::class)->name('typography');
-    Route::get('/students', function () {
-        return view('students.index');
-    })->name('students');
+    Route::get('/students', [App\Http\Controllers\StudentController::class, 'index'])->name('students.index');
     Route::get('/dossiers', function () {
         return view('dossiers.index');
     })->name('dossiers');
