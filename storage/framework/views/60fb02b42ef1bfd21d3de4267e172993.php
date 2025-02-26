@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="icon" href="{{ asset('logo/car.png') }}" type="image/x-icon">
+    <link rel="icon" href="<?php echo e(asset('logo/car.png')); ?>" type="image/x-icon">
     <style>
         * {
             margin-top: 3px;
@@ -61,14 +61,14 @@
                                 <div align="left" style="font-size: 14px;font-weight: bold; margin-left: 2rem;">
                                     <p>المسماة "المؤسسة " مؤسسة أيت امحند</p>
                                 </div>
-                                <p>والسيد (ة) : {{ $dossier->student->lastname_ar }} {{ $dossier->student->firstname_ar }}</p>
+                                <p>والسيد (ة) : <?php echo e($dossier->student->lastname_ar); ?> <?php echo e($dossier->student->firstname_ar); ?></p>
                                 <div style="display: flex; flex-direction:row; justify-content: flex-end;">
-                                    <p style="margin-right: 50px;">بتاريخ : {{ $dossier->student->date_birth ? \Carbon\Carbon::parse($dossier->student->date_birth)->format('d/m/Y') : '' }}</p>
-                                    <p style="margin-right: 50px;">المزداد(ة) ب : {{ $dossier->student->place_birth_ar }}</p>
-                                    <p>{{ $dossier->student->cin }} : رقم ب.و.ت.إ</p>
+                                    <p style="margin-right: 50px;">بتاريخ : <?php echo e($dossier->student->date_birth ? \Carbon\Carbon::parse($dossier->student->date_birth)->format('d/m/Y') : ''); ?></p>
+                                    <p style="margin-right: 50px;">المزداد(ة) ب : <?php echo e($dossier->student->place_birth_ar); ?></p>
+                                    <p><?php echo e($dossier->student->cin); ?> : رقم ب.و.ت.إ</p>
                                 </div>
-                                <p>القاطن (ة) ب : {{ $dossier->student->address_ar }}</p>
-                                <p>{{ $dossier->ref }} : (Référence web) رقم تسجيل المرشح الممنوح من طرف الإدارة</p>
+                                <p>القاطن (ة) ب : <?php echo e($dossier->student->address_ar); ?></p>
+                                <p><?php echo e($dossier->ref); ?> : (Référence web) رقم تسجيل المرشح الممنوح من طرف الإدارة</p>
                                 <div align="left" style="font-size: 14px;font-weight: bold; margin-left: 2rem;">
                                     <p>"المسمى(ة) "المرشح (ة)</p>
                                 </div>
@@ -196,4 +196,4 @@
         }
     </script>
 </body>
-</html> 
+</html> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/contract/show.blade.php ENDPATH**/ ?>

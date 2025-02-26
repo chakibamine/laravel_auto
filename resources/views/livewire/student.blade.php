@@ -219,13 +219,13 @@
                                     <label class="form-label">Prénom :</label>
                                     <input type="text" class="form-control h-50 @error('student.firstname') is-invalid @enderror" wire:model="student.firstname">
                                     @error('student.firstname') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
+                                </div>
                                 <div class="col"></div>
                                 <div class="col">
                                     <label class="form-label float-end">: الإسم الشخصي</label>
-                                    <input type="text" class="form-control h-50 @error('student.a_firstname') is-invalid @enderror" wire:model="student.a_firstname">
-                                    @error('student.a_firstname') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    </div>
+                                    <input type="text" class="form-control h-50 @error('student.firstname_ar') is-invalid @enderror" wire:model="student.firstname_ar">
+                                    @error('student.firstname_ar') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
                             </div>
 
                             <div class="row mt-3">
@@ -233,12 +233,12 @@
                                     <label class="form-label">Nom :</label>
                                     <input type="text" class="form-control h-50 @error('student.lastname') is-invalid @enderror" wire:model="student.lastname">
                                     @error('student.lastname') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
+                                </div>
                                 <div class="col"></div>
                                 <div class="col">
                                     <label class="form-label float-end">: الإسم العائلي</label>
-                                    <input type="text" class="form-control h-50 @error('student.a_lastname') is-invalid @enderror" wire:model="student.a_lastname">
-                                @error('student.a_lastname') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                    <input type="text" class="form-control h-50 @error('student.lastname_ar') is-invalid @enderror" wire:model="student.lastname_ar">
+                                    @error('student.lastname_ar') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                             </div>
 
@@ -259,10 +259,10 @@
                                 </div>
                                 <div class="col">
                                     <label class="form-label float-end">: مكان الإزدياد</label>
-                                    <input type="text" class="form-control h-50 @error('student.a_place_birth') is-invalid @enderror" wire:model="student.a_place_birth">
-                                    @error('student.a_place_birth') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-                    </div>
+                                    <input type="text" class="form-control h-50 @error('student.place_birth_ar') is-invalid @enderror" wire:model="student.place_birth_ar">
+                                    @error('student.place_birth_ar') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
 
                             <!-- Address -->
                             <div class="row mt-3">
@@ -271,10 +271,11 @@
                                     <input type="text" class="form-control h-50 @error('student.address') is-invalid @enderror" wire:model="student.address">
                                     @error('student.address') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
+                                <div class="col"></div>
                                 <div class="col">
                                     <label class="form-label float-end">: العنوان</label>
-                                    <input type="text" class="form-control h-50 @error('student.a_address') is-invalid @enderror" wire:model="student.a_address">
-                                    @error('student.a_address') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                    <input type="text" class="form-control h-50 @error('student.address_ar') is-invalid @enderror" wire:model="student.address_ar">
+                                    @error('student.address_ar') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                             </div>
 

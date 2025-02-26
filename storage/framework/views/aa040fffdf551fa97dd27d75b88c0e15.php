@@ -257,19 +257,19 @@ $message = $__bag->first($__errorArgs[0]); ?> <div class="invalid-feedback"><?ph
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                        </div>
+                                </div>
                                 <div class="col"></div>
                                 <div class="col">
                                     <label class="form-label float-end">: الإسم الشخصي</label>
-                                    <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.a_firstname'];
+                                    <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.firstname_ar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" wire:model="student.a_firstname">
-                                    <?php $__errorArgs = ['student.a_firstname'];
+unset($__errorArgs, $__bag); ?>" wire:model="student.firstname_ar">
+                                    <?php $__errorArgs = ['student.firstname_ar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -277,7 +277,7 @@ $message = $__bag->first($__errorArgs[0]); ?> <div class="invalid-feedback"><?ph
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                    </div>
+                                </div>
                             </div>
 
                             <div class="row mt-3">
@@ -299,19 +299,19 @@ $message = $__bag->first($__errorArgs[0]); ?> <div class="invalid-feedback"><?ph
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                        </div>
+                                </div>
                                 <div class="col"></div>
                                 <div class="col">
                                     <label class="form-label float-end">: الإسم العائلي</label>
-                                    <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.a_lastname'];
+                                    <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.lastname_ar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" wire:model="student.a_lastname">
-                                <?php $__errorArgs = ['student.a_lastname'];
+unset($__errorArgs, $__bag); ?>" wire:model="student.lastname_ar">
+                                    <?php $__errorArgs = ['student.lastname_ar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -367,15 +367,15 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="col">
                                     <label class="form-label float-end">: مكان الإزدياد</label>
-                                    <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.a_place_birth'];
+                                    <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.place_birth_ar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" wire:model="student.a_place_birth">
-                                    <?php $__errorArgs = ['student.a_place_birth'];
+unset($__errorArgs, $__bag); ?>" wire:model="student.place_birth_ar">
+                                    <?php $__errorArgs = ['student.place_birth_ar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -383,8 +383,8 @@ $message = $__bag->first($__errorArgs[0]); ?> <div class="invalid-feedback"><?ph
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
 
                             <!-- Address -->
                             <div class="row mt-3">
@@ -407,17 +407,18 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
+                                <div class="col"></div>
                                 <div class="col">
                                     <label class="form-label float-end">: العنوان</label>
-                                    <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.a_address'];
+                                    <input type="text" class="form-control h-50 <?php $__errorArgs = ['student.address_ar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" wire:model="student.a_address">
-                                    <?php $__errorArgs = ['student.a_address'];
+unset($__errorArgs, $__bag); ?>" wire:model="student.address_ar">
+                                    <?php $__errorArgs = ['student.address_ar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

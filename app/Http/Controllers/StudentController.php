@@ -67,13 +67,13 @@ class StudentController extends Controller
             'cin' => 'required|max:10',
             'date_birth' => 'required|date',
             'place_birth' => 'required|max:50',
-            'address' => 'required|max:50',
+            'address' => 'required|max:150',
             'city' => 'required|max:30',
-            'phone' => 'required|max:10',
-            'a_firstname' => 'required|max:30',
-            'a_lastname' => 'required|max:30',
-            'a_place_birth' => 'required|max:50',
-            'a_address' => 'required|max:50',
+            'phone' => 'required|max:15',
+            'firstname_ar' => 'required|max:50',
+            'lastname_ar' => 'required|max:50',
+            'place_birth_ar' => 'required|max:50',
+            'address_ar' => 'required|max:150',
             'photo' => 'nullable|image|max:1024', // Max 1MB
         ]);
 
@@ -129,13 +129,13 @@ class StudentController extends Controller
             'cin' => 'required|max:10',
             'date_birth' => 'required|date',
             'place_birth' => 'required|max:50',
-            'address' => 'required|max:50',
+            'address' => 'required|max:150',
             'city' => 'required|max:30',
-            'phone' => 'required|max:10',
-            'a_firstname' => 'required|max:30',
-            'a_lastname' => 'required|max:30',
-            'a_place_birth' => 'required|max:50',
-            'a_address' => 'required|max:50',
+            'phone' => 'required|max:15',
+            'firstname_ar' => 'required|max:50',
+            'lastname_ar' => 'required|max:50',
+            'place_birth_ar' => 'required|max:50',
+            'address_ar' => 'required|max:150',
             'photo' => 'nullable|image|max:1024', // Max 1MB
         ]);
 
