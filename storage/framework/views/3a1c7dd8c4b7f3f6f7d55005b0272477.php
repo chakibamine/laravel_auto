@@ -64,38 +64,10 @@
                     <strong>Total des Dossiers : </strong><?php echo e($dossiers->count()); ?>
 
                 </div>
-                <button onclick="printPage()" class="btn btn-primary btn-sm">
+                <button class="btn btn-primary btn-sm" onclick="window.location.href='/invoice/<?php echo e(str_pad($selectedMonth, 2, '0', STR_PAD_LEFT)); ?>'">
                     <i class="fas fa-print me-2"></i> Imprimer
                 </button>
             </div>
         </div>
     </div>
-
-    <script>
-        function printPage() {
-            window.print();
-        }
-
-        // Print styles
-        const style = document.createElement('style');
-        style.textContent = `
-            @media print {
-                body * {
-                    visibility: hidden;
-                }
-                .card-body, .card-body * {
-                    visibility: visible;
-                }
-                .card-body {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                }
-                button {
-                    display: none !important;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
 </div> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/livewire/cloture.blade.php ENDPATH**/ ?>

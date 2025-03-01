@@ -28,6 +28,8 @@ use App\Http\Livewire\Users;
 use App\Http\Controllers\DossierController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\PDF;
+use Carbon\Carbon;
+use App\Models\Dossier;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,4 +149,23 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::get('fiche-conduit', [DossierController::class, 'ficheConduit'])->name('fiche.conduit');
+
+Route::get('/invoice/{month?}', function ($month = null) {
+    if ($month) {
+        $date = Carbon::createFromFormat('Y-m', $month);
+        $dossiers = Dossier::with(['student', 'exams'])
+            ->where('category', 'B')
+            ->whereYear('date_cloture', $date->year)
+            ->whereMonth('date_cloture', $date->month)
+            ->orderBy('n_serie', 'asc')
+            ->get();
+    } else {
+        $dossiers = collect(); // Return an empty collection if no month is provided
+    }
+
+    $new_dt1 = Carbon::now()->format('Y-m-d'); // Example date, adjust as needed
+    $dossier_total = $dossiers->count(); // Calculate total number of dossiers
+
+    return view('livewire.invoice', compact('dossiers', 'new_dt1', 'dossier_total', 'month'));
+});
 

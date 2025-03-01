@@ -63,7 +63,7 @@
                 <div class="me-3">
                     <strong>Total des Dossiers : </strong>{{ $dossiers->count() }}
                 </div>
-                <button class="btn btn-primary btn-sm">
+                <button class="btn btn-primary btn-sm" onclick="window.location.href='/invoice/{{ str_pad($selectedMonth, 2, '0', STR_PAD_LEFT) }}'">
                     <i class="fas fa-print me-2"></i> Imprimer
                 </button>
             </div>
