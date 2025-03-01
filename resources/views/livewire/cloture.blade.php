@@ -63,38 +63,10 @@
                 <div class="me-3">
                     <strong>Total des Dossiers : </strong>{{ $dossiers->count() }}
                 </div>
-                <button onclick="printPage()" class="btn btn-primary btn-sm">
+                <button class="btn btn-primary btn-sm">
                     <i class="fas fa-print me-2"></i> Imprimer
                 </button>
             </div>
         </div>
     </div>
-
-    <script>
-        function printPage() {
-            window.print();
-        }
-
-        // Print styles
-        const style = document.createElement('style');
-        style.textContent = `
-            @media print {
-                body * {
-                    visibility: hidden;
-                }
-                .card-body, .card-body * {
-                    visibility: visible;
-                }
-                .card-body {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                }
-                button {
-                    display: none !important;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
 </div> 

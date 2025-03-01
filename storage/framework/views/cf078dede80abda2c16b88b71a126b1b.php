@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>Fiche de Conduite</title>
-    <link rel="icon" href="{{ asset('logo/car.png') }}" type="image/x-icon">
+    <link rel="icon" href="<?php echo e(asset('logo/car.png')); ?>" type="image/x-icon">
     <style>
         @page {
             size: A4;
-            margin: 100px;
+            margin: 0;
         }
         body {
             font-family: Arial, sans-serif;
@@ -34,8 +34,9 @@
         }
         th, td {
             border: 1px solid #CCCCCC;
+            padding: 8px;
             text-align: center;
-            
+            font-size: 14px;
         }
         .header-cell {
             background-color: #cccaca;
@@ -67,7 +68,7 @@
                                 </td>
                                 <td valign="top" width="35%"></td>
                                 <td valign="top" width="30%" style="font-size:15px;">
-                                    <strong>Date de Fiche:</strong> {{ now()->format('d/m/y') }}<br>
+                                    <strong>Date de Fiche:</strong> <?php echo e(now()->format('d/m/y')); ?><br>
                                 </td>
                             </tr>
                         </tbody>
@@ -88,32 +89,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php $i = 1; @endphp
-                            @foreach($dossiers as $dossier)
-                                @if($dossier->category === 'B' && $dossier->student->gender === 'Masculin')
+                            <?php $i = 1; ?>
+                            <?php $__currentLoopData = $dossiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dossier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($dossier->category === 'B' && $dossier->student->gender === 'Masculin'): ?>
                                     <tr>
-                                        <th valign='top' align='center' bgcolor='#cccaca' style='font-size:15px;'>{{ $i++ }}</td>
-                                        <td>{{ $dossier->student->cin }}</td>
-                                        <td valign='top' align='center' style='font-size:14px;'>{{ $dossier->student->lastname }} {{ $dossier->student->firstname }}</td>
+                                        <th valign='top' align='center' bgcolor='#cccaca' style='font-size:15px;'><?php echo e($i++); ?></td>
+                                        <td><?php echo e($dossier->student->cin); ?></td>
+                                        <td valign='top' align='center' style='font-size:14px;'><?php echo e($dossier->student->lastname); ?> <?php echo e($dossier->student->firstname); ?></td>
                                         <td valign='top' align='center' style='font-size:14px;'>
-                                            @if($dossier->exams->first())
-                                                {{ $dossier->exams->first()->type_exam === 'Theorique' ? 'T:' : 'P:' }}
-                                                {{ $dossier->exams->first()->date_exam->format('d/m/Y') }}
-                                            @endif
+                                            <?php if($dossier->exams->first()): ?>
+                                                <?php echo e($dossier->exams->first()->type_exam === 'Theorique' ? 'T:' : 'P:'); ?>
+
+                                                <?php echo e($dossier->exams->first()->date_exam->format('d/m/Y H:i')); ?>
+
+                                            <?php endif; ?>
                                         </td>
-                                        <td valign='top' align='center' style='font-size:14px;'>{{ $dossier->courses->where('type_cours', 'Pratique')->count() }}</td>
+                                        <td valign='top' align='center' style='font-size:14px;'><?php echo e($dossier->courses->where('type_cours', 'Pratique')->count()); ?></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                     </tr>
-                                @endif
-                            @endforeach
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                            @for($j = 1; $j <= 3; $j++)
+                            <?php for($j = 1; $j <= 3; $j++): ?>
                             <tr>
-              <th valign='top' align='center' bgcolor='#cccaca' style='font-size:15px; hight: 20px;'>{{ $i++ }}</th>
+              <th valign='top' align='center' bgcolor='#cccaca' style='font-size:15px; hight: 20px;'><?php echo e($i); ?></th>
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
@@ -124,7 +127,7 @@
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
              </tr>
-                            @endfor
+                            <?php endfor; ?>
                         </tbody>
                     </table>
                     <table width="100%" cellspacing="0" cellpadding="2" border="1" style="margin-top: 20px;">
@@ -143,32 +146,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php $i = 1; @endphp
-                            @foreach($dossiers as $dossier)
-                                @if($dossier->category === 'B' && $dossier->student->gender === 'Féminin')
+                            <?php $i = 1; ?>
+                            <?php $__currentLoopData = $dossiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dossier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($dossier->category === 'B' && $dossier->student->gender === 'Féminin'): ?>
                                     <tr>
-                                        <th valign='top' align='center' bgcolor='#cccaca' style='font-size:15px;'>{{ $i++ }}</td>
-                                        <td>{{ $dossier->student->cin }}</td>
-                                        <td valign='top' align='center' style='font-size:14px;'>{{ $dossier->student->lastname }} {{ $dossier->student->firstname }}</td>
+                                        <th valign='top' align='center' bgcolor='#cccaca' style='font-size:15px;'><?php echo e($i++); ?></td>
+                                        <td><?php echo e($dossier->student->cin); ?></td>
+                                        <td valign='top' align='center' style='font-size:14px;'><?php echo e($dossier->student->lastname); ?> <?php echo e($dossier->student->firstname); ?></td>
                                         <td valign='top' align='center' style='font-size:14px;'>
-                                            @if($dossier->exams->first())
-                                                {{ $dossier->exams->first()->type_exam === 'Theorique' ? 'T:' : 'P:' }}
-                                                {{ $dossier->exams->first()->date_exam->format('d/m/Y') }}
-                                            @endif
+                                            <?php if($dossier->exams->first()): ?>
+                                                <?php echo e($dossier->exams->first()->type_exam === 'Theorique' ? 'T:' : 'P:'); ?>
+
+                                                <?php echo e($dossier->exams->first()->date_exam->format('d/m/Y H:i')); ?>
+
+                                            <?php endif; ?>
                                         </td>
-                                        <td valign='top' align='center' style='font-size:14px;'>{{ $dossier->courses->where('type_cours', 'Pratique')->count() }}</td>
+                                        <td valign='top' align='center' style='font-size:14px;'><?php echo e($dossier->courses->where('type_cours', 'Pratique')->count()); ?></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                         <td valign='top' align='center' style='font-size:14px;'></td>
                                     </tr>
-                                @endif
-                            @endforeach
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                            @for($j = 1; $j <= 3; $j++)
+                            <?php for($j = 1; $j <= 3; $j++): ?>
                             <tr>
-              <th valign='top' align='center' bgcolor='#cccaca' style='font-size:15px; hight: 20px;'>{{ $i++ }}</th>
+              <th valign='top' align='center' bgcolor='#cccaca' style='font-size:15px; hight: 20px;'><?php echo e($i); ?></th>
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
@@ -179,7 +184,7 @@
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
               <td valign='top' align='center' style='font-size:12px; height: 20px;'></td>
              </tr>
-                            @endfor
+                            <?php endfor; ?>
                         </tbody>
                     </table>
                     <button class="print-button" onclick="window.print()">Imprimer</button>
@@ -193,4 +198,4 @@
         }
     </script>
 </body>
-</html> 
+</html> <?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/pdf/fiche-conduit.blade.php ENDPATH**/ ?>

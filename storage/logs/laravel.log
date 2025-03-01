@@ -8308,3 +8308,4 @@
 [2025-02-25 19:52:35] local.INFO: Generated n_serie for first exam: 539  
 [2025-02-25 19:52:35] local.INFO: Determined exam type: Theorique  
 [2025-02-25 19:52:35] local.INFO: Set showModal to true  
+[2025-03-01 12:41:15] local.INFO: User logged in successfully {"user_id":2,"email":"aminechakib2003@gmail.com"} 
