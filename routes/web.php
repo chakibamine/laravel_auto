@@ -30,6 +30,7 @@ use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\PDF;
 use Carbon\Carbon;
 use App\Models\Dossier;
+use App\Http\Controllers\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,8 @@ Route::middleware('auth')->group(function () {
         $dossier = App\Models\Dossier::with(['student', 'courses'])->findOrFail($id);
         return view('pdf.courses', ['dossier' => $dossier]);
     })->name('dossier.courses.print');
+
+    Route::resource('/quizzes', QuizController::class);
 });
 
 // Student Management Routes
@@ -168,4 +171,6 @@ Route::get('/invoice/{month?}', function ($month = null) {
 
     return view('livewire.invoice', compact('dossiers', 'new_dt1', 'dossier_total', 'month'));
 });
+
+
 

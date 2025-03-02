@@ -25,6 +25,7 @@
   'logout' => 'App\\Http\\Livewire\\Logout',
   'profile' => 'App\\Http\\Livewire\\Profile',
   'profile-example' => 'App\\Http\\Livewire\\ProfileExample',
+  'quiz-component' => 'App\\Http\\Livewire\\QuizComponent',
   'reg-controller' => 'App\\Http\\Livewire\\RegController',
   'register-example' => 'App\\Http\\Livewire\\RegisterExample',
   'reset-password' => 'App\\Http\\Livewire\\ResetPassword',
