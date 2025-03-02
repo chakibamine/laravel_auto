@@ -15,10 +15,13 @@ class QuizComponent extends Component
     public $image_url, $audio, $result, $description, $quizId;
     public $showModal = false; // Controls modal visibility
     public $editMode = false;  // Indicates whether in edit mode
+    public $searchTerm = ''; // Add this line to declare the searchTerm property
 
     public function render()
     {
-        $quizzes = Quiz::paginate(10);
+        $quizzes = Quiz::where('result', 'like', '%' . $this->searchTerm . '%')
+            ->orWhere('description', 'like', '%' . $this->searchTerm . '%')
+            ->paginate(10);
         return view('livewire.quiz-component', compact('quizzes'));
     }
 
