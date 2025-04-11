@@ -16,6 +16,7 @@ class QuizComponent extends Component
     public $showModal = false; // Controls modal visibility
     public $editMode = false;  // Indicates whether in edit mode
     public $searchTerm = ''; // Add this line to declare the searchTerm property
+    public $numberOfQuestions; // Add this line to declare the property
 
     public function render()
     {
@@ -133,5 +134,22 @@ class QuizComponent extends Component
         $this->result = '';
         $this->description = '';
         $this->quizId = null;
+    }
+
+    public function selectNumberOfQuestions()
+    {
+        // Validate the number of questions
+        $this->validate([
+            'numberOfQuestions' => 'required|integer|min:1',
+        ]);
+
+        // Redirect to the random quizzes page with the specified number of questions
+        return redirect()->route('random.quizzes', ['number' => $this->numberOfQuestions]);
+    }
+
+    public function showRandomQuizzes($number)
+    {
+        $quizzes = Quiz::inRandomOrder()->take($number)->get(); // Fetch random quizzes
+        return view('livewire.random-quizzes', compact('quizzes')); // Create a new view for displaying these quizzes
     }
 }

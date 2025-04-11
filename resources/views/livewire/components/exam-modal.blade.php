@@ -166,9 +166,14 @@
                         @if($exams->where('type_exam', 'Theorique')->first())
                             <div class="d-flex justify-content-end mt-3">
                                 <a href="{{ route('exam.fiche', ['examId' => $exams->where('type_exam', 'Theorique')->first()->id]) }}" 
-                                   class="btn btn-outline-primary" 
+                                   class="btn btn-outline-primary me-3" 
                                    target="_blank">
                                     <i class="fas fa-print me-2"></i> Imprimer Fiche
+                                </a>
+                                <a href="{{ route('exam.finfiche', ['examId' => $exams->where('type_exam', 'Theorique')->first()->id]) }}" 
+                                   class="btn btn-outline-primary" 
+                                   target="_blank">
+                                    <i class="fas fa-print me-2"></i> Imprimer Fin Formation
                                 </a>
                             </div>
                         @endif

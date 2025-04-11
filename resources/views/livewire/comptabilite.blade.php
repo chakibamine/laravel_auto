@@ -80,9 +80,15 @@
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
-                        <input type="month" class="form-control" 
-                            wire:model="selectedMonth" 
-                            value="{{ $currentYear }}-{{ str_pad($currentMonth, 2, '0', STR_PAD_LEFT) }}">
+                        <input type="text" 
+                               class="form-control datepicker" 
+                               wire:model="selectedMonth" 
+                               placeholder="MM/AAAA"
+                               data-date-format="mm/yyyy"
+                               data-date-autoclose="true"
+                               data-date-start-view="months"
+                               data-date-min-view-mode="months"
+                               value="{{ str_pad($currentMonth, 2, '0', STR_PAD_LEFT) }}/{{ $currentYear }}">
                         <button class="btn btn-outline-primary" wire:click="resetToCurrentMonth">
                             <i class="fas fa-calendar-day"></i> Mois Actuel
                         </button>
@@ -365,4 +371,26 @@
             window.open(event.detail.url, '_blank');
         });
     </script>
-</div> 
+</div>
+
+@push('scripts')
+<script>
+    document.addEventListener('livewire:load', function () {
+        $('.datepicker').datepicker({
+            format: 'mm/yyyy',
+            autoclose: true,
+            startView: 'months',
+            minViewMode: 'months',
+            language: 'fr',
+            orientation: 'bottom auto',
+            todayHighlight: true,
+            templates: {
+                leftArrow: '<i class="fas fa-chevron-left"></i>',
+                rightArrow: '<i class="fas fa-chevron-right"></i>'
+            }
+        }).on('changeDate', function(e) {
+            @this.set('selectedMonth', e.date.getMonth() + 1 + '/' + e.date.getFullYear());
+        });
+    });
+</script>
+@endpush 

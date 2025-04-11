@@ -2,7 +2,7 @@
     <!-- Header -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div class="d-block mb-4 mb-md-0">
-            <h2 class="h4">Tableau de bord</h2>
+            <h2 class="h4">Tableau de Bord</h2>
             <p class="mb-0">Vos statistiques et vue d'ensemble de la gestion de votre école de conduite.</p>
         </div>
     </div>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Total des Étudiants</h2>
+                                <h2 class="h6 text-gray-400 mb-0">Total des Élèves</h2>
                                 <h3 class="fw-extrabold mb-2">{{ $totalStudents }}</h3>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Taux de Succès</h2>
+                                <h2 class="h6 text-gray-400 mb-0">Taux de Réussite</h2>
                                 <h3 class="fw-extrabold mb-2">{{ $examSuccessRate }}%</h3>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Examens</h2>
+                                <h2 class="h6 text-gray-400 mb-0">Examens à Venir</h2>
                                 <h3 class="fw-extrabold mb-2">{{ $upcomingExams->count() }}</h3>
                             </div>
                         </div>
@@ -110,10 +110,10 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th class="border-bottom" scope="col">Étudiant</th>
+                                <th class="border-bottom" scope="col">Élève</th>
                                 <th class="border-bottom" scope="col">Montant</th>
                                 <th class="border-bottom" scope="col">Date</th>
-                                <th class="border-bottom" scope="col">État</th>
+                                <th class="border-bottom" scope="col">Statut</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -126,10 +126,10 @@
                                     {{ number_format($payment->price, 2) }} DH
                                 </td>
                                 <td>
-                                    {{ $payment->date_reg->format('d M Y') }}
+                                    {{ $payment->date_reg->format('d/m/Y') }}
                                 </td>
                                 <td>
-                                    <span class="badge bg-success">Terminé</span>
+                                    <span class="badge bg-success">Effectué</span>
                                 </td>
                             </tr>
                             @endforeach
@@ -159,7 +159,7 @@
                             <div class="small text-gray">{{ $exam->type_exam }}</div>
                         </div>
                         <div>
-                            <span class="badge bg-info">{{ $exam->date_exam->format('d M') }}</span>
+                            <span class="badge bg-info">{{ $exam->date_exam->format('d/m/Y') }}</span>
                         </div>
                     </div>
                     @endforeach
@@ -192,7 +192,7 @@
                             <tbody>
                                 @foreach($monthlyStats as $stat)
                                 <tr>
-                                    <td>{{ Carbon\Carbon::create()->month($stat->month)->format('F') }}</td>
+                                    <td>{{ Carbon\Carbon::create()->month($stat->month)->locale('fr')->isoFormat('MMMM') }}</td>
                                     <td>{{ $stat->year }}</td>
                                     <td>{{ $stat->total_inscriptions }}</td>
                                 </tr>
@@ -223,7 +223,7 @@
                             </div>
                         </div>
                         <div>
-                            <span class="badge bg-primary">{{ $total }} Étudiants</span>
+                            <span class="badge bg-primary">{{ $total }} Élèves</span>
                         </div>
                     </div>
                     @endforeach
@@ -249,69 +249,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <!-- Total Revenue -->
-                        <div class="col-12 col-sm-6 col-xl-4 mb-4">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Revenu Total</span>
-                                            <span class="h3 font-bold mb-0">{{ number_format($totalRevenue, 2) }} DH</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-success text-white text-lg rounded-circle">
-                                                <i class="bi bi-cash"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Total Expenses -->
-                        <div class="col-12 col-sm-6 col-xl-4 mb-4">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Dépenses Totales</span>
-                                            <span class="h3 font-bold mb-0">{{ number_format($totalExpenses, 2) }} DH</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-danger text-white text-lg rounded-circle">
-                                                <i class="bi bi-credit-card"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Net Income -->
-                        <div class="col-12 col-sm-6 col-xl-4 mb-4">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Revenu Net</span>
-                                            <span class="h3 font-bold mb-0 {{ $netIncome >= 0 ? 'text-success' : 'text-danger' }}">
-                                                {{ number_format($netIncome, 2) }} DH
-                                            </span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape {{ $netIncome >= 0 ? 'bg-success' : 'bg-danger' }} text-white text-lg rounded-circle">
-                                                <i class="bi bi-graph-up"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <!-- Today's Transactions -->
                     <div class="row">
                         <div class="col-12">
-                            <h5 class="mb-4">Transactions d'Aujourd'hui</h5>
+                            <h5 class="mb-4">Transactions du Jour</h5>
                             <div class="row g-3">
                                 <div class="col-6">
                                     <div class="p-3 border rounded bg-light">
@@ -415,12 +358,12 @@
                         <table class="table table-centered table-nowrap mb-0">
                             <thead>
                                 <tr>
-                                    <th>Étudiant</th>
+                                    <th>Élève</th>
                                     <th>Référence du Dossier</th>
                                     <th>Montant Total</th>
                                     <th>Montant Payé</th>
                                     <th>Restant</th>
-                                    <th>État</th>
+                                    <th>Statut</th>
                                 </tr>
                             </thead>
                             <tbody>

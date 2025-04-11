@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\PDF;
 use Carbon\Carbon;
 use App\Models\Dossier;
 use App\Http\Controllers\QuizController;
+use App\Http\Livewire\QuizComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,6 +130,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dossiers/{id}/invoice', 'generateInvoice')->name('dossier.invoice');
         Route::get('/dossiers/{id}/external-payment', 'generateExternalPayment')->name('dossier.external.payment');
         Route::get('/exam/{examId}/fiche', 'generateExamFiche')->name('exam.fiche');
+        Route::get('/exam/{examId}/finfiche', 'generateFinFormationFiche')->name('exam.finfiche');
     });
 });
 
@@ -171,6 +173,12 @@ Route::get('/invoice/{month?}', function ($month = null) {
 
     return view('livewire.invoice', compact('dossiers', 'new_dt1', 'dossier_total', 'month'));
 });
+
+// Route for the Exam page
+Route::get('/exam', QuizComponent::class)->name('exam');
+
+// Route for the random quizzes page
+Route::get('/random-quizzes/{number}', [QuizComponent::class, 'showRandomQuizzes'])->name('random.quizzes');
 
 
 

@@ -39,12 +39,10 @@ class ExamModal extends Component
     private function determineExamType()
     {
         $examCount = count($this->exams);
-        
         switch ($examCount) {
             case 0:
                 $this->exam['type_exam'] = 'Theorique';
                 break;
-                
             case 1:
                 if ($this->exams[0]->resultat == '2') {
                     $this->exam['type_exam'] = 'Pratique';
@@ -52,7 +50,6 @@ class ExamModal extends Component
                     $this->exam['type_exam'] = 'Theorique';
                 }
                 break;
-                
             case 2:
                 // Most recent exam first (due to orderBy desc in loadExams)
                 if ($this->exams[0]->resultat == '2' && $this->exams[1]->resultat == '0') {
@@ -65,7 +62,6 @@ class ExamModal extends Component
                     $this->exam['type_exam'] = 'Pratique';
                 }
                 break;
-                
             case 3:
                 if ($this->exams[2]->resultat == '0') {
                     $this->exam['type_exam'] = 'Pratique';
@@ -75,19 +71,16 @@ class ExamModal extends Component
     }
 
     private function getNextNSerie()
-    {        
+    {
         $lastDossier = Dossier::where('category', 'B')
             ->whereNotNull('n_serie')
             ->orderBy('n_serie', 'desc')
             ->first();
-
         $nextNumber = $lastDossier ? intval($lastDossier->n_serie) + 1 : 1;
-        
         // If next number is 10 or greater, increment from 10 (10, 11, 12, etc)
         if ($nextNumber >= 10) {
             return (string) $nextNumber;
         }
-        
         return (string) $nextNumber;
     }
 
@@ -102,41 +95,31 @@ class ExamModal extends Component
     public function show($dossierId)
     {
         try {
-            \Log::info('ExamModal show method called with dossier ID: ' . $dossierId);
-            
             // Reset any existing state
             $this->resetExam();
             $this->showConfirmModal = false;
             $this->examToDelete = null;
-            
+
             // Find the dossier with student relationship
             $this->selectedDossier = Dossier::with('student')->findOrFail($dossierId);
-            \Log::info('Found dossier with student: ' . $this->selectedDossier->id);
-            
+
             // Set the dossier ID
             $this->exam['dossier_id'] = $dossierId;
-            
+
             // Load exams
             $this->loadExams();
-            \Log::info('Loaded ' . count($this->exams) . ' exams');
-            
+
             // If this is the first exam and category is B, generate n_serie
             if (count($this->exams) === 0 && $this->selectedDossier->category === 'B') {
                 $this->exam['n_serie'] = $this->getNextNSerie();
-                \Log::info('Generated n_serie for first exam: ' . $this->exam['n_serie']);
             }
-            
+
             // Determine exam type based on existing exams
             $this->determineExamType();
-            \Log::info('Determined exam type: ' . $this->exam['type_exam']);
-            
+
             // Show the modal
             $this->showModal = true;
-            \Log::info('Set showModal to true');
-            
         } catch (\Exception $e) {
-            \Log::error('Error in ExamModal show method: ' . $e->getMessage());
-            \Log::error('Stack trace: ' . $e->getTraceAsString());
             session()->flash('error', 'Error loading exam modal: ' . $e->getMessage());
         }
     }
@@ -153,16 +136,12 @@ class ExamModal extends Component
     private function checkQuota()
     {
         if ($this->selectedDossier && $this->selectedDossier->category === 'B') {
-            $currentMonth = Carbon::now()->format('Y-m');
-            
             $totalExams = Dossier::where('category', 'B')
                 ->whereYear('date_cloture', Carbon::now()->year)
                 ->whereMonth('date_cloture', Carbon::now()->month)
                 ->count();
-
             return $totalExams < 12;
         }
-        
         return true; // No quota restriction for other categories
     }
 
@@ -173,7 +152,6 @@ class ExamModal extends Component
 
             // Check if this is the first exam
             $examCount = Exam::where('dossier_id', $this->exam['dossier_id'])->count();
-            
             if ($examCount === 0) {
                 // Check quota for category B
                 if (!$this->checkQuota()) {
@@ -199,7 +177,6 @@ class ExamModal extends Component
             ];
 
             $newExam = Exam::create($examData);
-
             if (!$newExam) {
                 throw new \Exception('Failed to create exam record');
             }
@@ -208,7 +185,6 @@ class ExamModal extends Component
             $this->resetExam();
             $this->loadExams();
             $this->emit('examSaved');
-
         } catch (\Exception $e) {
             session()->flash('error', 'Erreur lors de l\'ajout de l\'examen: ' . $e->getMessage());
         }
@@ -219,45 +195,77 @@ class ExamModal extends Component
         if (!$this->selectedDossier) {
             return false;
         }
-
         $totalPaid = \App\Models\Reg::where('dossier_id', $this->selectedDossier->id)->sum('price');
         return floatval($totalPaid) >= floatval($this->selectedDossier->price);
     }
 
-    private function isLastExam($result)
-    {
-        if (!$result) {
-            return false;
-        }
+    private function fetchAndValidateExams()
+{
+    $allExams = Exam::where('dossier_id', $this->selectedDossier->id)
+                    ->orderBy('date_exam', 'desc') // Changed to 'desc'
+                    ->get();
 
-        $allExams = Exam::where('dossier_id', $this->selectedDossier->id)
-                        ->orderBy('date_exam', 'asc') // Order by asc to get oldest first
-                        ->get();
+    if ($allExams->isEmpty()) {
+        return null;
+    }
 
-        $examCount = count($allExams);
+    return $allExams;
+}
 
-        switch ($examCount) {
-            case 2:
-                // Check if we're trying to update the second exam
-                if ($allExams[1]->resultat == '0') {
-                    if ($allExams[0]->resultat == '1' && $result == '1') {
-                        return true;
-                    }
-                    if ($allExams[0]->resultat == '2' && $result == '2') {
-                        return true;
-                    }
-                }
-                break;
+private function isLastExam($result)
+{
+    // Step 1: Validate $result
+    if (!$result) {
+        return false;
+    }
 
-            case 3:
-                return true;
+    // Step 2: Fetch and validate exams
+    $allExams = $this->fetchAndValidateExams();
+    if (!$allExams) {
+        return false; // No valid exams found
+    }
 
-            default:
-                return false;
-        }
+    // Step 3: Count the number of exams
+    $examCount = $allExams->count();
+
+    // Step 4: Delegate logic based on the number of exams
+    if ($examCount == 2) {
+        return $this->handleTwoExamsLogic($allExams, $result);
+    } elseif ($examCount == 3) {
+        return $this->handleThreeExamsLogic();
+    }else{
 
         return false;
     }
+
+    
+}
+
+private function handleTwoExamsLogic($allExams, $result)
+{
+    // Check if the OLDEST exam (index 1) has resultat '0'
+    // Compare the NEWEST exam (index 0) with current result
+
+    $newestExamResult = (string) $allExams[1]->resultat;
+    $currentResult = (string) $result;
+    
+
+    return $newestExamResult === $currentResult;
+}
+
+private function handleThreeExamsLogic()
+{
+    return true;
+}
+
+    private function getExamsForDossier()
+    {
+        return Exam::where('dossier_id', $this->selectedDossier->id)
+                   ->orderBy('date_exam', 'asc')
+                   ->get();
+    }
+
+    
 
     public function updateExamResult($examId, $result)
     {
@@ -274,20 +282,22 @@ class ExamModal extends Component
         }
 
         $exam->update(['resultat' => $result]);
-
-        // If this is the last exam, update dossier status
         if ($this->isLastExam($result)) {
-            if ($result == '2') { // APTE
+
+            if ((string) $result === '2') { // APTE
+
                 $this->selectedDossier->update([
                     'status' => 0,
                     'resultat' => 1
                 ]);
-            } else { // INAPTE
+            } if ((string) $result === '1') {
+            
                 $this->selectedDossier->update([
                     'status' => 0,
                     'resultat' => 0
                 ]);
             }
+
             // Reload the dossier list if this is the final exam
             $this->emit('refreshComponent');
         }
@@ -315,10 +325,9 @@ class ExamModal extends Component
             if (auth()->user()->role === 'admin' && $this->examToDelete) {
                 $exam = Exam::findOrFail($this->examToDelete);
                 $dossier = Dossier::findOrFail($exam->dossier_id);
-                
+
                 // Check if this is the last exam for this dossier
                 $examCount = Exam::where('dossier_id', $exam->dossier_id)->count();
-                
                 if ($examCount === 1) {
                     // This is the last/only exam, update dossier
                     $dossier->update([
@@ -326,7 +335,7 @@ class ExamModal extends Component
                         'n_serie' => null
                     ]);
                 }
-                
+
                 $exam->delete();
                 session()->flash('success', 'Examen supprimé avec succès.');
                 $this->loadExams();
@@ -371,4 +380,4 @@ class ExamModal extends Component
     {
         return view('livewire.components.exam-modal');
     }
-} 
+}

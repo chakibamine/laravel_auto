@@ -8,7 +8,6 @@
         body {
             font-family: DejaVu Sans, sans-serif;
             margin: 0;
-            padding: 20px;
         }
         .container {
             display: flex;
@@ -28,7 +27,6 @@
         .student-photo {
             width: 120px;
             margin-right: 20px;
-            margin-bottom: 30px;
         }
         table {
             width: 100%;
@@ -42,7 +40,7 @@
         }
         .score-table {
             width: auto;
-            margin-top: 70px;
+           
             margin-left: 100px;
             border: none;
         }

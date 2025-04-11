@@ -50,7 +50,7 @@
                                     <td valign='top' style='font-size:12px;'>{{ $row['category'] }}</td>
                                     <td valign='top' style='font-size:12px;'>{{ \Carbon\Carbon::parse($row["date_inscription"])->format('d/m/Y H:i') }}</td>
                                     <td valign='top' style='font-size:12px;'>{{ \Carbon\Carbon::parse($row["date_cloture"])->format('d/m/Y H:i') }}</td>
-                                    <td valign='top' style='font-size:12px;'>{{ \Carbon\Carbon::parse($row["date_exam"])->format('d/m/Y H:i') }}</td>
+                                    <td valign='top' style='font-size:12px;'>{{ $row->exams->first() ? \Carbon\Carbon::parse($row->exams->first()->date_exam)->format('d/m/Y H:i') : '-' }}</td>
                                 </tr>
                             @endforeach
                         @else
