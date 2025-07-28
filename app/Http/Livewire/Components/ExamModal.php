@@ -120,6 +120,7 @@ class ExamModal extends Component
             // Determine exam type based on existing exams
             $this->determineExamType();
 
+<<<<<<< HEAD
             // If this is the first exam, load cars and moniteurs with same category as dossier
             if ($this->selectedDossier->category) {
                 $this->cars = \App\Models\Car::where('category', $this->selectedDossier->category)->get();
@@ -129,6 +130,8 @@ class ExamModal extends Component
                 $this->moniteurs = [];
             }
 
+=======
+>>>>>>> 7237d611c732719a22051870147af187fbbaa846
             // Show the modal
             $this->showModal = true;
         } catch (\Exception $e) {
@@ -147,6 +150,7 @@ class ExamModal extends Component
 
     private function checkQuota($carId = null, $moniteurId = null)
     {
+<<<<<<< HEAD
         $category = $this->selectedDossier->category;
         $year = Carbon::now()->year;
         $month = Carbon::now()->month;
@@ -168,6 +172,16 @@ class ExamModal extends Component
                 ->count() < 12;
         }
         return $carQuota && $moniteurQuota;
+=======
+        if ($this->selectedDossier && $this->selectedDossier->category === 'B') {
+            $totalExams = Dossier::where('category', 'B')
+                ->whereYear('date_cloture', Carbon::now()->year)
+                ->whereMonth('date_cloture', Carbon::now()->month)
+                ->count();
+            return $totalExams < 12;
+        }
+        return true; // No quota restriction for other categories
+>>>>>>> 7237d611c732719a22051870147af187fbbaa846
     }
 
     public function saveExam()

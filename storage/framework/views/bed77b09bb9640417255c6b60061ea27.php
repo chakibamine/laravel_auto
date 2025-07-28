@@ -1,0 +1,1 @@
+<?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/layouts/footer.blade.php ENDPATH**/ ?>

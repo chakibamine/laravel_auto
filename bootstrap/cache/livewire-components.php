@@ -25,7 +25,11 @@
   'logout' => 'App\\Http\\Livewire\\Logout',
   'profile' => 'App\\Http\\Livewire\\Profile',
   'profile-example' => 'App\\Http\\Livewire\\ProfileExample',
+<<<<<<< HEAD
   'quiz-manager' => 'App\\Http\\Livewire\\QuizManager',
+=======
+  'quiz-component' => 'App\\Http\\Livewire\\QuizComponent',
+>>>>>>> 7237d611c732719a22051870147af187fbbaa846
   'reg-controller' => 'App\\Http\\Livewire\\RegController',
   'register-example' => 'App\\Http\\Livewire\\RegisterExample',
   'remainder' => 'App\\Http\\Livewire\\Remainder',
