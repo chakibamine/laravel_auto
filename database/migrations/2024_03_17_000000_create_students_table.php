@@ -27,12 +27,6 @@ return new class extends Migration
             $table->string('place_birth_ar', 50)->nullable();
             $table->string('city', 30)->nullable();
             
-            // Guardian Information
-            $table->string('a_firstname', 30)->nullable();
-            $table->string('a_lastname', 30)->nullable();
-            $table->string('a_place_birth', 50)->nullable();
-            $table->string('a_address', 50)->nullable();
-            
             // System Fields
             $table->string('insert_user', 50);
             $table->timestamp('date_insertion')->nullable();

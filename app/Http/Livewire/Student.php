@@ -51,7 +51,7 @@ class Student extends Component
 
     protected $listeners = ['refresh' => '$refresh'];
 
-    public function rules()
+    protected function rules()
     {
         return [
             'student.firstname' => 'required|string|max:50',
@@ -69,13 +69,13 @@ class Student extends Component
                 },
             ],
             'student.place_birth' => 'required|string|max:50',
-            'student.address' => 'required|string|max:50',
+            'student.address' => 'required|string|max:150',
             'student.city' => 'required|string|max:30',
-            'student.phone' => 'required|string|max:10',
-            'student.a_firstname' => 'required|string|max:30',
-            'student.a_lastname' => 'required|string|max:30',
-            'student.a_place_birth' => 'required|string|max:50',
-            'student.a_address' => 'required|string|max:50',
+            'student.phone' => 'required|string|max:15',
+            'student.firstname_ar' => 'required|string|max:50',
+            'student.lastname_ar' => 'required|string|max:50',
+            'student.place_birth_ar' => 'required|string|max:50',
+            'student.address_ar' => 'required|string|max:150',
             'photo' => 'nullable|image|max:1024|mimes:jpg,jpeg,png'
         ];
     }

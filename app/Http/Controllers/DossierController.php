@@ -121,6 +121,18 @@ class DossierController extends Controller
             return back()->with('error', 'Error displaying exam fiche: ' . $e->getMessage());
         }
     }
+    public function generateFinFormationFiche($examId)
+    {
+        try {
+            $exam = Exam::with(['dossier.student'])->findOrFail($examId);
+            return view('pdf.finformation', [
+                'exam' => $exam,
+                'dossier' => $exam->dossier
+            ]);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error displaying exam fiche: ' . $e->getMessage());
+        }
+    }
 
     public function generateInvoice($id)
     {

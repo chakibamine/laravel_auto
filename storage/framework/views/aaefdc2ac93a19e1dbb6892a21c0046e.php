@@ -1,1 +1,0 @@
-<?php /**PATH D:\laravel\volt-laravel-dashboard\resources\views/layouts/topbar.blade.php ENDPATH**/ ?>

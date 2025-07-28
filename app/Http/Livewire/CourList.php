@@ -52,7 +52,15 @@ class CourList extends Component
     public function openCourModal($dossierId)
     {
         try {
-            $this->selectedDossier = Dossier::with('student')->findOrFail($dossierId);
+            $dossier = Dossier::with('student')->findOrFail($dossierId);
+            
+            // Only allow adding courses to dossiers with category B
+            if ($dossier->category !== 'B') {
+                session()->flash('error', 'Vous ne pouvez ajouter des cours qu\'aux dossiers de permis B.');
+                return;
+            }
+            
+            $this->selectedDossier = $dossier;
             $this->cour['dossier_id'] = $dossierId;
             $this->showModal = true;
         } catch (\Exception $e) {
@@ -107,6 +115,7 @@ class CourList extends Component
     {
         $dossiers = Dossier::with(['student', 'courses'])
             ->where('status', 1)
+            ->where('category', 'B')
             ->when($this->searchTerm, function($query) {
                 $query->whereHas('student', function($query) {
                     $query->where('firstname', 'like', '%'.$this->searchTerm.'%')

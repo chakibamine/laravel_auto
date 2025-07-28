@@ -8,6 +8,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class Comptabilite extends Component
 {
@@ -275,6 +276,26 @@ class Comptabilite extends Component
         // Open report in new tab
         $this->dispatchBrowserEvent('open-report', [
             'url' => route('comptabilite.report', ['year' => $year, 'month' => $month])
+        ]);
+    }
+
+    public function printArabicReceipt()
+    {
+        $data = [
+            'landlord_name' => 'علي مهيد',
+            'landlord_id' => 'I146256',
+            'tenant_name' => 'محمد شكيب',
+            'tenant_id' => 'I207240',
+            'date' => '01/12/2025',
+            'amount' => '1000',
+            'property_details' => 'الطابق الاول من المنزل التابع لمسجد بوشغل نيميرو تانوغة تاكزيرت القصيبة',
+            'company_name' => 'شركة ايت امحند لتعليم السياقة وقانون السير',
+            'month' => 'ديسمبر',
+            'year' => '2025'
+        ];
+
+        $this->dispatchBrowserEvent('open-receipt', [
+            'url' => route('receipt.show', $data)
         ]);
     }
 

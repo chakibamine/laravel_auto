@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="600px" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Road -->
+        <path d="M0,400 C200,380 600,420 800,400" stroke="#333333" stroke-width="100"/>
+        
+        <!-- Road markings -->
+        <path d="M50,400 L150,398 M250,396 L350,394 M450,396 L550,398 M650,400 L750,402" 
+              stroke="#FFFFFF" stroke-width="10" stroke-dasharray="40,40"/>
+        
+        <!-- Car body -->
+        <path d="M300,300 C300,300 350,300 400,300 C450,300 470,330 500,330 C530,330 540,300 560,300 C580,300 590,320 600,320 C610,320 610,300 620,300 L650,300 L650,350 L300,350 Z" 
+              fill="#1e3c72"/>
+        
+        <!-- Windows -->
+        <path d="M420,305 L470,305 L460,330 L420,330 Z" fill="#FFFFFF" opacity="0.8"/>
+        <path d="M480,305 L520,305 L520,330 L470,330 Z" fill="#FFFFFF" opacity="0.8"/>
+        
+        <!-- Wheels -->
+        <circle cx="380" cy="350" r="30" fill="#333333"/>
+        <circle cx="380" cy="350" r="20" fill="#666666"/>
+        <circle cx="570" cy="350" r="30" fill="#333333"/>
+        <circle cx="570" cy="350" r="20" fill="#666666"/>
+        
+        <!-- Headlight -->
+        <circle cx="620" cy="320" r="10" fill="#FFFF00" opacity="0.8"/>
+    </g>
+</svg> 

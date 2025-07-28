@@ -9,6 +9,7 @@ use App\Models\Exam;
 use App\Models\Reg;
 use App\Models\Entrer;
 use App\Models\Sortie;
+use App\Models\Remainder;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +24,15 @@ class Dashboard extends Component
     public $monthlyStats;
     public $categoryDistribution;
     
-    // New accounting properties
+    // New statistics properties
+    public $examSuccessByCategory;
+    public $paymentStatusStats;
+    public $studentProgressStats;
+    public $revenueByPaymentMethod;
+    public $averageTrainingDuration;
+    public $studentAgeDistribution;
+    
+    // Accounting properties
     public $totalRevenue;
     public $totalExpenses;
     public $netIncome;
@@ -33,11 +42,20 @@ class Dashboard extends Component
     public $paymentMethods;
     public $unpaidDossiers;
 
+    public $upcomingReminders;
+
     public function mount()
     {
         $this->calculateStatistics();
         if (auth()->user()->role === 'admin') {
             $this->calculateAccountingStats();
+            // Query for reminders within the next 7 days
+            $this->upcomingReminders = Remainder::whereDate('date', '>=', Carbon::today())
+                ->whereDate('date', '<=', Carbon::today()->addDays(7))
+                ->orderBy('date')
+                ->get();
+        } else {
+            $this->upcomingReminders = collect();
         }
     }
 
@@ -91,6 +109,71 @@ class Dashboard extends Component
             ->get()
             ->pluck('total', 'category')
             ->toArray();
+
+        // New statistics calculations
+        $this->calculateNewStatistics();
+    }
+
+    private function calculateNewStatistics()
+    {
+        // Exam success rate by category
+        $this->examSuccessByCategory = Exam::select('type_exam', DB::raw('COUNT(*) as total'))
+            ->selectRaw('SUM(CASE WHEN resultat = 2 THEN 1 ELSE 0 END) as successful')
+            ->groupBy('type_exam')
+            ->get()
+            ->map(function ($item) {
+                $item->success_rate = $item->total > 0 ? round(($item->successful / $item->total) * 100, 1) : 0;
+                return $item;
+            });
+
+        // Payment status statistics
+        $this->paymentStatusStats = Dossier::select(
+            DB::raw('COUNT(*) as total'),
+            DB::raw('SUM(CASE WHEN status = 1 THEN 1 ELSE 0 END) as active'),
+            DB::raw('SUM(CASE WHEN status = 0 THEN 1 ELSE 0 END) as completed')
+        )->first();
+
+        // Student progress statistics
+        $this->studentProgressStats = [
+            'total' => Student::count(),
+            'active' => Student::whereHas('dossiers', function($query) {
+                $query->where('status', 1);
+            })->count(),
+            'completed' => Student::whereHas('dossiers', function($query) {
+                $query->where('status', 0);
+            })->count()
+        ];
+
+        // Revenue by payment method (using motif instead of mode_paiement)
+        $this->revenueByPaymentMethod = Reg::select('motif', DB::raw('SUM(price) as total'))
+            ->whereMonth('date_reg', Carbon::now()->month)
+            ->whereYear('date_reg', Carbon::now()->year)
+            ->groupBy('motif')
+            ->get();
+
+        // Average training duration
+        $completedDossiers = Dossier::whereNotNull('date_cloture')
+            ->whereNotNull('date_inscription')
+            ->get();
+        
+        $totalDays = 0;
+        $count = 0;
+        foreach ($completedDossiers as $dossier) {
+            if ($dossier->date_cloture && $dossier->date_inscription) {
+                $totalDays += $dossier->date_cloture->diffInDays($dossier->date_inscription);
+                $count++;
+            }
+        }
+        $this->averageTrainingDuration = $count > 0 ? round($totalDays / $count) : 0;
+
+        // Student age distribution (using category instead of age)
+        $this->studentAgeDistribution = Dossier::select('category', DB::raw('COUNT(*) as total'))
+            ->groupBy('category')
+            ->get()
+            ->map(function ($item) {
+                $item->age_group = "Catégorie " . $item->category;
+                return $item;
+            });
     }
 
     private function calculateAccountingStats()
@@ -105,9 +188,10 @@ class Dashboard extends Component
         $this->netIncome = $this->totalRevenue - $this->totalExpenses;
 
         // Get today's transactions
+        $today = Carbon::today();
         $this->dailyTransactions = [
-            'income' => Entrer::whereDate('date_entrer', Carbon::today())->sum('montant'),
-            'expenses' => Sortie::whereDate('date_sortie', Carbon::today())->sum('montant')
+            'income' => Entrer::whereDate('date_entrer', $today)->sum('montant'),
+            'expenses' => Sortie::whereDate('date_sortie', $today)->sum('montant')
         ];
 
         // Calculate monthly expenses by category
@@ -135,6 +219,8 @@ class Dashboard extends Component
 
     public function render()
     {
-        return view('livewire.dashboard');
+        return view('livewire.dashboard', [
+            'upcomingReminders' => $this->upcomingReminders,
+        ]);
     }
 }
